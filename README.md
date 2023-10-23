@@ -25,7 +25,9 @@ Each chat channel has its own note view. It is common to channel users. Channel 
    ```
     into folder `chat-client`
        
-![Image for oauth credentials](https://github.com/juhaj77/VisualChat/blob/master/images/oauth.png)
+![Image for oauth credentials](https://github.com/juhaj77/VisualChat/blob/master/images/oauth2.png)    
+cloud console
+  
 ## usage
 
 ____tested with Firefox and Chrome.____
