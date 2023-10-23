@@ -133,7 +133,7 @@ const UploadForm = ({setVisible,top,left,channelId,user,channel }) => {
   }
 
   return (
-    <Container2 style={{position:'absolute',top:top,left:left}}>
+    <Container2 style={{zIndex:'199',position:'absolute',top:top,left:left}}>
       <FormHeader>
         Select a picture...
       </FormHeader>

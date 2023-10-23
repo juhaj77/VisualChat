@@ -1,10 +1,21 @@
 /* eslint-disable react/destructuring-assignment */
-import React from 'react'
+import React, { useState } from 'react'
 import Header from './Header'
-import { useDrag } from 'react-dnd'
+import { useTransition, animated } from 'react-spring'
+//import { useDrag } from 'react-dnd'
 
 const MyImage = (props) => {
- 
+
+  const [loaded, setLoaded] = useState(false) 
+  
+  const transitions = useTransition(loaded, null, {
+    from: { opacity: 0 },
+    enter: { opacity: 1},
+    leave: { opacity: 0},
+  })
+  const top = props.top
+  const left = props.left
+  /*
   const [{ isDragging }, drag] = useDrag({
     item: { id:props.id, left:props.left, top:props.top, type: 'image' },
     collect: monitor => {
@@ -13,7 +24,7 @@ const MyImage = (props) => {
   })
   if (isDragging) {
     return <div ref={drag} />
-  }
+  }*/
 
   const arrayBufferToBase64 = (buffer) => {
     let binary = ''
@@ -26,14 +37,15 @@ const MyImage = (props) => {
   const pic = new Image()
   pic.src = `data:${props.picture.contentType};`
         + `base64,${arrayBufferToBase64(props.picture.data.data)}`
-  // pic.onload = () => console.log('onload:', props.name, pic)
+  pic.onload = () => setLoaded(true)
 
-  return (
-    <div className='image' ref={drag} style={{
+  return transitions.map(({ item, key, props }) =>
+  item && <animated.div key={key} style={{...props}} >
+    <div className='image' style={{
       width: 'fit-content',
       position:'absolute',
-      top:props.top,
-      left:props.left,
+      top:top,
+      left:left,
       zIndex:'0',
       textAlign: 'center',
       height: 'calc(100vh/2 - 1em/3)',
@@ -42,8 +54,8 @@ const MyImage = (props) => {
     >
       <Header title={props.name} />
       <img src={pic.src} alt={props.name} style={{ borderRadius: '0 1em 0 0'}} />
-    </div> //, height: 'calc(100vh/3 - 4em/3 - 1.7em)' 
-  )
+    </div> 
+    </animated.div>)
 }
 
 export default MyImage

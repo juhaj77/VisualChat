@@ -22,10 +22,16 @@ const DnDContainer = (props) => {
   const seen = useRef(false)
   const [zIndex, setZIndex] = useState('5')
     
-  const transitions = useTransition(menu.visible || menu2.visible || uploadForm.visible, null, {
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
+  const transitions = useTransition(menu.visible || menu2.visible, null, {
+    from: { opacity: 0, rotation: -1 },
+    enter: { opacity: 1, rotation: 0},
+    leave: { opacity: 0, rotation: 1 },
+  })
+     
+  const transitions2 = useTransition(uploadForm.visible, null, {
+    from: { opacity: 0, rotation: -1 },
+    enter: { opacity: 1, rotation: 0},
+    leave: { opacity: 0, rotation: 1 },
   })
 
   const [, drop] = useDrop({
@@ -106,6 +112,13 @@ const DnDContainer = (props) => {
     props.setNote({...note, backgroundColor: e.nativeEvent.target.id}, props.channel.id, props.user)
     hideMenus()
   }
+  const upload = (props) => {
+    const ch = props.channel.id
+    return transitions2.map(({ item, key, props }) =>
+      item && <animated.div key={key} style={{...props}}>
+        <UploadForm setVisible={setUploadForm} top={uploadForm.style.top} left={uploadForm.style.left} channelId={ch} style={{...uploadForm.style}}/>
+      </animated.div>)}
+
   const contextMenu2 = () => (
     transitions.map(({ item, key, props }) =>
       item && <animated.div className='menu' key={key} style={{...menu2.style, width:'9rem',...props}}>
@@ -265,7 +278,7 @@ const DnDContainer = (props) => {
               <div id='wa'>&nbsp;draggable working area</div>
               {menu.visible && contextMenu()}
               {menu2.visible && contextMenu2()}
-              {uploadForm.visible && <UploadForm setVisible={setUploadForm} top={uploadForm.style.top} left={uploadForm.style.left} channelId={props.channel.id} style={{...uploadForm.style}}/>}
+              {uploadForm.visible && upload(props)}
               {props.notes.map((b,i) => (
                 <Note
                   key={b.id}

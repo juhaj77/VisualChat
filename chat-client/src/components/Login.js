@@ -50,15 +50,12 @@ const Login = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  ///////////////////////////////////////////////////////////
+  //////////////////////////GOOGLE/////////////////////////////////
   const [user, setUser] = useState(null);
- 
-  const REACT_APP_CLIENT_ID = "371216924606-rgdtfalqj9tklp61rkv27d9ii14cenbe.apps.googleusercontent.com"
-  //let auth2 = null
+  const REACT_APP_CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 
   useEffect(() => {
     console.log('load gapi')
-   // setUser(null)
     const loadGapi = async () => {
       const newGapi = await loadGapiInsideDOM();
       props.setGapi(newGapi)
