@@ -55,7 +55,6 @@ const Login = (props) => {
   const REACT_APP_CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 
   useEffect(() => {
-    console.log('load gapi')
     const loadGapi = async () => {
       const newGapi = await loadGapiInsideDOM();
       props.setGapi(newGapi)
@@ -88,7 +87,6 @@ const Login = (props) => {
       }
     }
     setAuth2();
-    console.log('C','props.user',props.user,'user',user)
   }, [props.gapi]);
 
   useEffect(() => {

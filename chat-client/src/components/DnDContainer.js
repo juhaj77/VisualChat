@@ -37,7 +37,6 @@ const DnDContainer = (props) => {
   const [, drop] = useDrop({
     accept: ['note', 'image'],
     drop(item, monitor) {
-      console.log(item,monitor)
       const delta = monitor.getDifferenceFromInitialOffset()
       const left = Math.round(item.left + delta.x)
       const top = Math.round(item.top + delta.y)
@@ -52,7 +51,6 @@ const DnDContainer = (props) => {
 		
   }
   const handleContextMenu = (event) => {
-    console.log('handleContextMenu', event.target)
     event.preventDefault()
     if(menu.visible || menu2.visible){
       setMenu2({visible: false})
@@ -62,7 +60,6 @@ const DnDContainer = (props) => {
     if(event.target.id === 'dnd2'){
       let top = event.nativeEvent.offsetY - document.getElementById('wa').offsetHeight
       //let top = event.nativeEvent.offsetY + document.getElementById('wa').offsetHeight
-      console.log( top, event.nativeEvent.offsetX)
       setMenu({visible: true, style:{zIndex:1000,position: 'absolute', left:event.nativeEvent.offsetX, top}})
       setMenu2({visible: false})
     } else if(event.nativeEvent.target.className !== 'txt-mesta' && event.nativeEvent.target.id !== 'wa') {
@@ -70,7 +67,6 @@ const DnDContainer = (props) => {
     }
   }
   const handleContextMenu2 = (event) => {
-    console.log('handleContextMenu2')
     const left = Number(event.target.offsetParent.style.left.replace('px','')) + Number(event.nativeEvent.offsetX)
     const top = Number(event.target.offsetParent.style.top.replace('px','')) - Number(event.nativeEvent.offsetY)
  
@@ -78,7 +74,6 @@ const DnDContainer = (props) => {
     setMenu({visible: false})
   }
   const handleAddNote = (e) => {
-    console.log(props.channel)
     e.preventDefault()
     const date = new Date()
     let top = menu.style.top + document.getElementById('wa').offsetHeight
@@ -92,10 +87,8 @@ const DnDContainer = (props) => {
    // uploadFormVisible.current = true
     event.preventDefault()
     let top = menu.style.top + document.getElementById('wa').offsetHeight
-    console.log('top',top,'left',menu.style.left)
     const um = {visible: true,style:{zIndex:1000,position: 'absolute', left: menu.style.left, top}}
     setUploadForm(um)
-    console.log(uploadForm)
     setMenu({visible: false})
     setMenu2({visible: false})
   }
@@ -214,11 +207,11 @@ const DnDContainer = (props) => {
   }
 
   const timeoutid = useRef(-1)
-  const o = useRef(true)
+  const tip = useRef(true)
 
   const hideTip = useCallback(() => {
-    if(!o.current) clearTimeout(timeoutid.current)
-    if(o.current && timeoutid.current === -1)
+    if(!tip.current) clearTimeout(timeoutid.current)
+    if(tip.current && timeoutid.current === -1)
       timeoutid.current = setTimeout(() => {
         seen.current = true
       },12000)
@@ -226,18 +219,13 @@ const DnDContainer = (props) => {
 
   useEffect(() => {
     return () => {
-      o.current = false
+      tip.current = false
       hideTip()
     }
   }, [hideTip])
 
-  useEffect(() => {
-    console.log(zIndex)
-  }, [zIndex])
-
   const onpointerover = (e) => {
     if(!seen.current && e.target.id === 'dnd' && !open) {
-      console.log('mitä vittuu')
       setOpen(true)
       return
     }
@@ -245,7 +233,6 @@ const DnDContainer = (props) => {
   }
 
   const onpointerdown = e => {
-    console.log(e)
     setOpen(false)
     if(e.target.id === 'dnd') setZIndex('2')
   }
