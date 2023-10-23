@@ -40,9 +40,7 @@ const createMySocketMiddleware = () => {
     })
     socket.on('callback', async (data) => {
       if(storeAPI.getState().channel.id === data.id) {
-      console.log('store middlevare',data,'\nstoreAPI.loggedUser:',storeAPI.getState().loggedUser)
       if(storeAPI.getState().loggedUser.token !== data.token){
-        console.log('eriuser')
         const pictures = await pictureService.getPictures(storeAPI.getState().channel.id, storeAPI.getState().loggedUser)
         storeAPI.dispatch({
           type: 'INIT_PICTURES',

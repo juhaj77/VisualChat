@@ -34,8 +34,6 @@ const Login = (props) => {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    console.log('props',props)
-    console.log('A','props.user',props.user,'user',user)
     const setU = async () => {
       const loggedUserJSON = window.localStorage.getItem('loggedChatUser')
       if (loggedUserJSON) {
@@ -46,7 +44,6 @@ const Login = (props) => {
       }
     }
     setU()
-    console.log('B','props.user',props.user,'user',user)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
