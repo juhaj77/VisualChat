@@ -1,0 +1,19 @@
+.note{
+    position: absolute;
+    box-shadow:2px 2px 5px rgba(0,0,0,0.5);
+    outline: 4px solid transparent;
+	padding: 0rem 0rem 0rem 0rem;
+	cursor: move;
+    font-size:9px;
+    white-space:nowrap;
+	width: 7rem;
+    height: 5rem;
+    font-weight: 700;
+    transition: outline 1s;
+    text-align:center;
+    will-change: transform, opacity;
+}
+
+.note:hover {
+    outline-color: #ffbb00;
+}

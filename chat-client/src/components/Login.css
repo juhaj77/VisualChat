@@ -1,0 +1,19 @@
+.myButton {
+    border: 1px solid #665533;
+    cursor:pointer;
+    color:#b29966;
+    font-size:1.1em;
+    font-weight:500; 
+    padding:0.6em 0.9em 0.6em 0.9em;
+    border-radius:5px;
+    background-color:black;
+    display:flex;
+    justify-content: center;
+    margin:auto;
+    transition: background-color 250ms ease-in, border-color 250ms ease-in, color 250ms ease-in;
+}
+.myButton:hover{
+    background-color:rgba(53, 46, 17, 0.6);
+    border-color: #b29966;
+    color: #d4c6aa;
+  }
