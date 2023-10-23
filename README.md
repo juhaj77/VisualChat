@@ -26,7 +26,7 @@ Each chat channel has its own note view. It is common to channel users. Channel 
     into folder `chat-client`
 ## usage
 
-____Application doesn't work in Edge browser! For testing purpose needs to have own browser per session with one pc. for example Chrome for user1 and Firefox for user2. Browser's local storage doesn't handle multiple sessions correctly in this solution.____
+____tested with Firefox and Chrome.____
 
 1. `npm start` in **chat-server** folder.
 1. `export NODE_OPTIONS=--openssl-legacy-provider` in **chat-client** folder.
