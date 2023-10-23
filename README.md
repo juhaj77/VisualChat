@@ -24,7 +24,8 @@ Each chat channel has its own note view. It is common to channel users. Channel 
    REACT_APP_CLIENT_ID='client id from https://console.cloud.google.com app credentials'
    ```
     into folder `chat-client`
-   ![Image for oauth credentials](https://github.com/juhaj77/VisualChat/blob/master/images/oauth.png)
+       
+![Image for oauth credentials](https://github.com/juhaj77/VisualChat/blob/master/images/oauth.png)
 ## usage
 
 ____tested with Firefox and Chrome.____
