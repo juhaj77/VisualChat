@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { Progress } from 'reactstrap'
 import { useField } from '../hooks/field'
 import { useDispatch } from 'react-redux'
+import { HoverButton } from './Login'
 
 const options = {
     autoClose: false,
@@ -20,29 +21,30 @@ const options = {
   }
 
 const FlexItem = styled.div`
-  text-align: left; 
+  text-align: center; 
   width: 100%; 
   align-self: strech;
 `
 const Container2 = styled.div`
   overflow:visible; 
-  color: white; 
+  color: #665533; 
+  background: black;
+  border:solid 1px #665533;
   display: flex; 
   flex-direction: column; 
   justify-content: space-between; 
   align-items: flex-start; 
   margin:1.666em 0 0 0;
-  background-color: brown;
   align-content: space-between; 
   padding: .5em; 
   white-space: nowrap;
 `
 const FormHeader = styled.span`
+  text-align: center;
   font-size: 2em; 
   line-height: 1em; 
   font-weight: 800; 
   padding: 0; 
-  color: white;
 `
 const LabelStyle = styled.p`
   line-height: 1em; 
@@ -114,6 +116,12 @@ const UploadForm = ({setVisible,top,left,channelId,user,channel }) => {
 
   const onClickHandler = (id) => {
     const data = new FormData()
+    if(!selectedFile){
+      toast.error('select file', {
+        position: toast.POSITION.BOTTOM_CENTER
+      })
+      return
+    }
     data.append('uploaded_file', selectedFile)
     data.append('name', itemName.input.value)
     data.append('top', top)
@@ -133,14 +141,14 @@ const UploadForm = ({setVisible,top,left,channelId,user,channel }) => {
   }
 
   return (
-    <Container2 style={{zIndex:'199',position:'absolute',top:top,left:left}}>
+    <Container2 style={{display:'flex', flexDirection:'column',alignItems: 'center', justifyContent:'center',zIndex:'199',position:'absolute',top:top,left:left}}>
       <FormHeader>
-        Select a picture...
+        select picture
       </FormHeader>
       <FlexItem>
         <LabelStyle>Small png. Max 1M </LabelStyle>
         <input
-          style={{ lineHeight: '1.5em', fontSize: '1em', margin: '0' }}
+          style={{ paddingLeft:'0.5em', lineHeight: '1.5em', fontSize: '1em', margin: '0', background:'black',color:'#665533'}}
           type="file"
           name="upload_file"
           className="form-control-file"
@@ -157,25 +165,9 @@ const UploadForm = ({setVisible,top,left,channelId,user,channel }) => {
           {Math.round(loaded, 2) }
           %
         </Progress>
-        <button
-          style={{
-            fontSize: '1.2em', fontWeight: 'bold', verticalAlign: 'middle', display: 'inline-block',
-          }}
-          type="submit"
-          className="btn btn-success btn-block"
-          onClick={onClickHandler}
-        >
-          submit
-        </button>
+        <HoverButton type="submit" onClick={onClickHandler}>submit</HoverButton>
         &ensp;&ensp;&ensp;&ensp;
-        <button
-          style={{
-            fontSize: '1.2em', fontWeight: 'bold', verticalAlign: 'middle', display: 'inline-block',
-          }}
-          type="submit"
-          className="btn btn-success btn-block"
-          onClick={()=>setVisible(false)}
-        >cancel</button>
+        <HoverButton type="submit" onClick={()=>setVisible(false)}>cancel</HoverButton>
       </FlexItem>
     </Container2>
   )

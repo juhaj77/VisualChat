@@ -10,7 +10,7 @@ const cors = require('cors')
 require('express-async-errors')
 const session = require("express-session");
 const passport = require("passport");
-require("./auth");
+
 /*
 const isLoggedIn = (req, res, next) => {
   req.user ? next() : res.sendStatus(401);

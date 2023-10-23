@@ -89,3 +89,9 @@
 }
 div.hoverjuttu:hover #dnd {border-color: rgba(178, 153, 102, 0.3)}
 div.hoverjuttu:hover #wa {color: rgba(178, 153, 102,0.4);}
+
+.btn:hover {
+  background-color:rgba(53, 46, 17, 0.6);
+  border-color: #b29966;
+  color: #d4c6aa
+}
