@@ -11,11 +11,13 @@ const DropDownContainer = (props) => {
 
   useEffect(() => {
     props.initializeChannels(props.user)
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleChange =  async e => {
     e.preventDefault()
+    
     const index = e.target.selectedIndex
     const name = e.target.childNodes[index].value
     if(index !== 0 && name !== props.channel.name){
@@ -62,4 +64,5 @@ export default connect(
     setChannel, 
     initializeMessages,
     initializePictures,
-    initializeNotes })(DropDownContainer)
+    initializeNotes,
+    })(DropDownContainer)

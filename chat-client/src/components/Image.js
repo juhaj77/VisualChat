@@ -1,8 +1,10 @@
 /* eslint-disable react/destructuring-assignment */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from './Header'
 import { useTransition, animated } from 'react-spring'
 //import { useDrag } from 'react-dnd'
+
+import { connect } from 'react-redux'
 
 const MyImage = (props) => {
 
@@ -15,6 +17,11 @@ const MyImage = (props) => {
   })
   const top = props.top
   const left = props.left
+  const name = props.name
+
+  useEffect(() => {
+    return () => {setLoaded(false)}
+  }, [props.channel])
   /*
   const [{ isDragging }, drag] = useDrag({
     item: { id:props.id, left:props.left, top:props.top, type: 'image' },
@@ -40,22 +47,30 @@ const MyImage = (props) => {
   pic.onload = () => setLoaded(true)
 
   return transitions.map(({ item, key, props }) =>
-  item && <animated.div key={key} style={{...props}} >
+  item && <animated.div key={key} style={{
+    ...props, 
+    position:'absolute',
+    top:top,
+    left:left,}} >
     <div className='image' style={{
       width: 'fit-content',
-      position:'absolute',
-      top:top,
-      left:left,
       zIndex:'0',
       textAlign: 'center',
       height: 'calc(100vh/2 - 1em/3)',
       margin: '0 1em 0 0',
     }}
     >
-      <Header title={props.name} />
-      <img src={pic.src} alt={props.name} style={{ borderRadius: '0 1em 0 0'}} />
+      <Header title={name} />
+      <img src={pic.src} alt={name} style={{ borderRadius: '0 1em 0 0'}} />
     </div> 
     </animated.div>)
 }
 
-export default MyImage
+const mapStateToProps = (state) => {
+  return {
+    channel: state.channel,
+  }
+}
+
+export default connect(
+  mapStateToProps,null)(MyImage)

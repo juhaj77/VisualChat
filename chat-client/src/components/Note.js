@@ -38,9 +38,9 @@ const Note = (props) => {
     from: { opacity: 0, transform: 'scale(0)' },
     enter: { opacity: 1, transform: 'scale(1)' },
     leave: { opacity: 0, transform: 'scale(0)' },
-    config: { mass: 1.2, tension: 280, friction: 18, precision:0.005 }
+    
   })
-
+// config: { mass: 1.2, tension: 280, friction: 18, precision:0.005 }
   const [{ isDragging }, drag] = useDrag({
     item: { id:props.id, left:props.left, top:props.top, type: 'note' },
     collect: monitor => {
