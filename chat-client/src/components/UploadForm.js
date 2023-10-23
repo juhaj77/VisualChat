@@ -69,7 +69,6 @@ const UploadForm = ({setVisible,top,left,channelId,user,channel }) => {
 
   const onChangeHandler = (event) => {
     const { files } = event.target
-    console.log('\nfiles:'.files)
     if(files[0] && files[0].size < 1000000 && files[0].name.match(/\.(png)$/)) {
       setLoaded(0)
       setSelectedFile(files[0])

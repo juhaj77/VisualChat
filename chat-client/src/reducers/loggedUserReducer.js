@@ -1,7 +1,6 @@
 import loginService from '../services/login'
 
 export const setUser = gredentials => async dispatch => {
-  console.log(gredentials)
   const data = await loginService.login(gredentials)
   if(!data) throw Error('invalid username or password')
   window.localStorage.setItem(

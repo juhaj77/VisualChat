@@ -109,6 +109,7 @@ const Login = (props) => {
       email: email,
       id: id
     });
+    /*
     console.log({
       name: name,
       profileImg: profileImg,
@@ -116,7 +117,7 @@ const Login = (props) => {
       id: id
     })
     console.log(currentUser)
-    console.log(currentUser.xc.id_token.length)
+    console.log(currentUser.xc.id_token.length) */
     props.setUser({
       idToken: currentUser.xc.id_token,
     })
@@ -172,7 +173,6 @@ const Login = (props) => {
   }
 
   const handleLogin = (e) => {
-    console.log(e)
     handleInputs(e, props.setUser)
   }
   const handleSignUp = async (e) => {
