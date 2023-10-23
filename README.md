@@ -30,7 +30,7 @@ cloud console
   
 ## usage
 
-____tested with Firefox and Chrome.____
+____tested with Firefox and Chrome. React-spring is super slow in Firefox____
 
 1. `npm start` in **chat-server** folder.
 1. `export NODE_OPTIONS=--openssl-legacy-provider` in **chat-client** folder.
