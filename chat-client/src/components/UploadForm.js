@@ -79,39 +79,23 @@ const UploadForm = ({setVisible,top,left,channelId,user,channel }) => {
     }
   }
   const baseUrl = '/api/pictures'
+
   const upload = async (payload) => {
-    let res = null
-    try {
-      toast.info('uploading...', options)
-       res = await axios.post(`${baseUrl}/add/${channelId}`, payload, {
+    toast.info('uploading...', options)
+    await axios.post(`${baseUrl}/add/${channelId}`, payload, {
         onUploadProgress: (ProgressEvent) => {
         // eslint-disable-next-line no-mixed-operators
           setLoaded(ProgressEvent.loaded / ProgressEvent.total * 100)
-        },
-      })
-      //const item = await axios.get(`${urlPrefix}/api/get/${res.data}`)
-      toast.dismiss({
-        position: toast.POSITION.BOTTOM_CENTER
-    })
-      toast.success('upload success', {
-        position: toast.POSITION.BOTTOM_CENTER
-    })
-    setVisible({visible:false})
-   if(res) {
-    dispatch(addPicture(res,channel.id,user))
-    dispatch(callback(channel.id,user))
-   }
-      //addItem(item.data)
-    } catch (e) {
-      toast.dismiss({
-        position: toast.POSITION.BOTTOM_CENTER
-      })
-      toast.error('upload fail', {
-        position: toast.POSITION.BOTTOM_CENTER
-      })
-      setVisible({visible:false})
-      }
-    }
+        }, })
+        .then(res => {
+          dispatch(addPicture(res,channel.id,user))
+          dispatch(callback(channel.id,user))
+        })
+        .catch(e => {
+          console.log(e)
+        })
+  setVisible({visible:false})
+  }
 
   const onClickHandler = (id) => {
     const data = new FormData()
@@ -122,21 +106,16 @@ const UploadForm = ({setVisible,top,left,channelId,user,channel }) => {
       return
     }
     data.append('uploaded_file', selectedFile)
+    if(itemName.input.value == ''){
+      toast.error('name is required', {
+        position: toast.POSITION.BOTTOM_CENTER
+      })
+      return
+    }
     data.append('name', itemName.input.value)
     data.append('top', top)
     data.append('left', left)
-    upload(data).then(() => {
-      setLoaded(0)
-      setSelectedFile(undefined)
-      itemName.reset()
-    }).catch((e) => {
-      toast.dismiss({
-        position: toast.POSITION.BOTTOM_CENTER
-    })
-      toast.error(e, {
-        position: toast.POSITION.BOTTOM_CENTER
-    })
-    })
+    upload(data)
   }
 
   return (
