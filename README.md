@@ -1,5 +1,4 @@
-# VisualChat - application
-
+# VisualChat
 Each chat channel has its own note view. It is common to channel users. Channel members can arrange, create, edit, delete or change color of the notes. The note view is updated in real time. Png-images can be uploaded. Connected users and active channels are shown for application users. Google login is partially implemented.
 
 ## prerequisites
