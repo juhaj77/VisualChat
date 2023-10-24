@@ -2,8 +2,7 @@ import axios from 'axios'
 
 const baseUrl = '/api/users'
 
-const getUsers = async (user) => {
-  console.log(user)  
+const getUsers = async (user) => { 
   return await axios.get(`${baseUrl}`, { headers: {Authorization: user.token}})
 }
 const addUser = async (data) => {
