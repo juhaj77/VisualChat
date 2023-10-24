@@ -37,5 +37,5 @@ ____tested with Firefox and Chrome. React-spring is super slow in Firefox____
 
 ### working scene for selected channel
 
-![Image of note view](https://github.com/juhaj77/VisualChat/blob/master/images/UI.png)
+![Image of note view](https://github.com/juhaj77/VisualChat/blob/master/images/UI_n.png)
 
