@@ -21,7 +21,7 @@ import io from 'socket.io-client'
 const createMySocketMiddleware = () => {
   return storeAPI => {
    // let socket = io('ws://localhost:3003')
-    let socket = io('ws://visualchat.fly.dev:'+process.env.PORT)
+    let socket = io('ws://visualchat.onrender.com:'+process.env.PORT)
 		
     socket.on('message', (data) => {
       if(storeAPI.getState().channel.id === data.channelID) {
