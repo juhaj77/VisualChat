@@ -67,7 +67,7 @@ const DnDContainer = (props) => {
       setMenu({visible: false})
       return
     }
-    if(event.target.id === 'dnd2'){
+    if(event.target.id === 'dnd2' || event.target.id === 'dnd' ){
       //let top = event.nativeEvent.offsetY + document.getElementById('wa').offsetHeight
       setMenu({visible: true, style:{zIndex:1000,position: 'absolute', left, top}})
       setMenu2({visible: false})

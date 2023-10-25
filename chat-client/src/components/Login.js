@@ -49,7 +49,6 @@ const Login = (props) => {
 
   //////////////////////////GOOGLE/////////////////////////////////
   const [user, setUser] = useState(null);
-  const REACT_APP_CLIENT_ID = process.env.CLIENT_ID
 
   useEffect(() => {
     const loadGapi = async () => {
@@ -63,7 +62,7 @@ const Login = (props) => {
     if (!props.gapi) return;
 
     const setAuth2 = async () => {
-      const auth2 = await loadAuth2(props.gapi, REACT_APP_CLIENT_ID, '')
+      const auth2 = await loadAuth2(props.gapi, process.env.CLIENT_ID, '')
       // console.log(auth2.currentUser.get().xc.access_token)
       // token = auth2.currentUser.get().xc.access_token
       //  console.log(auth2.currentUser.get().getBasicProfile())
@@ -91,7 +90,7 @@ const Login = (props) => {
 
     if (!user) {
       const setAuth2 = async () => {
-        const auth2 = await loadAuth2(props.gapi, REACT_APP_CLIENT_ID, '')
+        const auth2 = await loadAuth2(props.gapi, process.env.CLIENT_ID, '')
         attachSignin(document.getElementById('customBtn'), auth2);
       }
       setAuth2();
