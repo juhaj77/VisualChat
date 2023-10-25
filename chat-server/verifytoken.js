@@ -33,7 +33,7 @@ const verifyToken = (req, res, next) => {
       });
     } else {
       //jwt.verify(token, process.env.SECRET, (err, decoded) => {
-      jwt.verify(token, 'mySecretStrimg', (err, decoded) => {
+      jwt.verify(token, process.env.SECRET, (err, decoded) => {
         if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' })
         console.log('jwt.verify(token, process.env.SECRET, (err, decoded) =>', decoded)
         req.userId = decoded.id

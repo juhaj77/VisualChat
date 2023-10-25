@@ -49,7 +49,7 @@ const Login = (props) => {
 
   //////////////////////////GOOGLE/////////////////////////////////
   const [user, setUser] = useState(null);
-  const REACT_APP_CLIENT_ID = process.env.REACT_APP_CLIENT_ID
+  const REACT_APP_CLIENT_ID = process.env.CLIENT_ID
 
   useEffect(() => {
     const loadGapi = async () => {

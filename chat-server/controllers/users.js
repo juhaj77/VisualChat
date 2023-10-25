@@ -46,7 +46,7 @@ const UserController = {
         console.log('A')
         const ticket = await client.verifyIdToken({
           idToken: body.idToken,
-          audience: "371216924606-rgdtfalqj9tklp61rkv27d9ii14cenbe.apps.googleusercontent.com",  // Specify the CLIENT_ID of the app that accesses the backend
+          audience: process.env.CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
           // Or, if multiple clients access the backend:
           //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
         });
@@ -102,7 +102,7 @@ const UserController = {
       }
           
      // const token = jwt.sign(userForToken, process.env.SECRET)
-     const token = jwt.sign(userForToken, 'mySecretStrimg')
+     const token = jwt.sign(userForToken, process.env.SECRET)
       response
         .status(200)
         .send({ token, username: user.username, userId: user._id })

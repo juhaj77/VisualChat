@@ -22,8 +22,7 @@ io.on('connection', async socket => {
   })
   socket.on('action', async action => {
     try {
-    //    jwt.verify(action.data.token, process.env.SECRET,  (err) => {
-      jwt.verify(action.data.token, 'mySecretStrimg',  (err) => {
+        jwt.verify(action.data.token, process.env.SECRET,  (err) => {
         token = true
         console.log('token = true')
         if (err) {
