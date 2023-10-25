@@ -102,6 +102,6 @@ io.on('connection', async socket => {
       console.log(exception)
     }
   })
-})
-
-server.listen(config.PORT)
+}) 
+const port = process.env.PORT || "8080"
+server.listen(port)

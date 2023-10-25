@@ -66,7 +66,7 @@ const UploadForm = ({setVisible,top,left,channelId,user,channel }) => {
   const [selectedFile, setSelectedFile] = useState(null)
   const itemName = useField('text', '')
   const dispatch = useDispatch()
-
+  console.log('\nUploadForm data:',left,top)
   const onChangeHandler = (event) => {
     const { files } = event.target
     if(files[0] && files[0].size < 1000000 && files[0].name.match(/\.(png)$/)) {
@@ -124,7 +124,7 @@ const UploadForm = ({setVisible,top,left,channelId,user,channel }) => {
         select picture
       </FormHeader>
       <FlexItem>
-        <LabelStyle>Small png. Max 1M </LabelStyle>
+        <LabelStyle>small png. max 1M </LabelStyle>
         <input
           style={{ paddingLeft:'0.5em', lineHeight: '1.5em', fontSize: '1em', margin: '0', background:'black',color:'#665533'}}
           type="file"

@@ -16,12 +16,14 @@ const isLoggedIn = (req, res, next) => {
   req.user ? next() : res.sendStatus(401);
 };
 */
-app.use(session({ secret: "secret" }));
+app.use(session({ secret: "uyfkjytg65756e56e65r7wrthtr7657e6547uyrtyhdrtyh" }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static('build'))
 
-const mongoUrl = config.MONGODB_URI
-
+//const mongoUrl = process.env.MONGODB_URI
+const mongoUrl = 'mongodb+srv://juhaj358:OVW0I3sPyXfcXMWt@cluster0.mj8rfkn.mongodb.net/?retryWrites=true&w=majority'
+mongoose.set('strictQuery', false)
 mongoose.connect(mongoUrl, { useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,

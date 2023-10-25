@@ -15,8 +15,8 @@ const MyImage = (props) => {
     enter: { opacity: 1},
     leave: { opacity: 0},
   })
-  const top = props.top
-  const left = props.left
+  const top = Number(props.top)+60
+  const left = Number(props.left)+60
   const name = props.name
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const MyImage = (props) => {
     ...props, 
     position:'absolute',
     top:top,
-    left:left,}} >
+    left:left}} >
     <div className='image' style={{
       width: 'fit-content',
       zIndex:'0',
@@ -61,7 +61,7 @@ const MyImage = (props) => {
     }}
     >
       <Header title={name} />
-      <img src={pic.src} alt={name} style={{ borderRadius: '0 1em 0 0'}} />
+      <img src={pic.src} alt={name}/>
     </div> 
     </animated.div>)
 }

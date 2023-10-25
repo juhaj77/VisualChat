@@ -35,7 +35,7 @@ const DnDContainer = (props) => {
   })
 
   const [, drop] = useDrop({
-    accept: ['note', 'image'],
+    accept: ['note'],
     drop(item, monitor) {
       const delta = monitor.getDifferenceFromInitialOffset()
       const left = Math.round(item.left + delta.x)
@@ -52,15 +52,24 @@ const DnDContainer = (props) => {
   }
   const handleContextMenu = (event) => {
     event.preventDefault()
+
+    const top = event.nativeEvent.offsetY - document.getElementById('wa').offsetHeight
+    const left = event.nativeEvent.offsetX
+    
+    console.log('event.nativeEvent.offset X Y',
+    left,top,'\ndocument.getElementById("wa").offsetHeight',
+    document.getElementById('wa').offsetHeight,'\noffsetParent',
+    event.target.offsetParent.style.left,event.target.offsetParent.style.top,
+    '\nevent.nativeEvent.target.id',event.nativeEvent.target.id)
+
     if(menu.visible || menu2.visible){
       setMenu2({visible: false})
       setMenu({visible: false})
       return
     }
     if(event.target.id === 'dnd2'){
-      let top = event.nativeEvent.offsetY - document.getElementById('wa').offsetHeight
       //let top = event.nativeEvent.offsetY + document.getElementById('wa').offsetHeight
-      setMenu({visible: true, style:{zIndex:1000,position: 'absolute', left:event.nativeEvent.offsetX, top}})
+      setMenu({visible: true, style:{zIndex:1000,position: 'absolute', left, top}})
       setMenu2({visible: false})
     } else if(event.nativeEvent.target.className !== 'txt-mesta' && event.nativeEvent.target.id !== 'wa') {
       handleContextMenu2(event)
