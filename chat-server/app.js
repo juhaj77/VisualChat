@@ -21,8 +21,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static('build'))
 
-//const mongoUrl = process.env.MONGODB_URI
-const mongoUrl = 'mongodb+srv://juhaj358:OVW0I3sPyXfcXMWt@cluster0.mj8rfkn.mongodb.net/?retryWrites=true&w=majority'
+const mongoUrl = process.env.MONGODB_URI
+
 mongoose.set('strictQuery', false)
 mongoose.connect(mongoUrl, { useNewUrlParser: true,
   useUnifiedTopology: true,
