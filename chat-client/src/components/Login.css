@@ -17,3 +17,12 @@
     border-color: #b29966;
     color: #d4c6aa;
   }
+  .login {
+    border: 0px;
+    height:60%;
+    line-height:60%;
+    width:60%;
+    padding:0;
+    max-width: 1280px;
+    margin: auto;
+  }

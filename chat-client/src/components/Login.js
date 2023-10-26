@@ -211,7 +211,7 @@ const Login = (props) => {
 
   return loaded ? transitions.map(({ item, key, props }) =>
     item && <animated.div key={key} style={props}>
-      <div style={{ border: '0px', padding: '0px', maxWidth: '1280px', width: '70%', margin: 'auto' }}>
+      <div className='login'>
         <Image style={{ paddingTop: '7vh' }} src={image} />
         <Segment style={{ padding: '0px', margin: '0rem', backgroundColor: 'black', border: 'solid 1px #665533' }} placeholder>
           {!signUp && options()}
