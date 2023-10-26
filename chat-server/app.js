@@ -11,7 +11,7 @@ require('express-async-errors')
 const session = require("express-session");
 const passport = require("passport");
 
-app.use(session({ secret: "uyfkjytg65756e56e65r7wrthtr7657e6547uyrtyhdrtyh" }));
+app.use(session({ secret: process.env.SESSION_SECRET }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static('build'))

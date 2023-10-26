@@ -20,6 +20,7 @@ export const callback = (id, user) => {
     data: { id, token: user.token }
   }
 }
+export const initEmptyPictures = () => ({ type: 'INIT_EMPTY' })
 
 const pictureReducer = (state = [], action) => {
     switch (action.type) {
@@ -28,6 +29,8 @@ const pictureReducer = (state = [], action) => {
     case 'ADD_PICTURE': {
       return state.concat(action.data.picture.data)
       }
+    case 'INIT_EMPTY':
+      return []
     case 'CALLBACK': 
       return state
     default:
