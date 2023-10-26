@@ -36,7 +36,7 @@ https://visualchat.onrender.com/ Test users: `username:testuser password:testuse
 ____tested with Firefox, Chrome and Edge. React-spring is super slow in Firefox____
 
 1. `npm start` in **chat-server** folder.
-1. `export NODE_OPTIONS=--openssl-legacy-provider` in **chat-client** folder.
+1. `export NODE_OPTIONS=--openssl-legacy-provider` in **chat-client** shell.
 1. `npm start` in **chat-client** folder.
 
 
