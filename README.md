@@ -14,6 +14,15 @@ Or You can create your own. Using Google login app creates user username from us
 
 1. run `npm install` in folder `chat-client`
 1. run `npm install` in folder `chat-server`
+1. Create web app and get client id from https://console.cloud.google.com app credentials tabb for Google login.
+    
+   ![Image for oauth credentials](https://github.com/juhaj77/VisualChat/blob/master/images/oauth2.png)    
+   set correct URIs in cloud console credentials tab
+   
+   Update line 52 `CLIENT_ID=...` in chat-client/src/components/Login.js
+
+1. Fix line 26 `let socket = io('wss://visualchat.onrender.com')` to `let socket = io('ws://localhost:3003')`  in chat-client/src/index.js.
+1. Comment line 17 `app.use(express.static('build'))` in chat-server/app.js. (this is for Render cloud. It builds directly from github).
 1. create _.env_ file with content:
    ```
     MONGODB_URI=mongodb://127.0.0.1:27017
@@ -24,14 +33,6 @@ Or You can create your own. Using Google login app creates user username from us
     CLIENT_ID=client-id.apps.googleusercontent.com
    ```
     into folder `chat-server`
-1. Create web app and get client id from https://console.cloud.google.com app credentials tabb for Google login.
-2. 
-   ![Image for oauth credentials](https://github.com/juhaj77/VisualChat/blob/master/images/oauth2.png)    
-   set correct URIs in cloud console credentials tab
-   
-   Update line 52 `CLIENT_ID=...` in chat-client/src/components/Login.js
-1. Comment line 17 `app.use(express.static('build'))` in chat-server/app.js. (this is for Render cloud. It builds directly from github).
-1. Fix line 26 `let socket = io('wss://visualchat.onrender.com')` to `let socket = io('ws://localhost:3003')`  in chat-client/src/index.js.   
    
 ## usage
 
