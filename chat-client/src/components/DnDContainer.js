@@ -67,7 +67,7 @@ const DnDContainer = (props) => {
       setMenu({visible: false})
       return
     }
-    if(event.target.id === 'dnd2' || event.target.id === 'dnd' ){
+    if( event.target.id === 'dnd' ){
       //let top = event.nativeEvent.offsetY + document.getElementById('wa').offsetHeight
       setMenu({visible: true, style:{zIndex:1000,position: 'absolute', left, top}})
       setMenu2({visible: false})
@@ -91,9 +91,7 @@ const DnDContainer = (props) => {
     setMenu({visible: false})
   }
 
-  
   const handleUploadPicture = (event) => {
-   // uploadFormVisible.current = true
     event.preventDefault()
     let top = menu.style.top + document.getElementById('wa').offsetHeight
     const um = {visible: true,style:{zIndex:1000,position: 'absolute', left: menu.style.left, top}}
@@ -101,8 +99,6 @@ const DnDContainer = (props) => {
     setMenu({visible: false})
     setMenu2({visible: false})
   }
-
-
 
   const handleDelete = (e) => {
     e.preventDefault()
@@ -258,7 +254,6 @@ const DnDContainer = (props) => {
         onMouseUp={stop}
         style={{...pos}}>
         <div className='hoverjuttu'>
-          <div id='dnd2' className='dndC' style={{zIndex:'3'}} ></div>
           <Tooltip
             open={open}
             title='add note with the right mouse button'
@@ -269,7 +264,6 @@ const DnDContainer = (props) => {
           >
             <div ref={drop} id='dnd' className='dndC'
               style={{zIndex:zIndex}}
-              
             >
               <div id='wa'>&nbsp;draggable working area</div>
               {menu.visible && contextMenu()}

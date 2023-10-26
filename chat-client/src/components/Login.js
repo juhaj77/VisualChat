@@ -49,7 +49,7 @@ const Login = (props) => {
 
   //////////////////////////GOOGLE/////////////////////////////////
   const [user, setUser] = useState(null);
-
+  const CLIENT_ID='371216924606-rgdtfalqj9tklp61rkv27d9ii14cenbe.apps.googleusercontent.com'
   useEffect(() => {
     const loadGapi = async () => {
       const newGapi = await loadGapiInsideDOM();
@@ -57,25 +57,11 @@ const Login = (props) => {
     }
     loadGapi();
   }, [props.gapi]);
-  
   useEffect(() => {
     if (!props.gapi) return;
 
     const setAuth2 = async () => {
-      const auth2 = await loadAuth2(props.gapi, process.env.CLIENT_ID, '')
-      // console.log(auth2.currentUser.get().xc.access_token)
-      // token = auth2.currentUser.get().xc.access_token
-      //  console.log(auth2.currentUser.get().getBasicProfile())
-      /*
-        Ad: "juha jokinen"
-        NT: "111829797743998828111"
-        cu: "juhaj358@gmail.com"
-        hK: "https://lh3.googleusercontent.com/a/ACg8ocL0jDwSxNdw_eVEPTjYe8K8jwosQGujKvhOQ-mFM1t36g=s96-c"
-        rV: "juha"
-        uT: "jokinen"
-      */
-      //  console.log(Object.keys(gapi),Object.keys(auth2))
-
+      const auth2 = await loadAuth2(props.gapi, CLIENT_ID, '')
       if (auth2.isSignedIn.get()) {
         updateUser(auth2.currentUser.get())
       } else {
@@ -90,7 +76,7 @@ const Login = (props) => {
 
     if (!user) {
       const setAuth2 = async () => {
-        const auth2 = await loadAuth2(props.gapi, process.env.CLIENT_ID, '')
+        const auth2 = await loadAuth2(props.gapi, CLIENT_ID, '')
         attachSignin(document.getElementById('customBtn'), auth2);
       }
       setAuth2();
@@ -108,15 +94,7 @@ const Login = (props) => {
       email: email,
       id: id
     });
-    /*
-    console.log({
-      name: name,
-      profileImg: profileImg,
-      email: email,
-      id: id
-    })
-    console.log(currentUser)
-    console.log(currentUser.xc.id_token.length) */
+    // server validates this:
     props.setUser({
       idToken: currentUser.xc.id_token,
     })
