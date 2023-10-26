@@ -17,7 +17,9 @@ https://visualchat.onrender.com/ Test users: `username:testuser password:testuse
     MONGODB_URI=mongodb://127.0.0.1:27017
     PORT=3003
     NODE_ENV=test
-    SECRET='mySecretStrimg'
+    SECRET=mySecretString
+    SESSION_SECRET=randomString
+    CLIENT_ID=client-id.apps.googleusercontent.com
    ```
     into folder `chat-server`
 1. Create web app and get client id from https://console.cloud.google.com app credentials tabb for Google login.
