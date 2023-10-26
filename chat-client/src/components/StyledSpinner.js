@@ -4,8 +4,8 @@ import spinner from './Spinner.svg'
 const StyledSpinner = () => {
     return <div style={{
         position: 'absolute',
-        top: 'calc(50% - 100px)',
-        left: 'calc(50% - 100px)'
+        top: '43%',
+        left: '45%'
     }}>
         <img src={spinner} alt="Loading..." />
     </div>
