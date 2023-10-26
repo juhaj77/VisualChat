@@ -21,6 +21,7 @@ https://visualchat.onrender.com/ Test users: `username:testuser password:testuse
    ```
     into folder `chat-server`
 1. Create web app and get client id from https://console.cloud.google.com app credentials tabb for Google login.
+2. 
    ![Image for oauth credentials](https://github.com/juhaj77/VisualChat/blob/master/images/oauth2.png)    
    cloud console credentials tab
    
