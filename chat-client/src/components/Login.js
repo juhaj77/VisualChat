@@ -220,8 +220,11 @@ const Login = (props) => {
         <Info message={message} clear={() => setMessage(null)} />
       </div>
     </animated.div>
-  ) : <Div>
-    <Image onLoad={() => setLoaded(true)} className='login' src={image} />
+  ) : 
+  <Div>
+    <div className='login'>
+      <Image onLoad={() => setLoaded(true)} style={{ display: 'none', paddingTop: '7vh' }} src={image} />
+    </div>
   </Div>
 }
 
