@@ -221,8 +221,7 @@ const Login = (props) => {
       </div>
     </animated.div>
   ) : <Div>
-    <Image onLoad={() => setLoaded(true)} style={{ display: 'none', paddingTop: '7vh' }} src={image} />
-    <StyledSpinner/>
+    <Image onLoad={() => setLoaded(true)} className='login' src={image} />
   </Div>
 }
 
