@@ -20,16 +20,17 @@ https://visualchat.onrender.com/ Test users: `username:testuser password:testuse
     SECRET='mySecretStrimg'
    ```
     into folder `chat-server`
-1. Get client id from https://console.cloud.google.com app credentials for Google login.
+1. Create web app and get client id from https://console.cloud.google.com app credentials tabb for Google login.
    ![Image for oauth credentials](https://github.com/juhaj77/VisualChat/blob/master/images/oauth2.png)    
-   cloud console    
+   cloud console credentials tab
+   
    Update line 52 `CLIENT_ID=...` in chat-client/src/components/Login.js
 1. Comment line 17 `app.use(express.static('build'))` in chat-server/app.js. (this is for Render cloud. It builds directly from github).
 1. Fix line 26 `let socket = io('wss://visualchat.onrender.com')` to `let socket = io('ws://localhost:3003')`  in chat-client/src/index.js.   
    
 ## usage
 
-____tested with Firefox and Chrome. React-spring is super slow in Firefox____
+____tested with Firefox, Chrome and Edge. React-spring is super slow in Firefox____
 
 1. `npm start` in **chat-server** folder.
 1. `export NODE_OPTIONS=--openssl-legacy-provider` in **chat-client** folder.
