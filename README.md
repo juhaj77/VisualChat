@@ -1,5 +1,5 @@
 # VisualChat
-Each chat channel has its own note view. It is common to channel users. Channel members can arrange, create, edit, delete or change color of the notes. The note view is updated in real time. Png-images can be uploaded. Workspace has draggable working area. The workspace opens when a channel is selected. Connected users and active channels are shown for application users. Google login.  
+Each chat channel has its own note view. It is common to channel users. Channel members can arrange, create, edit, delete or change color of the notes. The note view is updated in real time. Png-images can be uploaded. Workspace has draggable working area. ___The workspace opens when a channel is selected___. Connected users and active channels are shown for application users. Google login.  
 ### try app
 https://visualchat.onrender.com/ Test users: `username:testuser password:testuser` and `username:testuser2 password:testuser2`. Or You can create your own. Using Google login app creates user username from username@gmail.com. Firefox is slow with react-spring animations...   
 ![Image of note view](https://github.com/juhaj77/VisualChat/blob/master/images/UI_n.png)
