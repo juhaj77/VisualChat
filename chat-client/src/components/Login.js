@@ -10,6 +10,7 @@ import styled from 'styled-components'
 import { Form, Grid, Segment, Image } from 'semantic-ui-react'
 import { loadGapiInsideDOM, loadAuth2 } from 'gapi-script'
 //import GoogleLogin from './GoogleLogin'
+import StyledSpinner from './StyledSpinner'
 import './Login.css'
 const image = require('./visualchat.png')
 
@@ -221,9 +222,7 @@ const Login = (props) => {
     </animated.div>
   ) : <Div>
     <Image onLoad={() => setLoaded(true)} style={{ display: 'none', paddingTop: '7vh' }} src={image} />
-    <span style={{ position: 'absolute', top: '50%', left: '50%', fontSize: '2em', color: '#b29966', marginLeft: '-5rem' }}>
-      loading...
-    </span>
+    <StyledSpinner/>
   </Div>
 }
 

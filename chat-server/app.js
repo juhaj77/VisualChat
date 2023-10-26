@@ -23,7 +23,7 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
   useCreateIndex: true })
-  
+
 app.use(cors())
 app.use(bodyParser.json())
 app.use('/api/users',userRouter)

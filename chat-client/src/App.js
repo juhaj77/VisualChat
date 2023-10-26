@@ -3,6 +3,7 @@ import { Container } from 'semantic-ui-react'
 import Login from './components/Login'
 import Chat from './components/Chat'
 import './App.css'
+import StyledSpinner from './components/StyledSpinner'
 
 const App = () => {
   const [ loading, setLoading ] = useState(true)
@@ -12,11 +13,7 @@ const App = () => {
   }, [])
 
   return loading ? 
-    <div style={{width:'100vw',height:'100vh',background:'black'}}>
-      <span style={{position:'absolute',top:'50%',left:'50%',fontSize:'2em',color:'#b29966',marginLeft:'-5rem'}}>
-    loading...
-      </span>
-    </div> : 
+    <StyledSpinner/> : 
     <Container id='cont' style={{width:'100%',height:'100vh'}}>
       <Login/>
       <Chat />
