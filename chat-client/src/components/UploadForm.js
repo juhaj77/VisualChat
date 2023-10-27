@@ -94,7 +94,7 @@ const UploadForm = ({setVisible,top,left,channelId,user,channel }) => {
         .catch(e => {
           console.log(e)
         })
-  setVisible({visible:false})
+  setVisible(false)
   }
 
   const onClickHandler = (id) => {
