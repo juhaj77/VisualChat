@@ -82,7 +82,7 @@ const Login = (props) => {
       }
       setAuth2();
     }
-  }, [user, props.gapi])
+  }, [user, props.gapi, loaded])
 
   const updateUser = (currentUser) => {
     const name = currentUser.getBasicProfile().getName();
