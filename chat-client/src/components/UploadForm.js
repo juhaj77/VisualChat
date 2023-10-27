@@ -66,7 +66,6 @@ const UploadForm = ({setVisible,top,left,channelId,user,channel }) => {
   const [selectedFile, setSelectedFile] = useState(null)
   const itemName = useField('text', '')
   const dispatch = useDispatch()
-  console.log('\nUploadForm data:',left,top)
   const onChangeHandler = (event) => {
     const { files } = event.target
     if(files[0] && files[0].size < 1000000 && files[0].name.match(/\.(png)$/)) {
