@@ -43,8 +43,8 @@
     position: absolute;
     top:0px;
     left:0px;
-    width:2000px;
-    height:1200px;
+    width:3200px;
+    height:2000px;
     z-index:0;
     background-image: none;
     margin: 6em 4em;
@@ -61,21 +61,11 @@
     top:0px;
     left:0px;
     border: 1px solid transparent;
-    width:2000px;
-    height:1200px;
+    width:3200px;
+    height:2000px;
     transition: border-color 1s;
     border-radius:0px 0px 0px 0px;
     margin: 6em 4em;
-}
-.dndC2{
-  background:rgba(255, 0, 0, 0.442);
-  position: absolute;
-  border: 1px solid transparent;
-  width:2000px;
-  height:1200px;
-  transition: border-color 1s;
-  border-radius:0px 0px 0px 0px;
-  margin: 0em 0em 0em 0em;
 }
 #wa {
     position:absolute;
