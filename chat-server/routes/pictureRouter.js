@@ -39,7 +39,5 @@ router.post('/add/:id',upload.single('uploaded_file'), async (request,response,n
     next(new Error(e.message))
   }
 })
-   // .then((req,res) => console.log(res))
-   // .catch(e => new Error(e.message))
 
 module.exports  = router

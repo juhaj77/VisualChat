@@ -83,7 +83,6 @@ io.on('connection', async socket => {
         return
       }
       case 'CALLBACK': {
-        console.log('kukkuu',action)
         io.emit('callback',action.data)
         return
       }

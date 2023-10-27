@@ -56,11 +56,10 @@ const DnDContainer = (props) => {
     const top = event.nativeEvent.offsetY - document.getElementById('wa').offsetHeight
     const left = event.nativeEvent.offsetX
     
-    console.log('event.nativeEvent.offset X Y',
-    left,top,'\ndocument.getElementById("wa").offsetHeight',
-    document.getElementById('wa').offsetHeight,'\noffsetParent',
-    event.target.offsetParent.style.left,event.target.offsetParent.style.top,
-    '\nevent.nativeEvent.target.id',event.nativeEvent.target.id)
+    console.log('event.nativeEvent.offset X Y',left,top,
+    '\noffsetParent',event.target.offsetParent.style.left,event.target.offsetParent.style.top,
+    '\nevent.nativeEvent.target.id:',event.nativeEvent.target.id,
+    '\nevent.nativeEvent.target.className:',event.nativeEvent.target.className)
 
     if(menu.visible || menu2.visible){
       setMenu2({visible: false})
@@ -68,10 +67,9 @@ const DnDContainer = (props) => {
       return
     }
     if( event.target.id === 'dnd' ){
-      //let top = event.nativeEvent.offsetY + document.getElementById('wa').offsetHeight
       setMenu({visible: true, style:{zIndex:1000,position: 'absolute', left, top}})
       setMenu2({visible: false})
-    } else if(event.nativeEvent.target.className !== 'txt-mesta' && event.nativeEvent.target.id !== 'wa') {
+    } else if(event.nativeEvent.target.className === 'noteHeader') {
       handleContextMenu2(event)
     }
   }

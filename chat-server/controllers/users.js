@@ -38,12 +38,10 @@ const UserController = {
   },
   
   authenticateUser: async (request, response) => {
-    console.log('0')
     const body = request.body
     if(body.idToken){
       const client = new OAuth2Client();
       async function verify() {
-        console.log('A')
         const ticket = await client.verifyIdToken({
           idToken: body.idToken,
           audience: process.env.CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
@@ -101,7 +99,6 @@ const UserController = {
         id: user._id
       }
           
-     // const token = jwt.sign(userForToken, process.env.SECRET)
      const token = jwt.sign(userForToken, process.env.SECRET)
       response
         .status(200)

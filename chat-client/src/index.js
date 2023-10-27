@@ -20,10 +20,8 @@ import io from 'socket.io-client'
 
 const createMySocketMiddleware = () => {
   return storeAPI => {
-  //let socket = io('ws://localhost:3003')
-   // const port = process.env.PORT || "8080"
-   // let socket = io('ws://visualchat.onrender.com:'+port)
-   let socket = io('wss://visualchat.onrender.com')
+    // let socket = io('ws://localhost:3003')
+    let socket = io('wss://visualchat.onrender.com')
 		
     socket.on('message', (data) => {
       if(storeAPI.getState().channel.id === data.channelID) {

@@ -8,15 +8,7 @@ const login = async credentials => {
     return response.data
   } catch (e) {
     return null
-  }/*
-  try {
-    const response = await axios.get(`/google`)
-    console.log(response)
-    return response
-  } catch (e) {
-    console.log(e)
-    return null
-  }*/
+  }
 }
 
 export default { login }
