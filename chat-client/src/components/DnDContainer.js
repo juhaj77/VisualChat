@@ -50,7 +50,7 @@ const DnDContainer = (props) => {
     const top = event.nativeEvent.offsetY - document.getElementById('wa').offsetHeight
     const left = event.nativeEvent.offsetX
     
-    console.log('event.nativeEvent.offset X Y',left,top,
+    console.log('ONCONTEXTMENU\nevent.nativeEvent.offset X Y',left,top,
     '\noffsetParent',event.target.offsetParent.style.left,event.target.offsetParent.style.top,
     '\nevent.nativeEvent.target.id:',event.nativeEvent.target.id,
     '\nevent.nativeEvent.target.className:',event.nativeEvent.target.className)
@@ -256,6 +256,8 @@ const DnDContainer = (props) => {
   }
 
   const onpointerdown = e => {
+    console.log('ONPOINTERDOWN\nevent.nativeEvent.target.id:',e.nativeEvent.target.id,
+    '\nevent.nativeEvent.target.className:',e.nativeEvent.target.className,'\nevent\n',e)
     setOpen(false)
     if(e.target.id === 'dnd') setZIndex('2')
   }
