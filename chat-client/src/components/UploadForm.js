@@ -9,6 +9,7 @@ import { Progress } from 'reactstrap'
 import { useField } from '../hooks/field'
 import { useDispatch } from 'react-redux'
 import { HoverButton } from './Login'
+import './DnD.css'
 
 const options = {
     autoClose: false,
@@ -119,11 +120,11 @@ const UploadForm = ({setVisible,top,left,channelId,user,channel }) => {
 
   return (
     <Container2 style={{display:'flex', flexDirection:'column',alignItems: 'center', justifyContent:'center',zIndex:'199',position:'absolute',top:top,left:left}}>
-      <FormHeader>
+      <FormHeader className='prevent-select'>
         select picture
       </FormHeader>
       <FlexItem>
-        <LabelStyle>small png. max 1M </LabelStyle>
+        <LabelStyle className='prevent-select'>small png. max 1M </LabelStyle>
         <input
           style={{ paddingLeft:'0.5em', lineHeight: '1.5em', fontSize: '1em', margin: '0', background:'black',color:'#665533'}}
           type="file"
@@ -133,12 +134,12 @@ const UploadForm = ({setVisible,top,left,channelId,user,channel }) => {
         />
       </FlexItem>
       <FlexItem>
-        <LabelStyle>name: </LabelStyle>
+        <LabelStyle className='prevent-select'>name: </LabelStyle>
         <TextInput placeholder="required" {...itemName.input} className="form-control" required />
       </FlexItem>
-      <FlexItem>
+      <FlexItem className='prevent-select'>
         <ToastContainer style={{ zIndex:'5000',fontSize: '1.4em' }} />
-        <Progress max="100" color="success" value={loaded}>
+        <Progress className='prevent-select' max="100" color="success" value={loaded}>
           {Math.round(loaded, 2) }
           %
         </Progress>

@@ -127,9 +127,9 @@ const DnDContainer = (props) => {
                                 >
                                 <div className='menu' ref={menu2Ref} style={{...menu2Props.style, width:'9rem'}}>
                                     <ul className="menu-options">
-                                      <li className="menu-option" onClick={handleDelete}>delete note</li>
+                                      <li className="menu-option prevent-select" onClick={handleDelete}>delete note</li>
                                       <li className="menu-option" >
-                                        <div className='dropdown' >
+                                        <div className='dropdown prevent-select' >
                                           set color
                                           <div className="dropdown-content">
                                             <table style={{width:'6em',height:'6em', background:'black',border:'solid 1px #665533',cursor:'auto'}}>
@@ -169,10 +169,10 @@ const DnDContainer = (props) => {
                                 >
                                 <div className='menu' ref={menuRef} style={{...menuStyle, width:'9rem'}}>
                                   <ul className="menu-options">
-                                    <li className="menu-option" onClick={handleAddNote}>
+                                    <li className="menu-option prevent-select" onClick={handleAddNote}>
                                       add note
                                     </li>
-                                    <li className="menu-option" onClick={handleUploadPicture}>
+                                    <li className="menu-option prevent-select" onClick={handleUploadPicture}>
                                       upload picture
                                     </li>
                                   </ul>
@@ -250,7 +250,7 @@ const DnDContainer = (props) => {
 
   if(props.notes)
     return (
-      <div  id='dndWrapper' onContextMenu={handleContextMenu}
+      <div className='prevent-select' id='dndWrapper' onContextMenu={handleContextMenu}
         onPointerOver={onpointerover}
         onPointerDown={onpointerdown}
         onPointerOut={() => setOpen(false)}
@@ -271,7 +271,7 @@ const DnDContainer = (props) => {
             <div ref={drop} id='dnd' className='dndC'
               style={{zIndex:zIndex}}
             >
-              <div id='wa'>&nbsp;draggable working area</div>
+              <div className='prevent-select' id='wa'>&nbsp;draggable working area</div>
               {contextMenu()}
               {contextMenu2()}
               {upload(props)}

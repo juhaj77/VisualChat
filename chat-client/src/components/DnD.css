@@ -99,3 +99,8 @@ div.hoverthing:hover #wa {color: rgba(178, 153, 102,0.4);}
   opacity: 0;
   transition: opacity 500ms;
 }
+.prevent-select {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
