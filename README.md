@@ -3,7 +3,7 @@ Channel members can edit the shared view. Workspace has draggable working area. 
 ### try app
 https://visualchat.onrender.com   
 Test users are: ___`username:testuser password:testuser`___ and ___`username:testuser2 password:testuser2`___.   
-Or You can create your own. Using Google login app creates username from gmail address. A new channel must be created for a new user in order to try out app features. ___Firefox is slow___ with react-spring animations...   
+Or You can create your own. Using Google login app creates username from gmail address. ___A new channel must be created for a new user in order to try out app features___. ___Firefox is slow___ with react-spring animations...   
 ![Image of note view](https://github.com/juhaj77/VisualChat/blob/master/images/UI_n.png)
 ## prerequisites
 
