@@ -21,7 +21,7 @@ const DnDContainer = (props) => {
   const [uploadForm, setUploadForm] = useState(false)
   const [uploadFormStyle, setUploadFormStyle] = useState({zIndex:1000,position: 'absolute', left: 0, top:0})
   const [pos, setPos] = useState({left:'0px',top:'0px'})
-  const [open, setOpen] = useState(undefined)
+  const [open, setOpen] = useState(undefined) // this is for tooltip
   const seen = useRef(false)
   const menuRef = useRef(null)
   const menu2Ref = useRef(null)
@@ -206,6 +206,7 @@ const DnDContainer = (props) => {
   }
   
   const start = e => {
+    setZIndex('2')
     if(e.target.className === 'dndC'){
       moveContent = true
       offsetX = e.clientX - Number(pos.left.replace('px',''))
@@ -242,14 +243,6 @@ const DnDContainer = (props) => {
     }
   }, [hideTip])
 
-  const onpointerover = (e) => {
-    if(!seen.current && e.target.id === 'dnd' && !open) {
-      setOpen(true)
-      return
-    }
-    setOpen(false)
-  }
-
   const onpointerdown = e => {
     setOpen(false)
     if(e.target.id === 'dnd') setZIndex('2')
@@ -282,18 +275,16 @@ const DnDContainer = (props) => {
               {contextMenu()}
               {contextMenu2()}
               {upload(props)}
-              {props.notes.map((b,i) => (
+              {props.notes.map(b => (
                 <Note
                   key={b.id}
                   id={b.id}
                   left={b.left}
                   top={b.top}
-                  open={!open}
                   backgroundColor={b.backgroundColor}
                   author={b.author}
                   date={b.date}
                   content={b.content}
-                  setOpen={setOpen}
                 />
               ))}
             </div>
@@ -305,7 +296,6 @@ const DnDContainer = (props) => {
   return <div>odota</div>
 }
 const mapStateToProps = (state) => {
- // console.log(state.channel)
   return {
     user: state.loggedUser,
     channel: state.channel,
