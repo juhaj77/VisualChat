@@ -30,13 +30,13 @@ const reducer = (state = [], action) => {
     return action.data
   case 'SOCKET_MESSAGE_RECEIVED': {
     const msgs = action.data.messages.slice()
-    msgs[msgs.length-1] = `UUSIVIESTI:${msgs[msgs.length-1]}`
+    msgs[msgs.length-1] = `NEW_MESSAGE:${msgs[msgs.length-1]}`
     return msgs
   }
   case 'SEND_WEBSOCKET_MESSAGE':
     return [...state,action.data.message]
   case 'REMOVE_ANIMATION':
-    return state.map((m) => (m.split(':',1) == 'UUSIVIESTI' ? m.replace('UUSIVIESTI:', '') : m))
+    return state.map((m) => (m.split(':',1) == 'NEW_MESSAGE' ? m.replace('NEW_MESSAGE:', '') : m))
   case 'NEW_FEED':
     return []
   default:

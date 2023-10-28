@@ -25,7 +25,7 @@ const Message = (props) => {
     }
   }
 
-  if(name == 'UUSIVIESTI'){
+  if(name == 'NEW_MESSAGE'){
     name = msg.split(':',1)
     msg = msg.replace(name + ':', '')
     uus=true

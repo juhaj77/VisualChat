@@ -109,7 +109,7 @@ const Chat = ({user, channel, connectedUsers, gapi, clearUser}) => {
             float:'left',
             display:'inline',
             fontWeight:'500', 
-            color:'#e5ddcc',
+            color:'#e2d4b7',
             whiteSpace: 'nowrap',
             backgroundColor:'rgba(0,0,0,0.7)',
             marginTop:'1px',

@@ -77,8 +77,8 @@
     color: transparent;
     transition: color 1s;
 }
-div.hoverjuttu:hover #dnd {border-color: rgba(178, 153, 102, 0.3)}
-div.hoverjuttu:hover #wa {color: rgba(178, 153, 102,0.4);}
+div.hoverthing:hover #dnd {border-color: rgba(178, 153, 102, 0.3)}
+div.hoverthing:hover #wa {color: rgba(178, 153, 102,0.4);}
 
 .btn:hover {
   background-color:rgba(53, 46, 17, 0.6);

@@ -50,7 +50,7 @@ const Note = (props) => {
   if (isDragging) {
     return <div ref={drag} />
   }
-	
+
   const updateText = async (Id) => {
     const note= props.notes.find(n => n.id === Id)
     const date2 = new Date()
@@ -74,16 +74,11 @@ const Note = (props) => {
         trigger="mouseenter">
         <div className='noteHeader' style={{marginTop:'0px',marginBottom:'0px'}} >{pr.author} {setDate(pr.date)}</div>
       </Tooltip>
-      <textarea className='txt-mesta' style={{
-        textAlign:'center',
-        border: '0px solid transparent',
-        paddingLeft:'0.2em',
-        fontSize: '1.2em',
-        lineHeight:'1.1rem',
-        width:'100%', 
-        height:'70%',
-        ...map.get(pr.backgroundColor) }} 
-      value={text} onChange={onChange}  onBlur={() => updateText(pr.id)} />
+      <textarea className='txt-place' 
+          style={{...map.get(pr.backgroundColor) }} 
+          value={text} 
+          onChange={onChange}
+          onBlur={() => updateText(pr.id)} />
     </animated.div>)
   )
 }

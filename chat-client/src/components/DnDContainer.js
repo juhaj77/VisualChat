@@ -190,7 +190,7 @@ const DnDContainer = (props) => {
   let moveContent = false
 	
   const move = e => {
-    if(e.target.className === 'txt-mesta' || e.target.className === 'note' || e.target.className === 'noteHeader') {
+    if(e.target.className === 'txt-place' || e.target.className === 'note' || e.target.className === 'noteHeader') {
       setOpen(false)
     }
 		
@@ -266,7 +266,7 @@ const DnDContainer = (props) => {
         onMouseDown={start}
         onMouseUp={stop}
         style={{...pos}}>
-        <div className='hoverjuttu'>
+        <div className='hoverthing'>
           <Tooltip
             open={open}
             title='add note with the right mouse button'
