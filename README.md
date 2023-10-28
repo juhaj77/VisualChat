@@ -36,7 +36,7 @@ Or You can create your own. Using Google login app creates username from gmail a
    
 ## usage
 
-____tested with Firefox, Chrome and Edge. React-spring is super slow in Firefox____
+____tested with Firefox, Chrome and Edge. React-spring is super slow in Firefox and OAuth2 didn't work in Edge____
 
 1. `npm start` in **chat-server** folder.
 1. `export NODE_OPTIONS=--openssl-legacy-provider` in **chat-client** shell.
