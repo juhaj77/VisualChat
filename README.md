@@ -1,6 +1,6 @@
 # VisualChat
 Channel members can edit the shared view. Workspace has draggable working area. You can create movable sticky notes and upload images for background. ___The workspace opens when a channel is selected___. Functionality can be found in context menus. 
-## try app
+## try app:
 https://visualchat.onrender.com   
 Test users are:    
 ___`username:testuser password:testuser`___     
