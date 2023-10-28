@@ -1,5 +1,5 @@
 # VisualChat
-Channel members can edit the shared view. Workspace has draggable working area. ___The workspace opens when a channel is selected___. Functionality can be found in context menus. Google login.  
+Channel members can edit the shared view. Workspace has draggable working area. Notes can be moved. ___The workspace opens when a channel is selected___. Functionality can be found in context menus. Google login.  
 ### try app
 https://visualchat.onrender.com   
 Test users are: ___`username:testuser password:testuser`___ and ___`username:testuser2 password:testuser2`___.   
