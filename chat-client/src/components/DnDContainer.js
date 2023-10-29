@@ -2,13 +2,12 @@ import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useDrop } from 'react-dnd'
 import Note from './Note'
 import MyImage from './Image'
+import StyledSpinner from './StyledSpinner'
 import {addNote, setNote, deleteNote} from '../reducers/noteReducer'
 import { connect } from 'react-redux'
 import UploadForm from './UploadForm'
 import map from './noteColors'
 import { CSSTransition } from 'react-transition-group';
-import 'react-tippy/dist/tippy.css'
-import { Tooltip } from 'react-tippy'
 import './DnD.css'
 
 
@@ -21,8 +20,6 @@ const DnDContainer = (props) => {
   const [uploadForm, setUploadForm] = useState(false)
   const [uploadFormStyle, setUploadFormStyle] = useState({zIndex:1000,position: 'absolute', left: 0, top:0})
   const [pos, setPos] = useState({left:'0px',top:'0px'})
-  const [open, setOpen] = useState(undefined) // this is for tooltip
-  const seen = useRef(false)
   const menuRef = useRef(null)
   const menu2Ref = useRef(null)
   const uploadFormRef = useRef(null)
@@ -45,30 +42,35 @@ const DnDContainer = (props) => {
 		
   }
   const handleContextMenu = (event) => {
-    setOpen(false)
     event.preventDefault()
 
     const top = event.nativeEvent.offsetY - document.getElementById('wa').offsetHeight
     const left = event.nativeEvent.offsetX
 
     if(menu.visible || menu2.visible){
-      setMenu2(false)
-      setMenu(false)
+      hideMenus()
       return
     }
     if( event.target.id === 'dnd' ){
       setMenuStyle({zIndex:1000,position: 'absolute', left, top})
       setMenu(true)
       setMenu2(false)
-    } else if(event.nativeEvent.target.className === 'noteHeader') {
+    } else if(event.nativeEvent.target.className === 'noteHeader' || 
+              event.nativeEvent.target.className === 'txt-place') {
       handleContextMenu2(event)
     }
   }
   const handleContextMenu2 = (event) => {
     const left = Number(event.target.offsetParent.style.left.replace('px','')) + Number(event.nativeEvent.offsetX)
-    const top = Number(event.target.offsetParent.style.top.replace('px','')) - Number(event.nativeEvent.offsetY)
+    const top = Number(event.target.offsetParent.style.top.replace('px','')) + Number(event.nativeEvent.offsetY)
  
-    setMenu2Props({id: event.nativeEvent.target.offsetParent.id, style:{position: 'absolute', left:left, top:top, zIndex:1000}})
+    setMenu2Props({id: event.nativeEvent.target.offsetParent.id,
+                    style:{
+                      position: 'absolute',
+                      left:left,
+                      top:top,
+                      zIndex:1000}
+                    })
     setMenu2(true)
     setMenu(false)
   }
@@ -76,19 +78,20 @@ const DnDContainer = (props) => {
     e.preventDefault()
     const date = new Date()
     let top = menuStyle.top + document.getElementById('wa').offsetHeight
-    props.addNote({left: menuStyle.left, top, backgroundColor:'#ffffcc', date: new Date(date.getTime()-date.getTimezoneOffset()*60*1000), author: props.user.username}, props.channel.id, props.user)
-    setOpen(false)
+    props.addNote({left: menuStyle.left,
+                  top, backgroundColor:'#ffffcc',
+                  date: new Date(date.getTime()-date.getTimezoneOffset()*60*1000),
+                  author: props.user.username},
+                  props.channel.id, props.user)
     setMenu(false)
   }
 
   const handleUploadPicture = (event) => {
-    setOpen(false)
     event.preventDefault()
     let top = menuStyle.top + document.getElementById('wa').offsetHeight
     setUploadForm(true)
     setUploadFormStyle({zIndex:1000,position: 'absolute', left: menuStyle.left, top})
-    setMenu(false)
-    setMenu2(false)
+    hideMenus()
   }
 
   const handleDelete = (e) => {
@@ -185,21 +188,15 @@ const DnDContainer = (props) => {
   const hideMenus = () => {
     setMenu(false)
     setMenu2(false) 
-    setOpen(false)
   }
 
   let offsetX, offsetY
   let moveContent = false
 	
   const move = e => {
-    if(e.target.className === 'txt-place' || e.target.className === 'note' || e.target.className === 'noteHeader') {
-      setOpen(false)
-    }
-		
     if(moveContent && e.target.className !== 'note') {
       document.getElementById('dndWrapper').style.left = `${e.pageX-offsetX}px`
       document.getElementById('dndWrapper').style.top = `${e.pageY-offsetY}px`
-
       document.getElementById('root').style.backgroundPositionX = 0.5*(e.pageX-offsetX) + 'px'
       document.getElementById('root').style.backgroundPositionY = 0.5*(e.pageY-offsetY) + 'px'
       document.getElementById('bg').style.backgroundPositionX = 0.25*(e.pageX-offsetX) + 'px'
@@ -227,26 +224,7 @@ const DnDContainer = (props) => {
     }
   }
 
-  const timeoutid = useRef(-1)
-  const tip = useRef(true)
-
-  const hideTip = useCallback(() => {
-    if(!tip.current) clearTimeout(timeoutid.current)
-    if(tip.current && timeoutid.current === -1)
-      timeoutid.current = setTimeout(() => {
-        seen.current = true
-      },12000)
-  },[])
-
-  useEffect(() => {
-    return () => {
-      tip.current = false
-      hideTip()
-    }
-  }, [hideTip])
-
   const onpointerdown = e => {
-    setOpen(false)
     if(e.target.id === 'dnd') setZIndex('2')
   }
 
@@ -255,21 +233,12 @@ const DnDContainer = (props) => {
       <div className='prevent-select' id='dndWrapper' onContextMenu={handleContextMenu}
         onPointerOver={onpointerover}
         onPointerDown={onpointerdown}
-        onPointerOut={() => setOpen(false)}
         onClick={hideMenus} 
         onMouseMove={move}
         onMouseDown={start}
         onMouseUp={stop}
         style={{...pos}}>
         <div className='hoverthing'>
-          <Tooltip
-            open={open}
-            title='add note with the right mouse button'
-            followCursor='true'
-            theme='transparent'
-            duration='800'
-            onShown={hideTip}
-          >
             <div ref={drop} id='dnd' className='dndC'
               style={{zIndex:zIndex}}
             >
@@ -290,12 +259,11 @@ const DnDContainer = (props) => {
                 />
               ))}
             </div>
-          </Tooltip>
           {props.pictures.map((i) => <MyImage id={i.id} key={i.id} {...i}/>)}
         </div>
       </div>
     ) 
-  return <div>odota</div>
+  return <StyledSpinner/>
 }
 const mapStateToProps = (state) => {
   return {

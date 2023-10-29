@@ -3,8 +3,6 @@ import { useDrag } from 'react-dnd'
 import {setNote } from '../reducers/noteReducer'
 import { connect } from 'react-redux'
 import { useTransition, animated } from 'react-spring'
-import 'react-tippy/dist/tippy.css'
-import { Tooltip } from 'react-tippy'
 import map from './noteColors'
 import './Note.css'
 
@@ -63,24 +61,15 @@ const Note = (props) => {
     if(date) return date.slice(8,10)+'.'+date.slice(5,7)+'. '+date.slice(11,16)
   }
 
-  return transitions.map(({ item, key, props }) => (
+  return transitions.map(({ item, key, props }) => 
     item && <animated.div key={key} className='note' ref={drag} id={pr.id} style={{left:pr.left,top:pr.top,...map.get(pr.backgroundColor),...props}}  >
-      <Tooltip
-        title='open Edit Note - menu with the right mouse button'
-        followCursor='true'
-        theme='transparent'
-        duration='800'
-        delay='300'
-        trigger="mouseenter">
-        <div className='noteHeader' style={{marginTop:'0px',marginBottom:'0px'}} >{pr.author} {setDate(pr.date)}</div>
-      </Tooltip>
-      <textarea className='txt-place' 
-          style={{...map.get(pr.backgroundColor) }} 
-          value={text} 
-          onChange={onChange}
-          onBlur={() => updateText(pr.id)} />
-    </animated.div>)
-  )
+              <div className='noteHeader' style={{marginTop:'0px',marginBottom:'0px'}} >{pr.author} {setDate(pr.date)}</div>
+              <textarea className='txt-place' 
+                  style={{...map.get(pr.backgroundColor) }} 
+                  value={text} 
+                  onChange={onChange}
+                  onBlur={() => updateText(pr.id)} />
+            </animated.div>)
 }
 
 const mapStateToProps = (state) => {
