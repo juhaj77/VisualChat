@@ -45,6 +45,7 @@ const DnDContainer = (props) => {
 		
   }
   const handleContextMenu = (event) => {
+    setOpen(false)
     event.preventDefault()
 
     const top = event.nativeEvent.offsetY - document.getElementById('wa').offsetHeight
@@ -81,6 +82,7 @@ const DnDContainer = (props) => {
   }
 
   const handleUploadPicture = (event) => {
+    setOpen(false)
     event.preventDefault()
     let top = menuStyle.top + document.getElementById('wa').offsetHeight
     setUploadForm(true)
