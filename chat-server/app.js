@@ -5,15 +5,9 @@ const mongoose = require('mongoose')
 const channelRouter = require('./routes/channelRouter')
 const userRouter = require('./routes/userRouter')
 const pictureRouter = require('./routes/pictureRouter')
-const config = require('./utils/config')
 const cors = require('cors')
 require('express-async-errors')
-const session = require("express-session");
-const passport = require("passport");
 
-app.use(session({ secret: process.env.SESSION_SECRET }));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(express.static('build'))
 
 const mongoUrl = process.env.MONGODB_URI

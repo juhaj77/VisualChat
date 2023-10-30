@@ -2,6 +2,7 @@ const router = require('express').Router()
 const multer  = require('multer')
 const Picture = require('../models/picture')
 const Channel = require('../models/channel')
+require('express-async-errors')
 
 const upload = multer({
   limits: { fileSize: 1000000 },

@@ -24,7 +24,6 @@ io.on('connection', async socket => {
     try {
         jwt.verify(action.data.token, process.env.SECRET,  (err) => {
         token = true
-        console.log('token = true')
         if (err) {
           console.log('auth err:', action)
           token = false

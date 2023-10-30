@@ -14,7 +14,7 @@ import usersReducer from './reducers/usersReducer'
 import noteReducer from './reducers/noteReducer'
 import errorReducer from './reducers/errorReducer'
 import gapiReducer from './reducers/gapiReducer'
-import pictureReducer, { initializePictures } from './reducers/pictureReducer'
+import pictureReducer from './reducers/pictureReducer'
 import connectedUsersReducer from './reducers/connectedUsersReducer'
 import io from 'socket.io-client'
 
