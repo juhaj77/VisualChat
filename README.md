@@ -20,17 +20,16 @@ Or You can create your own. Using Google login app creates username from gmail a
    ![Image for oauth credentials](https://github.com/juhaj77/VisualChat/blob/master/images/oauth2.png)    
    set correct URIs in cloud console credentials tab
    
-   Update line 52 `CLIENT_ID=...` in chat-client/src/components/Login.js
+   Update line 53 `CLIENT_ID=...` in chat-client/src/components/Login.js
 
-1. Fix line 26 `let socket = io('wss://visualchat.onrender.com')` to `let socket = io('ws://localhost:3003')`  in chat-client/src/index.js.
-1. Comment line 17 `app.use(express.static('build'))` in chat-server/app.js. (this is for Render cloud. It builds directly from github).
+1. Fix line 24 `let socket = io('wss://visualchat.onrender.com')` to `let socket = io('ws://localhost:3003')`  in chat-client/src/index.js.
+1. Comment line 11 `app.use(express.static('build'))` in chat-server/app.js. (this is for Render cloud. It builds directly from github).
 1. create _.env_ file with content:
    ```
     MONGODB_URI=mongodb://127.0.0.1:27017
     PORT=3003
     NODE_ENV=test
     SECRET=mySecretString
-    SESSION_SECRET=randomString
     CLIENT_ID=client-id.apps.googleusercontent.com
    ```
     into folder `chat-server`
