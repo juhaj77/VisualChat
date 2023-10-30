@@ -1,6 +1,5 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const AccessTokenHandler = require('node-accesstoken-validation').AccessTokenHandler;
 const User = require('../models/user.js')
 const {OAuth2Client} = require('google-auth-library');
 
@@ -48,9 +47,7 @@ const UserController = {
           // Or, if multiple clients access the backend:
           //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
         });
-        const payload = ticket.getPayload();
-        const userid = payload['sub'];
-        console.log('authenticateUser',payload.name,payload.exp)
+        const payload = ticket.getPayload()
         // If request specified a G Suite domain:
         // const domain = payload['hd'];
         return payload
@@ -58,7 +55,6 @@ const UserController = {
       verify()
         .then(async p => {
           let user = await User.findOne({ username: p.email.split('@')[0] })
-          console.log(p,user)
           if(user === null) {
             user = new User({
               username: p.email.split('@')[0]
