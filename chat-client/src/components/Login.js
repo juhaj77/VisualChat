@@ -209,19 +209,19 @@ const Login = (props) => {
       </Grid>
     </div>
   )
-/*
+
   const Div = styled.div`
     animation-name: backGroundAnim;
     animation-timing-function:ease-in;
-    animation-duration:500ms;
+    animation-duration:0.05s;
     width:100vw;
     height:100vh;
   @keyframes backGroundAnim {
-    from {background:black;}
-    to {background:transparent;}
+    from {background-color:black;}
+    to {background-color:rgba(0,0,0,0);}
   }`
-*/
-  return transitions.map(({ item, key, props }) =>
+
+  return loaded ? transitions.map(({ item, key, props }) =>
     item && <animated.div key={key} style={props}>
       <div className='login'>
         <img style={{width:'100%', paddingTop: '7vh' }} src={src} />
@@ -231,8 +231,8 @@ const Login = (props) => {
         </Segment>
         <Info message={message} clear={() => setMessage(null)} />
       </div>
-    </animated.div>
-  ) 
+    </animated.div>) :
+    <Div></Div>
 }
 
 const mapStateToProps = (state) => {
