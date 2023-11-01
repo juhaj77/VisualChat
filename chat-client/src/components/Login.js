@@ -45,6 +45,7 @@ const Login = (props) => {
       }
     }
     setU()
+    return () => setLoaded(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
