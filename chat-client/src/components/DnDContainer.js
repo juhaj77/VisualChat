@@ -98,6 +98,7 @@ const DnDContainer = (props) => {
     e.preventDefault()
     props.deleteNote(menu2Props.id, props.channel.id, props.user)
   }
+
   const setColor = (e) => {
     e.preventDefault()
     const note= props.notes.find(n => n.id === menu2Props.id)
@@ -132,7 +133,9 @@ const DnDContainer = (props) => {
                                 >
                                 <div className='menu' ref={menu2Ref} style={{...menu2Props.style, width:'9rem'}}>
                                     <ul className="menu-options">
-                                      <li className="menu-option prevent-select" onClick={handleDelete}>delete note</li>
+                                      <li className="menu-option prevent-select" onClick={handleDelete}>
+                                        delete note
+                                      </li>
                                       <li className="menu-option" >
                                         <div className='dropdown prevent-select' >
                                           set color
@@ -246,20 +249,9 @@ const DnDContainer = (props) => {
               {contextMenu()}
               {contextMenu2()}
               {upload(props)}
-              {props.notes.map(b => (
-                <Note
-                  key={b.id}
-                  id={b.id}
-                  left={b.left}
-                  top={b.top}
-                  backgroundColor={b.backgroundColor}
-                  author={b.author}
-                  date={b.date}
-                  content={b.content}
-                />
-              ))}
+              {props.notes.map(b => <Note key={b.id} {...b}/> )}
             </div>
-          {props.pictures.map((i) => <MyImage id={i.id} key={i.id} {...i}/>)}
+          {props.pictures.map((i) => <MyImage key={i.id} {...i}/>)}
         </div>
       </div>
     ) 

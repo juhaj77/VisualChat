@@ -11,7 +11,7 @@ const Note = (props) => {
 
   const [text, setText] = useState(props.content)
   const [pr, set] = useState(props)
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(props.show)
 
   // onBlur ei toimi ilman tätä
   useEffect(() => {
@@ -26,13 +26,13 @@ const Note = (props) => {
 
   useEffect(() => {
     return () => {setShow(false)}
-  }, [props.channel])
+  }, [props.channel,props.show])
 
   const onChange = (event) => {
     setText(event.target.value)
   }
 
-  const transitions = useTransition(show, null, {
+  const transitions = useTransition(props.show, null, {
     from: { opacity: 0, transform: 'scale(0)' },
     enter: { opacity: 1, transform: 'scale(1)' },
     leave: { opacity: 0, transform: 'scale(0)' },
