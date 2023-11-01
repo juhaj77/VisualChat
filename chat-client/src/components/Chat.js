@@ -70,7 +70,7 @@ const Chat = ({user, channel, connectedUsers, gapi, clearUser}) => {
     document.getElementById('bg').style.backgroundPositionY = '0px'
     clearUser(user)
     setChat(true)
-    if(gapi) gapi.auth2.getAuthInstance().signOut().then(() => console.log('Oauth2 Signout'))
+    if(gapi) gapi.auth2.getAuthInstance().signOut()
   }
 
   return (

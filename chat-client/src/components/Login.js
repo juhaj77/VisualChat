@@ -55,7 +55,6 @@ const Login = (props) => {
     img.src = src
     img.onload = () => {
       window[img] = img
-      console.log(window)
       setLoaded(true)
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }
