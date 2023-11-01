@@ -7,12 +7,11 @@ import Info from './Info'
 import { setUser, clearUser, resetUser } from '../reducers/loggedUserReducer'
 import { useTransition, animated } from 'react-spring'
 import styled from 'styled-components'
-import { Form, Grid, Segment, Image } from 'semantic-ui-react'
+import { Form, Grid, Segment } from 'semantic-ui-react'
 import { loadGapiInsideDOM, loadAuth2 } from 'gapi-script'
-//import GoogleLogin from './GoogleLogin'
-import StyledSpinner from './StyledSpinner'
 import './Login.css'
-const image = require('./visualchat.png')
+
+const src = require('./visualchat.png')
 
 export const HoverButton = styled.button`
 border: 1px solid #665533;
@@ -34,6 +33,9 @@ const Login = (props) => {
   const [message, setMessage] = useState(null)
   const [loaded, setLoaded] = useState(false)
 
+  //const preload = [ src ]
+  //usePreloadImages(preload)
+  
   useEffect(() => {
     const setU = async () => {
       const loggedUserJSON = window.localStorage.getItem('loggedChatUser')
@@ -45,10 +47,19 @@ const Login = (props) => {
       }
     }
     setU()
-    return () => setLoaded(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    const img = new Image()
+    img.src = src
+    img.onload = () => {
+      window[img] = img
+      console.log(window)
+      setLoaded(true)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }
+}, []);
   //////////////////////////GOOGLE/////////////////////////////////
   const [user, setUser] = useState(null);
   const CLIENT_ID='371216924606-rgdtfalqj9tklp61rkv27d9ii14cenbe.apps.googleusercontent.com'
@@ -198,7 +209,7 @@ const Login = (props) => {
       </Grid>
     </div>
   )
-
+/*
   const Div = styled.div`
     animation-name: backGroundAnim;
     animation-timing-function:ease-in;
@@ -209,24 +220,19 @@ const Login = (props) => {
     from {background:black;}
     to {background:transparent;}
   }`
-
-  return loaded ? transitions.map(({ item, key, props }) =>
+*/
+  return transitions.map(({ item, key, props }) =>
     item && <animated.div key={key} style={props}>
       <div className='login'>
-        <Image style={{ paddingTop: '7vh' }} src={image} />
-        <Segment style={{ padding: '0px', margin: '0rem', backgroundColor: 'black', border: 'solid 1px #665533' }} placeholder>
+        <img style={{width:'100%', paddingTop: '7vh' }} src={src} />
+        <Segment className='login' style={{ padding: '0px', margin: '0rem', backgroundColor: 'black', border: 'solid 1px #665533', width:'100%' }} placeholder>
           {!signUp && options()}
           {signUp && form('Sign Up', handleSignUp)}
         </Segment>
         <Info message={message} clear={() => setMessage(null)} />
       </div>
     </animated.div>
-  ) : 
-  <Div>
-    <div className='login'>
-      <Image onLoad={() => setLoaded(true)} style={{ display: 'none', paddingTop: '7vh' }} src={image} />
-    </div>
-  </Div>
+  ) 
 }
 
 const mapStateToProps = (state) => {
