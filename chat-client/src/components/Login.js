@@ -56,9 +56,11 @@ const Login = (props) => {
     img.onload = () => {
       window[img] = img
       setLoaded(true)
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
+
+
   //////////////////////////GOOGLE/////////////////////////////////
   const [user, setUser] = useState(null);
   const CLIENT_ID='371216924606-rgdtfalqj9tklp61rkv27d9ii14cenbe.apps.googleusercontent.com'
