@@ -21,12 +21,12 @@ const options = {
     progress: 0.5,
   }
 
-const FlexItem = styled.div`
+export const FlexItem = styled.div`
   text-align: center; 
   width: 100%; 
   align-self: strech;
 `
-const Container2 = styled.div`
+export const Container2 = styled.div`
   overflow:visible; 
   color: #665533; 
   background: black;
@@ -55,7 +55,7 @@ const LabelStyle = styled.p`
 `
 const TextInput = styled.input`
   line-height: 1em;
-  height: 2.6em;  
+  height: 2em;  
   font-size: 1em; 
   width:97%;
   margin: 0; 

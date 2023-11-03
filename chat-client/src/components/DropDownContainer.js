@@ -5,6 +5,7 @@ import { initializeNotes } from '../reducers/noteReducer'
 import { initializePictures } from '../reducers/pictureReducer'
 import { setChannel } from '../reducers/selectedChannelReducer'
 import { initializeMessages } from '../reducers/messageReducer'
+import { initializeHtmls } from '../reducers/htmlReducer'
 
 /*eslint-disable eqeqeq*/
 const DropDownContainer = (props) => {
@@ -26,6 +27,7 @@ const DropDownContainer = (props) => {
       await props.initializeMessages(chId, props.user)
       await props.initializeNotes(chId, props.user)
       await props.initializePictures(chId, props.user)
+      await props.initializeHtmls(chId, props.user)
     }
   }
 	
@@ -65,4 +67,5 @@ export default connect(
     initializeMessages,
     initializePictures,
     initializeNotes,
+    initializeHtmls,
     })(DropDownContainer)

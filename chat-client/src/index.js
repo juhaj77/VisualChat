@@ -15,6 +15,7 @@ import noteReducer from './reducers/noteReducer'
 import errorReducer from './reducers/errorReducer'
 import gapiReducer from './reducers/gapiReducer'
 import pictureReducer from './reducers/pictureReducer'
+import htmlReducer from './reducers/htmlReducer'
 import connectedUsersReducer from './reducers/connectedUsersReducer'
 import io from 'socket.io-client'
 
@@ -39,6 +40,14 @@ const createMySocketMiddleware = () => {
         })
       }
     })
+    socket.on('add_html', (data) => {
+      if(storeAPI.getState().channel.id === data.channelID) {
+        storeAPI.dispatch({
+          type : 'SOCKET_ADD_HTML',
+          data : data.html
+        })
+      }
+    })
     socket.on('callback', async (data) => {
       if(storeAPI.getState().channel.id === data.id) {
       if(storeAPI.getState().loggedUser.token !== data.token){
@@ -48,7 +57,6 @@ const createMySocketMiddleware = () => {
           data: pictures
         })
       }
-       
     }})
     socket.on('delete_note', (data) => {
       if(storeAPI.getState().channel.id === data.channelID) {
@@ -63,6 +71,14 @@ const createMySocketMiddleware = () => {
         storeAPI.dispatch({
           type : 'SOCKET_SET_NOTE',
           data : data.note
+        })
+      }
+    })
+    socket.on('set_html', (data) => {
+      if(storeAPI.getState().channel.id === data.channelID) {
+        storeAPI.dispatch({
+          type : 'SOCKET_SET_HTML',
+          data : data.html
         })
       }
     })
@@ -104,6 +120,8 @@ const createMySocketMiddleware = () => {
 				action.type === 'DELETE_NOTE' ||
 				action.type === 'SET_USER' ||
 				action.type === 'USER_LOGOUT' ||
+        action.type === 'SET_HTML' ||
+				action.type === 'ADD_HTML' ||
 				action.type === 'SET_CHANNEL') {
 					
         socket.emit('action',action)
@@ -126,6 +144,7 @@ const reducer = combineReducers({
   pictures: pictureReducer,
   channel: selectedChannelReducer,
   users: usersReducer,
+  htmls: htmlReducer,
   notes: noteReducer,
   error: errorReducer,
   connectedUsers: connectedUsersReducer

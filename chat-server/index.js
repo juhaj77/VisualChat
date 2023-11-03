@@ -3,6 +3,7 @@ const app = require('./app')
 const http = require('http')
 const Channel = require('./models/channel')
 const Note = require('./models/note')
+const Html = require('./models/html')
 var jwt = require('jsonwebtoken')
 
 const server = http.createServer(app)
@@ -66,6 +67,21 @@ io.on('connection', async socket => {
         const note = action.data.note
         await Note.findByIdAndUpdate(note.id, {...note})
         socket.broadcast.emit('set_note', {channelID: action.data.channel, note: note})
+        return
+      }
+      case 'ADD_HTML': {
+        const newHtml = new Html({...action.data.html})
+        const result = await newHtml.save()
+        const channel = await Channel.findById(action.data.channel)
+        const htmls = channel.htmls.concat(result._id)
+        await Channel.findByIdAndUpdate(action.data.channel, {htmls:htmls})
+        io.emit('add_html', {channelID: action.data.channel, html:newHtml.toJSON()})
+        return
+      }
+      case 'SET_HTML': {
+        const html = action.data.html
+        await Html.findByIdAndUpdate(html.id, {...html})
+        socket.broadcast.emit('set_html', {channelID: action.data.channel, html: html})
         return
       }
       case 'DELETE_NOTE': {

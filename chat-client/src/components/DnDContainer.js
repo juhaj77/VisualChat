@@ -2,10 +2,13 @@ import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useDrop } from 'react-dnd'
 import Note from './Note'
 import MyImage from './Image'
+import Html from './Html'
 import StyledSpinner from './StyledSpinner'
 import {addNote, setNote, deleteNote} from '../reducers/noteReducer'
+import {addHtml, setHtml} from '../reducers/htmlReducer'
 import { connect } from 'react-redux'
 import UploadForm from './UploadForm'
+import SetHTMLForm from './SetHTMLForm'
 import map from './noteColors'
 import { CSSTransition } from 'react-transition-group';
 import './DnD.css'
@@ -18,11 +21,13 @@ const DnDContainer = (props) => {
   const [menu2, setMenu2] = useState(false)
   const [menu2Props, setMenu2Props] = useState(false)
   const [uploadForm, setUploadForm] = useState(false)
-  const [uploadFormStyle, setUploadFormStyle] = useState({zIndex:1000,position: 'absolute', left: 0, top:0})
+  const [htmlForm, setHtmlForm] = useState(false)
+  const [formStyle, setFormStyle] = useState({zIndex:1000,position: 'absolute', left: 0, top:0})
   const [pos, setPos] = useState({left:'0px',top:'0px'})
   const menuRef = useRef(null)
   const menu2Ref = useRef(null)
   const uploadFormRef = useRef(null)
+  const htmlFormRef = useRef(null)
   const [zIndex, setZIndex] = useState('5')
 
   const [, drop] = useDrop({
@@ -90,10 +95,17 @@ const DnDContainer = (props) => {
     event.preventDefault()
     let top = menuStyle.top + document.getElementById('wa').offsetHeight
     setUploadForm(true)
-    setUploadFormStyle({zIndex:1000,position: 'absolute', left: menuStyle.left, top})
+    setFormStyle({zIndex:1000,position: 'absolute', left: menuStyle.left, top})
     hideMenus()
   }
-
+  const handleAddHTML = async (event) => {
+    event.preventDefault()
+    const top = menuStyle.top + document.getElementById('wa').offsetHeight
+    const left = menuStyle.left
+    setHtmlForm(true)
+    setFormStyle({zIndex:1000,position: 'absolute', left, top})
+    hideMenus()
+  }
   const handleDelete = (e) => {
     e.preventDefault()
     props.deleteNote(menu2Props.id, props.channel.id, props.user)
@@ -105,6 +117,25 @@ const DnDContainer = (props) => {
     props.setNote({...note, backgroundColor: e.nativeEvent.target.id}, props.channel.id, props.user)
     hideMenus()
   }
+  const html = (props) => <div>
+                              <CSSTransition
+                                  in={htmlForm}
+                                  nodeRef={htmlFormRef}
+                                  timeout={500}
+                                  classNames="contextmenu"
+                                  unmountOnExit
+                                > 
+                                  <div ref={htmlFormRef} >
+                                    <SetHTMLForm setVisible={setHtmlForm}
+                                      {...props}
+                                      top={formStyle.top} 
+                                      left={formStyle.left} 
+                                      channelId={props.channel.id} 
+                                      style={{...formStyle}}/>
+                                  </div>
+                                </CSSTransition>
+                              </div>
+
   const upload = (props) => <div>
                               <CSSTransition
                                   in={uploadForm}
@@ -115,10 +146,10 @@ const DnDContainer = (props) => {
                                 > 
                                   <div ref={uploadFormRef} >
                                     <UploadForm setVisible={setUploadForm} 
-                                      top={uploadFormStyle.top} 
-                                      left={uploadFormStyle.left} 
+                                      top={formStyle.top} 
+                                      left={formStyle.left} 
                                       channelId={props.channel.id} 
-                                      style={{...uploadFormStyle}}/>
+                                      style={{...formStyle}}/>
                                   </div>
                                 </CSSTransition>
                               </div>
@@ -182,6 +213,9 @@ const DnDContainer = (props) => {
                                     </li>
                                     <li className="menu-option prevent-select" onClick={handleUploadPicture}>
                                       upload picture
+                                    </li>
+                                    <li className="menu-option prevent-select" onClick={handleAddHTML}>
+                                      add HTML
                                     </li>
                                   </ul>
                                 </div>
@@ -249,12 +283,14 @@ const DnDContainer = (props) => {
               {contextMenu()}
               {contextMenu2()}
               {upload(props)}
+              {html(props)}
               {props.notes.map(b => <Note key={b.id} {...b}/> )}
             </div>
           {props.pictures.map((i) => <MyImage key={i.id} {...i}/>)}
+          {props.htmls.map(h => <Html key={h.id} {...h}/>)}
         </div>
       </div>
-    ) 
+    )
   return <StyledSpinner/>
 }
 const mapStateToProps = (state) => {
@@ -262,7 +298,8 @@ const mapStateToProps = (state) => {
     user: state.loggedUser,
     channel: state.channel,
     notes: state.notes,
-    pictures: state.pictures
+    pictures: state.pictures,
+    htmls: state.htmls
   }
 }
-export default connect(mapStateToProps,{addNote, setNote, deleteNote})(DnDContainer)
+export default connect(mapStateToProps,{addNote, setNote, deleteNote, addHtml, setHtml})(DnDContainer)

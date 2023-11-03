@@ -21,5 +21,10 @@ const channelController = {
     const chs = channel.pictures.map(ch => ch.toJSON())
     response.json(chs) 
   },
+  getHtmls: async (request, response) => {
+    const channel = await Channel.findById(request.params.id).populate('htmls')
+    const chs = channel.htmls.map(ch => ch.toJSON())
+    response.json(chs) 
+  },
 }
 module.exports = channelController
