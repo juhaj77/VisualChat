@@ -286,8 +286,8 @@ const DnDContainer = (props) => {
               {html(props)}
               {props.notes.map(b => <Note key={b.id} {...b}/> )}
             </div>
-          {props.htmls.map(h => <Html key={h.id} {...h}/>)}
           {props.pictures.map((i) => <MyImage key={i.id} {...i}/>)}
+          {props.htmls.map(h => <Html key={h.id} {...h}/>)}
         </div>
       </div>
     )
