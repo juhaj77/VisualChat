@@ -11,7 +11,7 @@ import { setError } from '../reducers/errorReducer'
 import Info from './Info'
 import { setChannel } from '../reducers/selectedChannelReducer'
 import { Form, Dropdown } from 'semantic-ui-react'
-import { HoverButton } from './Chat'
+import { HoverButton } from './Login'
 import styled from 'styled-components'
 
 const CreateChannelForm = (props) => {

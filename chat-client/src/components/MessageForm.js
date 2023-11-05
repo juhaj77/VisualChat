@@ -3,7 +3,7 @@ import  { useField } from '../hooks/field'
 import { addMsg, removeAnimation } from '../reducers/messageReducer'
 import Info from './Info'
 import { connect } from 'react-redux'
-import { HoverButton } from './Chat'
+import { HoverButton } from './Login'
 /*eslint-disable eqeqeq*/
 const MessageForm = (props) => {
 

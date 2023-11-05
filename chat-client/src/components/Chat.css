@@ -12,3 +12,93 @@
     opacity: 0;
     transition: opacity 500ms ease-out;
   }
+.clock {
+  font-family: "Cinzel", serif;
+  font-size: 1.4em; 
+  font-weight: 700;
+  text-align: left;
+  color: #b29966;
+  text-shadow:-2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+.loggedin {
+  border-radius: 2px 0px 0px 2px; 
+  font-size: 1.2em;
+  float: left;
+  display:inline;
+  font-weight: 500; 
+  color: #e2d4b7;
+  white-space: nowrap;
+  background-color:rgba(0,0,0,0.7);
+  margin-top: 1px;
+  padding: 0.15em 0.5em 0.2em 0.35em;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.logoutbutton {
+  cursor: pointer;
+  font-size: 1.1em;
+  margin-left: 0em;
+  border-radius: 2px;
+  font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
+  font-weight:700;
+  padding:0.25em 0.4em 0.25em 0.4em;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+.connected {
+  line-height:1.1em;
+  font-size:1.1em;
+  text-align:center; 
+  position:absolute;
+  z-index:10;
+  bottom:2em;
+  right:2em;
+  padding:0.3em 0.6em 0.3em 0.6em;
+  font-weight:500;
+  border:solid 1px #665533; 
+  color:#b29966;
+  white-space: nowrap;
+  background-color:rgba(0,0,0,0.7);
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.tdchannel {
+  padding-left: 0.6em;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding-bottom: 0em;
+  width:50%;
+}
+.channel {
+  font-family: Abhaya Libre, serif;
+  font-weight: 800;
+  padding-bottom: 0px; 
+  margin-bottom:-0.2em;
+  color:#e9d396;
+}
+.tdchannel2 {
+  white-space: nowrap; 
+  width: 50%;
+  margin-right: 0%; 
+  padding-right: 0px; 
+  border-right: 0px; 
+  text-align: right;
+}
+.create {
+  color: #d4c6aa;
+  font-size: 1.3em;
+  font-family: Abhaya Libre, serif;
+  font-weight: 700;
+  padding-bottom: 0px; 
+  white-space: nowrap; 
+  display: inline;
+}
+.dropdown {
+  border: none;
+  cursor: pointer;
+  padding-left: 0.4em;
+  font-size: 1.4em;
+  font-family: Abhaya Libre, serif;
+  font-weight: 900;
+  color:#b29966;
+  border-color:black;
+  background-color:black;
+  width: 100%;
+}

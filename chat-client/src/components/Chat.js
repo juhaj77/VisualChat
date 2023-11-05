@@ -8,23 +8,11 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import { clearUser } from '../reducers/loggedUserReducer'
 import ChannelName from './ChannelName'
 import { Segment } from 'semantic-ui-react'
+import { HoverButton } from './Login'
 import Clock from './Clock'
-import styled from 'styled-components'
 import { useTransition, animated } from 'react-spring'
 import './Chat.css'
 
-export const HoverButton = styled.button`
-border: 1px solid #665533;
-cursor:pointer;
-color:#b29966;
-background-color:black;
-transition: background-color 250ms ease-in, border-color 250ms ease-in, color 250ms ease-in;
-&:hover{
-  background-color:rgba(53, 46, 17, 0.6);
-  border-color: #b29966;
-  color: #d4c6aa;
-}
-`
 const Chat = ({user, channel, connectedUsers, gapi, clearUser}) => {
   
   const [chat, setChat] = useState(true)
@@ -79,20 +67,11 @@ const Chat = ({user, channel, connectedUsers, gapi, clearUser}) => {
         {channel && dnd()}
       </Segment>
       <div style={{position:'absolute',top:'2em',left:'40%'}}>	
-        {channel && <span style={{width:'100%',fontWeight:'700', color:'#d4c6aa'}}>
-          <ChannelName/>
-        </span>}
+        {channel && <ChannelName/>}
       </div>
       {transitions.map(({ item, key, props }) =>
         item && <animated.div key={key} style={{...props,zIndex:'10',position:'absolute',top:'2em',left:'3em'}}>
-          <div style={{
-            fontFamily: 'Cinzel, serif',
-            fontSize: '1.4em', 
-            fontWeight:'700',
-            textAlign:'left',
-            color:'#b29966',
-            textShadow: '-2px 0 black, 0 2px black, 2px 0 black, 0 -2px black'
-          }} ><Clock/></div>
+          <div className='clock' ><Clock/></div>
         </animated.div> )}
       {transitions2.map(({ item, props, key }) => (
         <animated.div
@@ -103,49 +82,13 @@ const Chat = ({user, channel, connectedUsers, gapi, clearUser}) => {
       ))}
       {transitions.map(({ item, key, props }) =>
         item && <animated.div key={key} style={{...props,zIndex:'10',position:'absolute',bottom:'2em',left:'2em'}}>
-          <div style={{
-            borderRadius:'2px 0px 0px 2px', 
-            fontSize:'1.2em',
-            float:'left',
-            display:'inline',
-            fontWeight:'500', 
-            color:'#e2d4b7',
-            whiteSpace: 'nowrap',
-            backgroundColor:'rgba(0,0,0,0.7)',
-            marginTop:'1px',
-            padding:'0.15em 0.5em 0.2em 0.35em',
-            textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
-          }}>{user && user.username} is logged in </div>
+          <div className='loggedin'>{user && user.username} is logged in </div>
           <div style={{float:'left',display:'inline'}}>
-            <HoverButton style={{
-              cursor: 'pointer',
-              fontSize:'1.1em',
-              marginLeft:'0em',
-              borderRadius:'2px',
-              fontFamily: 'Lato,Helvetica Neue,Arial,Helvetica,sans-serif',
-              fontWeight:'700',
-              padding:'0.25em 0.4em 0.25em 0.4em',
-              textShadow: '-2px 0 black, 0 2px black, 2px 0 black, 0 -2px black'
-            }} onClick={handleLogout}>logout</HoverButton>
+            <HoverButton className='logoutbutton' onClick={handleLogout}>logout</HoverButton>
           </div>
         </animated.div>)}
       {transitions.map(({ item, key, props }) =>
-        item && <animated.div key={key} style={{...props,
-          lineHeight:'1.1em',
-          fontSize:'1.1em',
-          textAlign:'center', 
-          position:'absolute',
-          zIndex:'10',
-          bottom:'2em',
-          right:'2em',
-          padding:'0.3em 0.6em 0.3em 0.6em',
-          fontWeight:'500',
-          border:'solid 1px #665533', 
-          color:'#b29966',
-          whiteSpace: 'nowrap',
-          backgroundColor:'rgba(0,0,0,0.7)',
-          textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
-        }}>
+        item && <animated.div key={key} style={{...props}} className='connected'>
           <span style={{
             fontWeight:'400',
             color:'#e5ddcc',

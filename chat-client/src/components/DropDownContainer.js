@@ -6,6 +6,7 @@ import { initializePictures } from '../reducers/pictureReducer'
 import { setChannel } from '../reducers/selectedChannelReducer'
 import { initializeMessages } from '../reducers/messageReducer'
 import { initializeHtmls } from '../reducers/htmlReducer'
+import './Chat.css'
 
 /*eslint-disable eqeqeq*/
 const DropDownContainer = (props) => {
@@ -33,30 +34,24 @@ const DropDownContainer = (props) => {
 	
   return (
     <div>
-      <select onChange={handleChange} 
-        style={{
-          border:'none',
-          cursor:'pointer',
-          paddingLeft:'0.4em',
-          fontSize:'1.4em',
-          fontFamily: 'Abhaya Libre, serif',
-          fontWeight:'900',
-          color:'#b29966',
-          borderColor:'black',
-          backgroundColor:'black',
-          width:'100%'}}>
-        {[<option key='-1' defaultValue=''>select channel:</option>,...props.channels.map((channel,i) => (<option value={channel.name} key={i}>{channel.name}</option>))]}
+      <select onChange={handleChange} className='dropdown'>
+        {[<option key='-1' 
+          value='' 
+          disabled 
+          selected 
+          hidden>select channel...</option>,
+          ...props.channels.map((channel,i) => 
+          (<option value={channel.name} key={i}>{channel.name}</option>))]}
       </select>
     </div>
   )    
-} 
+}
 
 const mapStateToProps = (state) => {
   return {
     channels: state.channels,
     channel: state.channel,
     user: state.loggedUser,
-    pictures: state.pictures
   }
 }
 
