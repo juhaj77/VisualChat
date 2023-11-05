@@ -280,11 +280,11 @@ const DnDContainer = (props) => {
               style={{zIndex:zIndex}}
             >
               <div className='prevent-select' id='wa'>&nbsp;draggable working area</div>
+              {props.notes.map(b => <Note key={b.id} {...b}/> )}
               {contextMenu()}
               {contextMenu2()}
               {upload(props)}
               {html(props)}
-              {props.notes.map(b => <Note key={b.id} {...b}/> )}
             </div>
           {props.pictures.map((i) => <MyImage key={i.id} {...i}/>)}
           {props.htmls.map(h => <Html key={h.id} {...h}/>)}
