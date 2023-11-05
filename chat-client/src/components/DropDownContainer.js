@@ -34,7 +34,7 @@ const DropDownContainer = (props) => {
 	
   return (
     <div>
-      <select onChange={handleChange} className='dropdown'>
+      <select onChange={handleChange} className='dropdown2'>
         {[<option key='-1' 
           value='' 
           disabled 
