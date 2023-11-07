@@ -1,5 +1,5 @@
-//import React, { useEffect, useState } from 'react'
-import React from 'react'
+import React, { useEffect } from 'react'
+//import React from 'react'
 import FocusScrollable from './FocusScrollable'
 import MessageForm from './MessageForm'
 import { HoverButton } from './Login'
@@ -8,6 +8,8 @@ import { HoverButton } from './Login'
 import DropDownContainer from './DropDownContainer'
 import { connect } from 'react-redux'
 import './Chat.css'
+import './DnD.css'
+import './switch.css'
 
 
 const ChatWindow = (props) => {
@@ -15,36 +17,65 @@ const ChatWindow = (props) => {
 const handle = () => {	
   props.setChat(false)
 }
+const handleTheme = e => {
+  if(e.target.checked) {
+    props.setTheme('light')
+  } else {
+    props.setTheme('dark')
+  }
+}
+useEffect(() =>{
+  if(props.theme ==='light') {
+    document.getElementById('themeselector').checked=true
+  } 
+})
 
 return (
   <div>
-    <div style={{backgroundColor: 'black',color:'white',borderBottom:'1px solid #443922', marginTop:'-0.2em'}}>
+    <div className={'channelpanel '+props.theme}>
       <table style={{width:'100%', borderTop:'1px solid #443922'}}>
         <tbody>
-          <tr >
-            <td className='tdchannel'>
-              <div className='channel'>
+           <tr>
+             <td className='tdchannel'>
+              <div className={'prevent-select channel '+props.theme}>
                 CHANNEL 
               </div>
-            </td>
-            <td className='tdchannel2'>
-              <div className='create'>
+             </td>
+             <td className='tdchannel2'>
+              <div className={'prevent-select create '+props.theme}>
                 create new channel
               </div>
               <div style={{marginLeft:'0.5em', display:'inline'}}>
-                <HoverButton style={{
+                <button className={'hoverbutton '+props.theme} style={{
                   fontFamily: 'Lato,Helvetica Neue,Arial,Helvetica,sans-serif', 
-                  fontWeight:'700'}}  onClick={handle}>create</HoverButton>
+                  fontWeight:'700'}}  onClick={handle}>create</button>
               </div>
+             </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <DropDownContainer theme={props.theme} user={props.user} />
+      <FocusScrollable theme={props.theme}/>
+      <MessageForm theme={props.theme}/>
+      <div className={'themeselect '+ props.theme}>
+      <table style={{float:'right',height:'18px',paddingTop:'1em'}}>
+        <tbody>
+          <tr style={{lineHeight:'18px',height:'18px'}}>
+            <td className='prevent-select' style={{width:'5em',float:'left'}}>theme</td>
+            <td className='prevent-select'>dark</td>
+            <td style={{padding:'0 .5em 0 .5em'}}>
+              <label className="switch">
+              <input id='themeselector' type="checkbox" onChange={handleTheme}/>
+              <span className="slider round"></span>
+              </label>
             </td>
+            <td className='prevent-select'>light</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <DropDownContainer user={props.user} />
-    <FocusScrollable/>
-    <MessageForm />
-  </div>
+    </div>
 )
 }
 

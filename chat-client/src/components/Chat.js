@@ -13,17 +13,30 @@ import Clock from './Clock'
 import { useTransition, animated } from 'react-spring'
 import './Chat.css'
 
-const Chat = ({user, channel, connectedUsers, gapi, clearUser}) => {
+
+const Chat = ({theme,setTheme, user, channel, connectedUsers, gapi, clearUser}) => {
   
   const [chat, setChat] = useState(true)
   const [index, setIndex] = useState(0)
+  //const [theme, setTheme] = useState('dark')
 
   const elements = [
     {id: 0, content: <div></div>},
-    {id: 1, content: <ChatWindow setChat={setChat}/>},
-    {id: 2, content: <CreateChannelForm setChat={setChat}/>}
+    {id: 1, content: <ChatWindow theme={theme} setTheme={setTheme} setChat={setChat}/>},
+    {id: 2, content: <CreateChannelForm theme={theme} setChat={setChat}/>}
   ]
-  
+  useEffect(() => {
+    if(theme === 'light'){
+      document.getElementById('root').style.backgroundImage='url(/b2l.gif)'
+      document.getElementById('bg').style.backgroundImage='url(/bl.gif)'
+      document.body.style.backgroundColor='#e0f2ff'
+    } else {
+      document.getElementById('root').style.backgroundImage='url(/b2.gif)'
+      document.getElementById('bg').style.backgroundImage='url(/b.gif)'
+      document.body.style.backgroundColor='black'
+    }
+  },[theme])
+
   useEffect(() => {
     if(!user) setIndex(0)
     else if(user && chat) setIndex(1)
@@ -46,7 +59,7 @@ const Chat = ({user, channel, connectedUsers, gapi, clearUser}) => {
 
   const dnd = () => (
     <DndProvider backend={HTML5Backend}>
-      <DnDContainer/>
+      <DnDContainer theme={theme}/>
     </DndProvider>
   )
 
@@ -63,15 +76,15 @@ const Chat = ({user, channel, connectedUsers, gapi, clearUser}) => {
 
   return (
     <div>
-      <Segment  style={{margin:'0',padding:'0',backgroundColor:'transparent'}} placeholder >
+      <Segment  style={{margin:'0',padding:'0',border:'0px',backgroundColor:'transparent'}} placeholder >
         {channel && dnd()}
       </Segment>
       <div style={{position:'absolute',top:'2em',left:'40%'}}>	
-        {channel && <ChannelName/>}
+        {channel && <ChannelName theme={theme}/>}
       </div>
       {transitions.map(({ item, key, props }) =>
         item && <animated.div key={key} style={{...props,zIndex:'10',position:'absolute',top:'2em',left:'3em'}}>
-          <div className='clock' ><Clock/></div>
+          <div className={'clock '+theme} ><Clock/></div>
         </animated.div> )}
       {transitions2.map(({ item, props, key }) => (
         <animated.div
@@ -82,19 +95,14 @@ const Chat = ({user, channel, connectedUsers, gapi, clearUser}) => {
       ))}
       {transitions.map(({ item, key, props }) =>
         item && <animated.div key={key} style={{...props,zIndex:'10',position:'absolute',bottom:'2em',left:'2em'}}>
-          <div className='loggedin'>{user && user.username} is logged in </div>
+          <div className={'loggedin '+theme}>{user && user.username} is logged in </div>
           <div style={{float:'left',display:'inline'}}>
-            <HoverButton className='logoutbutton' onClick={handleLogout}>logout</HoverButton>
+            <button className={'logoutbutton hoverbutton '+theme} onClick={handleLogout}>logout</button>
           </div>
         </animated.div>)}
       {transitions.map(({ item, key, props }) =>
-        item && <animated.div key={key} style={{...props}} className='connected'>
-          <span style={{
-            fontWeight:'400',
-            color:'#e5ddcc',
-            textAlign:'center', 
-            borderBottom:'1px solid #b29966'
-          }}>connected users</span>
+        item && <animated.div key={key} style={{...props}} className={'connected '+theme}>
+          <span className={'connectedusers '+theme}>connected users</span>
           <ul style={{fontWeight:'400',
             listStyleType:'none',
             marginTop:'0',

@@ -3,7 +3,8 @@ import { useDrag } from 'react-dnd'
 import {setNote } from '../reducers/noteReducer'
 import { connect } from 'react-redux'
 import { useTransition, animated } from 'react-spring'
-import map from './noteColors'
+import mapD from './noteColorsDark'
+import mapL from './noteColorsLight'
 import './Note.css'
 
 
@@ -12,6 +13,7 @@ const Note = (props) => {
   const [text, setText] = useState(props.content)
   const [pr, set] = useState(props)
   const [show, setShow] = useState(props.show)
+  const [map, setMap] = useState(mapD)
 
   // onBlur ei toimi ilman tätä
   useEffect(() => {
@@ -19,9 +21,18 @@ const Note = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.content])
 
+  
+  useEffect(() => {
+    if(props.theme === 'light') {
+      setMap(mapL)
+    } else {
+      setMap(mapD)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.theme])
+
   useEffect(() => {
     set(props)
-   // console.log(props)
   }, [props])
 
   useEffect(() => {
@@ -62,7 +73,7 @@ const Note = (props) => {
   }
 
   return transitions.map(({ item, key, props }) => 
-    item && <animated.div key={key} className='note' ref={drag} id={pr.id} style={{left:pr.left,top:pr.top,...map.get(pr.backgroundColor),...props}}  >
+            item && <animated.div key={key} className='note' ref={drag} id={pr.id} style={{left:pr.left,top:pr.top,...map.get(pr.backgroundColor),...props}}  >
               <div className='noteHeader' style={{marginTop:'0px',marginBottom:'0px'}} >{pr.author} {setDate(pr.date)}</div>
               <textarea className='txt-place' 
                   style={{...map.get(pr.backgroundColor) }} 

@@ -7,24 +7,11 @@ import Info from './Info'
 import { setUser, clearUser, resetUser } from '../reducers/loggedUserReducer'
 import { useTransition, animated } from 'react-spring'
 import styled from 'styled-components'
-import { Form, Grid, Segment } from 'semantic-ui-react'
+import { Form, Grid } from 'semantic-ui-react'
 import { loadGapiInsideDOM, loadAuth2 } from 'gapi-script'
 import './Login.css'
 
 const src = require('./visualchat.png')
-
-export const HoverButton = styled.button`
-border: 1px solid #665533;
-cursor:pointer;
-color:#b29966;
-background-color:black;
-transition: background-color 250ms ease-in, border-color 250ms ease-in, color 250ms ease-in;
-&:hover{
-  background-color:rgba(53, 46, 17, 0.6);
-  border-color: #b29966;
-  color: #d4c6aa;
-}`
-
 
 const Login = (props) => {
   const username = useField('text')
@@ -32,9 +19,6 @@ const Login = (props) => {
   const [signUp, setSignUp] = useState(false)
   const [message, setMessage] = useState(null)
   const [loaded, setLoaded] = useState(false)
-
-  //const preload = [ src ]
-  //usePreloadImages(preload)
   
   useEffect(() => {
     const setU = async () => {
@@ -54,13 +38,12 @@ const Login = (props) => {
     const img = new Image()
     img.src = src
     img.onload = () => {
-      window[img] = img
       setLoaded(true)
     }
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
 
-
+  const theme = props.theme
   //////////////////////////GOOGLE/////////////////////////////////
   const [user, setUser] = useState(null);
   const CLIENT_ID='371216924606-rgdtfalqj9tklp61rkv27d9ii14cenbe.apps.googleusercontent.com'
@@ -190,7 +173,7 @@ const Login = (props) => {
         style={{ color: '#b29966', backgroundColor: 'black', border: 'solid 1px #b29966', marginBottom: '0.5em' }}
         {...password.input}
       />
-      <button className='myButton' autoFocus type="submit">{buttonText}</button>
+      <button className={'myButton '+theme} autoFocus type="submit">{buttonText}</button>
     </Form>
   )
   const options = () => (
@@ -200,10 +183,10 @@ const Login = (props) => {
           {form('Login', handleLogin)}
         </Grid.Column>
         <Grid.Column verticalAlign='middle'>
-          <button className='myButton' onClick={() => setSignUp(true)} type='button'>Sign up</button>
+          <button className={'myButton '+theme} onClick={() => setSignUp(true)} type='button'>Sign up</button>
         </Grid.Column>
         <Grid.Column verticalAlign='middle'>
-          <button id="customBtn" className="myButton" style={{whiteSpace:'nowrap'}} >
+          <button id="customBtn" className={'myButton '+theme} style={{whiteSpace:'nowrap'}} >
             Google Login
           </button>
         </Grid.Column>
@@ -225,17 +208,17 @@ const Login = (props) => {
   return loaded ? transitions.map(({ item, key, props }) =>
     item && <animated.div key={key} style={props}>
       <div className='login'>
-        <img style={{width:'100%', paddingTop: '7vh' }} src={src} />
-        <Segment className='login' style={{ padding: '0px', margin: '0rem', backgroundColor: 'black', border: 'solid 1px #665533', width:'100%' }} placeholder>
+      <img style={{width:'100%', paddingTop: '7vh' }} src={src} />
+        <div className={'loginsegment '+theme} >
           {!signUp && options()}
           {signUp && form('Sign Up', handleSignUp)}
-        </Segment>
+        </div>
         <Info message={message} clear={() => setMessage(null)} />
       </div>
     </animated.div>) :
     <Div></Div>
 }
-
+// style={{padding:'0',margin:'0',width:'100%',backgroundColor:'black',border:'solid 1px #665533'}} placeholder
 const mapStateToProps = (state) => {
   return {
     user: state.loggedUser,

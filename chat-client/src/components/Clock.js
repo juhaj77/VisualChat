@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react'
 import { connect } from 'react-redux'
+import './DnD.css'
 
 
 const Clock = (props) => {
@@ -27,7 +28,7 @@ const Clock = (props) => {
   }
 
   return (
-    <div>
+    <div className='prevent-select'>
       {time}
     </div>
   )

@@ -10,9 +10,8 @@ import { initEmptyHtmls } from '../reducers/htmlReducer'
 import { setError } from '../reducers/errorReducer'
 import Info from './Info'
 import { setChannel } from '../reducers/selectedChannelReducer'
-import { Form, Dropdown } from 'semantic-ui-react'
-import { HoverButton } from './Login'
-import styled from 'styled-components'
+import { Form, Input, Dropdown } from 'semantic-ui-react'
+import './Chat.css'
 
 const CreateChannelForm = (props) => {
 
@@ -73,36 +72,24 @@ const CreateChannelForm = (props) => {
     props.setChat(true)
   }
 
-  const Button = styled(HoverButton)`
-    font-size:1.1em;
-    font-weight:500; 
-    padding:0.25em 0.4em 0.4em 0.4em;
-    border-radius:2px;
-    vertical-align:middle;
-    margin-top:1.4em;
-    display:inline;
-  `
-
   if(props.users)
     return (
       <div style={{textAlign:'center'}}>
-        <Form inverted>
-          <Form.Input
-            label='Name'
-            placeholder='channel name'
-            style={{width:'80%', margin:'auto'}}
-            {...name.input}
-          />
+        <Form className={'create-channel-form '+props.theme}>
+          <Form.Field  style={{width:'80%', margin:'auto'}}>
+          <div className={'create-channel-input '+props.theme} style={{fontWeight:'bold', paddingBottom:'0.3em'}}>Name</div>
+            <Input placeholder='channel name' {...name.input} />
+            </Form.Field>
           <div style={{width:'80%', margin:'auto'}}>
-            <div style={{color:'white',fontWeight:'bold', paddingBottom:'0.3em'}}>Users</div>
+            <div className={'create-channel-input '+props.theme} style={{fontWeight:'bold', paddingBottom:'0.3em'}}>Users</div>
             <Dropdown label='Users' placeholder='users' fluid multiple search selection 
               options={props.users.filter(u => (u.id !== props.user.userId)).map(u => ({key:u.id, text:u.username,value:u.id}))}
               onChange={handleChange}
             />
           </div>
           <div style={{margin:'auto',textAlign:'center'}}>
-            <Button type='button' onClick={handleSubmit}>create</Button>
-            <Button type='button' style={{marginLeft:'1.4em'}} onClick={cancel}>cancel</Button>
+          <button className={'create-channel-button hoverbutton '+props.theme} type='button' onClick={handleSubmit}>create</button>
+          <button className={'create-channel-button hoverbutton '+props.theme} type='button' style={{marginLeft:'1.4em'}} onClick={cancel}>cancel</button>
           </div>
         </Form>
         <div style={{margin:'auto',width:'80%',marginTop:'2em'}}>

@@ -3,7 +3,6 @@ import  { useField } from '../hooks/field'
 import { addMsg, removeAnimation } from '../reducers/messageReducer'
 import Info from './Info'
 import { connect } from 'react-redux'
-import { HoverButton } from './Login'
 /*eslint-disable eqeqeq*/
 const MessageForm = (props) => {
 
@@ -35,27 +34,15 @@ const MessageForm = (props) => {
   if(props.user)
     return (
       <div style={{background:'black',border:'none'}}>
-        <input placeholder='write your msg here' style={{
-          padding:'0.1em 0 0.1em 0',
-          fontWeight:'500',
-          fontSize:'1.2em',
-          paddingLeft:'0.4em',
-          lineHeight:'1.2em',
-          backgroundColor:'black',
-          borderTop: 'none',
-          borderBottom: '1px solid #443922',
-          borderLeft:'none',
-          borderRight:'none',
-          color:'#b29966',
-          width:'80%'}} 
+        <input placeholder='write your msg here' className={'msginput '+props.theme} 
         onKeyPress={keyPressed} {...msg.input} />
-        <HoverButton style={{
+        <button className={'hoverbutton '+props.theme} style={{
           padding:'0.2em 0 0.15em 0',
           marginTop:'0px',
           fontFamily: 'Lato,Helvetica Neue,Arial,Helvetica,sans-serif', 
           fontWeight:'700',
           width:'20%'}} 
-        onClick={sendMsg}>send</HoverButton>
+        onClick={sendMsg}>send</button>
         <Info message={warning} clear={() => setWarning(null)} />
       </div>
     )

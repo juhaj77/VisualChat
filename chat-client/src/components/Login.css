@@ -1,23 +1,40 @@
 .myButton {
-    border: 1px solid #665533;
-    cursor:pointer;
-    color:#b29966;
+    cursor:pointer;   
     font-size:1.1em;
     font-weight:500; 
     padding:0.6em 0.9em 0.6em 0.9em;
     border-radius:5px;
-    background-color:black;
     display:flex;
     justify-content: center;
     margin:auto;
     transition: background-color 250ms ease-in, border-color 250ms ease-in, color 250ms ease-in;
 }
-.myButton:hover{
+.myButton.dark {
+  color:#b29966;
+  border: 1px solid #665533;
+  background-color:black;
+}
+.myButton.light {
+  border: 2px solid #9e89f3;
+  border-style:outset;
+  cursor:pointer;
+  color:white;
+  background-color:rgb(82, 94, 252);
+  background-image:linear-gradient(rgb(166, 172, 255),rgb(82, 94, 252));
+  transition: background-image 250ms ease-in,background-color 250ms ease-in, border-color 250ms ease-in, color 250ms ease-in;
+}
+.myButton.light:hover {
+  background-image:linear-gradient(rgb(82, 94, 252),rgb(166, 172, 255));
+  background-color:rgb(82, 0, 150);
+  border-color: #fff098;
+  color: #fff098;
+}
+.myButton.dark:hover{
     background-color:rgba(53, 46, 17, 0.6);
     border-color: #b29966;
     color: #d4c6aa;
-  }
-  .login {
+}
+.login {
     border: 0px;
     height:60%;
     line-height:60%;
@@ -25,4 +42,18 @@
     padding:0;
     max-width: 1280px;
     margin: auto;
-  }
+}
+.loginsegment {
+    padding: 0px; 
+    margin: 0rem;
+    width:100%;
+}
+.loginsegment.dark {
+    background-color: black;
+    border: solid 1px #665533;
+}
+.loginsegment.light {
+    background-color: rgb(82, 94, 252);
+    background-image:linear-gradient(rgb(82, 94, 252),rgb(166, 172, 255));
+    border: solid 1px #0127a5;
+}

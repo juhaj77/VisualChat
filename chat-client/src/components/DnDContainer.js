@@ -9,7 +9,8 @@ import {addHtml, setHtml} from '../reducers/htmlReducer'
 import { connect } from 'react-redux'
 import UploadForm from './UploadForm'
 import SetHTMLForm from './SetHTMLForm'
-import map from './noteColors'
+import mapD from './noteColorsDark'
+import mapL from './noteColorsLight'
 import { CSSTransition } from 'react-transition-group';
 import './DnD.css'
 
@@ -24,11 +25,21 @@ const DnDContainer = (props) => {
   const [htmlForm, setHtmlForm] = useState(false)
   const [formStyle, setFormStyle] = useState({zIndex:1000,position: 'absolute', left: 0, top:0})
   const [pos, setPos] = useState({left:'0px',top:'0px'})
+  const [map, setMap] = useState(mapD)
   const menuRef = useRef(null)
   const menu2Ref = useRef(null)
   const uploadFormRef = useRef(null)
   const htmlFormRef = useRef(null)
   const [zIndex, setZIndex] = useState('5')
+
+  useEffect(() => {
+    if(props.theme === 'light') {
+      setMap(mapL)
+    } else {
+      setMap(mapD)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.theme])
 
   const [, drop] = useDrop({
     accept: ['note'],
@@ -131,7 +142,8 @@ const DnDContainer = (props) => {
                                       top={formStyle.top} 
                                       left={formStyle.left} 
                                       channelId={props.channel.id} 
-                                      style={{...formStyle}}/>
+                                      style={{...formStyle}}
+                                      theme={props.theme}/>
                                   </div>
                                 </CSSTransition>
                               </div>
@@ -149,7 +161,8 @@ const DnDContainer = (props) => {
                                       top={formStyle.top} 
                                       left={formStyle.left} 
                                       channelId={props.channel.id} 
-                                      style={{...formStyle}}/>
+                                      style={{...formStyle}}
+                                      theme={props.theme}/>
                                   </div>
                                 </CSSTransition>
                               </div>
@@ -162,16 +175,16 @@ const DnDContainer = (props) => {
                                   classNames="contextmenu"
                                   unmountOnExit
                                 >
-                                <div className='menu' ref={menu2Ref} style={{...menu2Props.style, width:'9rem'}}>
+                                <div className={'menu '+props.theme} ref={menu2Ref} style={{...menu2Props.style, width:'9rem'}}>
                                     <ul className="menu-options">
-                                      <li className="menu-option prevent-select" onClick={handleDelete}>
+                                      <li className={'prevent-select menu-option '+props.theme} onClick={handleDelete}>
                                         delete note
                                       </li>
-                                      <li className="menu-option" >
+                                      <li className={'prevent-select menu-option '+props.theme} >
                                         <div className='dropdown prevent-select' >
                                           set color
                                           <div className="dropdown-content">
-                                            <table style={{width:'6em',height:'6em', background:'black',border:'solid 1px #665533',cursor:'auto'}}>
+                                            <table className={'dropdown-content-style '+props.theme}>
                                               <tbody>
                                                 <tr>
                                                   <td><button className='button' id='#ffffcc' onClick={setColor} style={{background:map.get('#ffffcc').background}}></button></td>
@@ -206,15 +219,15 @@ const DnDContainer = (props) => {
                                   classNames="contextmenu"
                                   unmountOnExit
                                 >
-                                <div className='menu' ref={menuRef} style={{...menuStyle, width:'9rem'}}>
+                                <div className={'menu '+props.theme} ref={menuRef} style={{...menuStyle, width:'9rem'}}>
                                   <ul className="menu-options">
-                                    <li className="menu-option prevent-select" onClick={handleAddNote}>
+                                    <li className={'prevent-select menu-option '+props.theme} onClick={handleAddNote}>
                                       add note
                                     </li>
-                                    <li className="menu-option prevent-select" onClick={handleUploadPicture}>
+                                    <li className={'prevent-select menu-option '+props.theme} onClick={handleUploadPicture}>
                                       upload picture
                                     </li>
-                                    <li className="menu-option prevent-select" onClick={handleAddHTML}>
+                                    <li className={'prevent-select menu-option '+props.theme} onClick={handleAddHTML}>
                                       add HTML
                                     </li>
                                   </ul>
@@ -267,7 +280,7 @@ const DnDContainer = (props) => {
 
   if(props.notes)
     return (
-      <div className='prevent-select' id='dndWrapper' onContextMenu={handleContextMenu}
+      <div className={'prevent-select dndWrapper '+props.theme} id='dndWrapper' onContextMenu={handleContextMenu}
         onPointerOver={onpointerover}
         onPointerDown={onpointerdown}
         onClick={hideMenus} 
@@ -275,12 +288,12 @@ const DnDContainer = (props) => {
         onMouseDown={start}
         onMouseUp={stop}
         style={{...pos}}>
-        <div className='hoverthing'>
+        <div className={'hoverthing '+props.theme}>
             <div ref={drop} id='dnd' className='dndC'
               style={{zIndex:zIndex}}
             >
               <div className='prevent-select' id='wa'>&nbsp;draggable working area</div>
-              {props.notes.map(b => <Note key={b.id} {...b}/> )}
+              {props.notes.map(b => <Note theme={props.theme} key={b.id} {...b}/> )}
               {contextMenu()}
               {contextMenu2()}
               {upload(props)}

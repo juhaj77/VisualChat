@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { removeAnimation } from '../reducers/messageReducer'
 import './Message.css'
+import './DnD.css'
 
 const Message = (props) => {
 
@@ -9,7 +10,14 @@ const Message = (props) => {
 
   let name = props.message.split(':',1)
   let msg = props.message.replace(name + ':', '')
-  let uus = false
+  let newmsg = false
+
+  let color
+  if(props.theme ==='dark'){
+    color='#e9d396'
+  } else {
+    color='#96bae9'
+  }
 
   const stringToDate = (s) => {
     try {
@@ -28,7 +36,7 @@ const Message = (props) => {
   if(name == 'NEW_MESSAGE'){
     name = msg.split(':',1)
     msg = msg.replace(name + ':', '')
-    uus=true
+    newmsg=true
   }
 
   const tempString = msg.split(';',1)
@@ -42,20 +50,19 @@ const Message = (props) => {
   }
 
   const setMessage = () => {
-    if(uus) return (
+    if(newmsg) return (
       <div className='mymessage' onAnimationEnd={props.removeAnimation}>
         {msg}
       </div>
     )
     return (
-      <div style={{color:'#e9d396',padding:'8px 12px 8px 12px',borderRadius:'9px',backgroundColor:'rgba(5, 5, 5,0.5)'}}>
+      <div style={{color,padding:'8px 12px 8px 12px',borderRadius:'9px',backgroundColor:'rgba(5, 5, 5,0.5)'}}>
         {msg}
       </div>
     )
   }
 
   let style = {
-    color:'#e5ddcc',
     marginRight:'0.7rem',
     marginLeft:'0.3rem',
     marginBottom:'0.5rem',
@@ -63,6 +70,14 @@ const Message = (props) => {
     display:'inline-block', 
     float:'left'}
 
+    let dcolor
+    if(props.theme ==='dark'){
+      dcolor='#e5ddcc'
+      style.color='#e5ddcc'
+    } else {
+      dcolor='#ccd4e5'
+      style.color='#ccd4e5'
+    }
   let headerStyle = {marginRight:'0.7rem',marginLeft:'0.3rem',float:'left', lineHeight:'1em'}
 
   if(props.user == name){
@@ -75,10 +90,10 @@ const Message = (props) => {
   const setHeader = () => {
     if(date) return (
       <>
-        <span style={{color:'white',marginBottom:'0px'}}>
+        <span className='prevent-select' style={{color:'white',marginBottom:'0px'}}>
           {name}
         </span>
-        <span style={{color: '#d4c6aa',fontSize:'10px',marginBottom:'0px'}}>
+        <span className='prevent-select' style={{color: dcolor,fontSize:'10px',marginBottom:'0px'}}>
           &nbsp;&nbsp;{date}
         </span><br/>
       </>)

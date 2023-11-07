@@ -9,14 +9,18 @@
     font-size:1.5em;
     font-weight: 700;
     font-family: 'Cinzel', serif;
+}
+.channelNameAnim.dark {
     color:#e2d4b7;
+}
+.channelNameAnim.light {
+    color:blue;
 }
 @keyframes borderAnim {
     from {text-shadow: -2px 0 #ff8800, 0 2px #ff8800, 2px 0 #ff8800, 0 -2px #ff8800;}
-    to {text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;}
+    to {text-shadow: -2px 0 rgba(0, 0, 0, 0), 0 2px rgba(0, 0, 0, 0), 2px 0 rgba(0, 0, 0, 0), 0 -2px rgba(0, 0, 0, 0);}
 }
 .channelName {
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     white-space: nowrap;
     text-align: center;
     border-radius:0px;
@@ -25,5 +29,10 @@
     font-size: 1.5em;
     font-weight: 700;
     font-family: 'Cinzel', serif;
+}
+.channelName.dark {
     color:#e2d4b7;
+}
+.channelName.light {
+    color:blue;
 }

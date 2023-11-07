@@ -8,8 +8,9 @@ import 'react-toastify/dist/ReactToastify.css'
 import { Progress } from 'reactstrap'
 import { useField } from '../hooks/field'
 import { useDispatch } from 'react-redux'
-import { HoverButton } from './Login'
+//import { HoverButton } from './Login'
 import './DnD.css'
+import './Chat.css'
 
 const options = {
     autoClose: false,
@@ -25,20 +26,6 @@ export const FlexItem = styled.div`
   text-align: center; 
   width: 100%; 
   align-self: strech;
-`
-export const Container2 = styled.div`
-  overflow:visible; 
-  color: #665533; 
-  background: black;
-  border:solid 1px #665533;
-  display: flex; 
-  flex-direction: column; 
-  justify-content: space-between; 
-  align-items: flex-start; 
-  margin:1.666em 0 0 0;
-  align-content: space-between; 
-  padding: .5em; 
-  white-space: nowrap;
 `
 const FormHeader = styled.span`
   text-align: center;
@@ -62,7 +49,7 @@ const TextInput = styled.input`
   padding: 0;
 `
 
-const UploadForm = ({setVisible,top,left,channelId,user,channel }) => {
+const UploadForm = ({theme,setVisible,top,left,channelId,user,channel }) => {
   const [loaded, setLoaded] = useState(0)
   const [selectedFile, setSelectedFile] = useState(null)
   const itemName = useField('text', '')
@@ -119,17 +106,17 @@ const UploadForm = ({setVisible,top,left,channelId,user,channel }) => {
   }
 
   return (
-    <Container2 style={{display:'flex', flexDirection:'column',alignItems: 'center', justifyContent:'center',zIndex:'199',position:'absolute',top:top,left:left}}>
+    <div className={'Container2 '+theme} style={{display:'flex', flexDirection:'column',alignItems: 'center', justifyContent:'center',zIndex:'199',position:'absolute',top:top,left:left}}>
       <FormHeader className='prevent-select'>
         select picture
       </FormHeader>
       <FlexItem>
         <LabelStyle className='prevent-select'>small png. max 1M </LabelStyle>
         <input
-          style={{ paddingLeft:'0.5em', lineHeight: '1.5em', fontSize: '1em', margin: '0', background:'black',color:'#665533'}}
+          style={{ paddingLeft:'0.5em', lineHeight: '1.5em', fontSize: '1em', margin: '0'}}
           type="file"
           name="upload_file"
-          className="form-control-file"
+          className={'form-control-file inputstyle '+theme}
           onChange={onChangeHandler}
         />
       </FlexItem>
@@ -143,11 +130,11 @@ const UploadForm = ({setVisible,top,left,channelId,user,channel }) => {
           {Math.round(loaded, 2) }
           %
         </Progress>
-        <HoverButton type="submit" onClick={onClickHandler}>submit</HoverButton>
+        <button className={'hoverbutton '+theme} type="submit" onClick={onClickHandler}>submit</button>
         &ensp;&ensp;&ensp;&ensp;
-        <HoverButton type="submit" onClick={()=>setVisible(false)}>cancel</HoverButton>
+        <button className={'hoverbutton '+theme} type="submit" onClick={()=>setVisible(false)}>cancel</button>
       </FlexItem>
-    </Container2>
+    </div>
   )
 }
 

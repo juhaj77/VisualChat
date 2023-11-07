@@ -34,9 +34,8 @@ const DropDownContainer = (props) => {
 	
   return (
     <div>
-      <select onChange={handleChange} className='dropdown2'>
+      <select onChange={handleChange} className={'dropdown2 '+props.theme}>
         {[<option key='-1' 
-          value='' 
           disabled 
           selected 
           hidden>select channel...</option>,
