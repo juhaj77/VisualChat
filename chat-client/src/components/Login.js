@@ -158,7 +158,7 @@ const Login = (props) => {
 
 
   const form = (buttonText, eventHandler) => (
-    <Form inverted style={{ paddingTop: '2em', paddingBottom: '1em' }} onSubmit={eventHandler} >
+    <Form inverted style={{ padding:'2em 2em 1em 2em', maxWidth:'20em',margin:'auto' }} onSubmit={eventHandler} >
       <Form.Input
         icon='user'
         iconPosition='left'
@@ -170,7 +170,7 @@ const Login = (props) => {
         icon='lock'
         iconPosition='left'
         label='Password'
-        style={{ color: '#b29966', backgroundColor: 'black', border: 'solid 1px #b29966', marginBottom: '0.5em' }}
+        style={{ marginBottom: '0.5em' }}
         {...password.input}
       />
       <button className={'myButton '+theme} autoFocus type="submit">{buttonText}</button>
