@@ -103,7 +103,7 @@ const Chat = ({theme,setTheme, user, channel, connectedUsers, gapi, clearUser}) 
       {transitions.map(({ item, key, props }) =>
         item && <animated.div key={key} style={{...props}} className={'connected '+theme}>
           <span className={'connectedusers '+theme}>connected users</span>
-          <ul style={{fontWeight:'400',
+          <ul style={{
             listStyleType:'none',
             marginTop:'0',
             marginBottom:'0',

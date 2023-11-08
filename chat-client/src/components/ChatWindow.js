@@ -58,10 +58,10 @@ return (
       <DropDownContainer theme={props.theme} user={props.user} />
       <FocusScrollable theme={props.theme}/>
       <MessageForm theme={props.theme}/>
-      <div className={'themeselect '+ props.theme}>
-      <table style={{float:'right',height:'18px',paddingTop:'1em'}}>
+      <div >
+      <table style={{marginTop:'1em',borderCollapse:'collapse',float:'right',height:'18px',paddingTop:'1em'}}>
         <tbody>
-          <tr style={{lineHeight:'18px',height:'18px'}}>
+          <tr className={'themeselect '+ props.theme} style={{lineHeight:'18px',height:'18px'}}>
             <td className='prevent-select' style={{width:'5em',float:'left'}}>theme</td>
             <td className='prevent-select'>dark</td>
             <td style={{padding:'0 .5em 0 .5em'}}>
@@ -70,7 +70,7 @@ return (
               <span className="slider round"></span>
               </label>
             </td>
-            <td className='prevent-select'>light</td>
+            <td className='prevent-select' style={{paddingRight:'0.4em'}}>light</td>
           </tr>
         </tbody>
       </table>

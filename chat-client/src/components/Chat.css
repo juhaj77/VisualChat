@@ -42,7 +42,9 @@
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 .loggedin.light {
-  color:black;
+  color:blue;
+  background-color:rgba(255, 255, 255, 0.466);
+  font-weight:600;
 }
 .logoutbutton {
   cursor: pointer;
@@ -50,9 +52,8 @@
   margin-left: 0em;
   border-radius: 2px;
   font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
-  font-weight:700;
   padding:0.25em 0.4em 0.25em 0.4em;
-  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  
 }
 .connected {
   line-height:1.1em;
@@ -71,23 +72,26 @@
   background-color:rgba(0,0,0,0.7);
   border:solid 1px #665533; 
   color:#b29966;
+  font-weight:400;
 }
 .connected.light {
   background-color:rgba(58, 61, 153, 0.829);
   border:solid 1px #8f7cfa; 
   color:#c1deff;
+  font-weight:800;
 }
 .connectedusers {
-  font-weight: 400;
   text-align: center; 
 }
 .connectedusers.dark {
+  font-weight: 400;
   color: #e5ddcc;
   border-bottom: 1px solid #b29966;
 }
 .connectedusers.light {
+  font-weight: 800;
   color: #ccd5e5;
-  border-bottom: 1px solid #6674b2;
+  border-bottom: 2px solid #6674b2;
 }
 .tdchannel {
   padding-left: 0.6em;
@@ -166,6 +170,7 @@
 }
 .themeselect {
   width: 100%;
+  text-align: center;
 }
 .themeselect.dark {
   color:#b29966;
@@ -174,6 +179,7 @@
 .themeselect.light {
   color: blue;
   font-weight:900;
+  background-color:rgba(255, 255, 255, 0.466);
 }
 .hoverbutton.dark {
 border: 1px solid #665533;
@@ -211,7 +217,7 @@ transition: background-color 250ms ease-in, border-color 250ms ease-in, color 25
     color:#d9d9d9;
   }
 .scrollable.light {
-    background-image:linear-gradient(rgba(43, 66, 85, 0.7),rgba(45, 14, 85, 0.7));
+    background-image:linear-gradient(rgba(92, 116, 192, 0.7),rgba(57, 57, 122, 0.877));
     color:#d9d9d9;
 }
 .msginput {
