@@ -101,7 +101,7 @@ const Message = (props) => {
   }
 
   return (
-    <div style={{marginBottom:'0px'}}>
+    <div key={props.key} style={{marginBottom:'0'}}>
       <div style={{clear:'left'}}></div>
       <div style={headerStyle}>
         {setHeader()}
