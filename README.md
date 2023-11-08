@@ -20,7 +20,7 @@ Or You can create your own. Using Google login app creates username from gmail a
    ![Image for oauth credentials](https://github.com/juhaj77/VisualChat/blob/master/images/oauth2.png)    
    set correct URIs in cloud console credentials tab
    
-   Update line 66 `CLIENT_ID=...` in chat-client/src/components/Login.js
+   Update line 49 `CLIENT_ID=...` in chat-client/src/components/Login.js
 
 1. Fix line 24 `let socket = io('wss://visualchat.onrender.com')` to `let socket = io('ws://localhost:3003')`  in chat-client/src/index.js.
 1. Comment line 11 `app.use(express.static('build'))` in chat-server/app.js. (this is for Render cloud. It builds directly from github).
