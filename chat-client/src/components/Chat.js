@@ -12,6 +12,7 @@ import { HoverButton } from './Login'
 import Clock from './Clock'
 import { useTransition, animated } from 'react-spring'
 import './Chat.css'
+import './DnD.css'
 
 
 const Chat = ({theme,setTheme, user, channel, connectedUsers, gapi, clearUser}) => {
@@ -95,15 +96,15 @@ const Chat = ({theme,setTheme, user, channel, connectedUsers, gapi, clearUser}) 
       ))}
       {transitions.map(({ item, key, props }) =>
         item && <animated.div key={key} style={{...props,zIndex:'10',position:'absolute',bottom:'2em',left:'2em'}}>
-          <div className={'loggedin '+theme}>{user && user.username} is logged in </div>
+          <div className={'prevent-select loggedin '+theme}>{user && user.username} is logged in </div>
           <div style={{float:'left',display:'inline'}}>
-            <button className={'logoutbutton hoverbutton '+theme} onClick={handleLogout}>logout</button>
+            <button className={'prevent-select logoutbutton hoverbutton '+theme} onClick={handleLogout}>logout</button>
           </div>
         </animated.div>)}
       {transitions.map(({ item, key, props }) =>
         item && <animated.div key={key} style={{...props}} className={'connected '+theme}>
-          <span className={'connectedusers '+theme}>connected users</span>
-          <ul style={{
+          <span className={'prevent-select connectedusers '+theme}>connected users</span>
+          <ul className='prevent-select' style={{
             listStyleType:'none',
             marginTop:'0',
             marginBottom:'0',

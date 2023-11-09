@@ -7,7 +7,7 @@ import { setChannel } from '../reducers/selectedChannelReducer'
 import { initializeMessages } from '../reducers/messageReducer'
 import { initializeHtmls } from '../reducers/htmlReducer'
 import './Chat.css'
-
+import './DnD.css'
 /*eslint-disable eqeqeq*/
 const DropDownContainer = (props) => {
 
@@ -34,7 +34,7 @@ const DropDownContainer = (props) => {
 	
   return (
     <div>
-      <select onChange={handleChange} className={'dropdown2 '+props.theme}>
+      <select onChange={handleChange} className={'prevent-select dropdown2 '+props.theme}>
         {[<option key='-1' 
           disabled 
           selected 

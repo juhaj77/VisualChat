@@ -46,7 +46,7 @@ return (
                 create new channel
               </div>
               <div style={{marginLeft:'0.5em', display:'inline'}}>
-                <button className={'hoverbutton '+props.theme} style={{
+                <button className={'prevent-select hoverbutton '+props.theme} style={{
                   fontFamily: 'Lato,Helvetica Neue,Arial,Helvetica,sans-serif', 
                   fontWeight:'700'}}  onClick={handle}>create</button>
               </div>

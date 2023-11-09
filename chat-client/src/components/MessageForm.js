@@ -36,7 +36,7 @@ const MessageForm = (props) => {
       <div style={{background:'black',border:'none'}}>
         <input placeholder='write your msg here' className={'msginput '+props.theme} 
         onKeyPress={keyPressed} {...msg.input} />
-        <button className={'hoverbutton '+props.theme} style={{
+        <button className={'prevent-select hoverbutton '+props.theme} style={{
           padding:'0.2em 0 0.15em 0',
           marginTop:'0px',
           fontFamily: 'Lato,Helvetica Neue,Arial,Helvetica,sans-serif', 
