@@ -30,7 +30,7 @@ const Chat = ({theme,setTheme, user, channel, connectedUsers, gapi, clearUser}) 
     if(theme === 'light'){
       document.getElementById('root').style.backgroundImage='url(/b2l.gif)'
       document.getElementById('bg').style.backgroundImage='url(/bl.gif)'
-      document.body.style.backgroundColor='#e0f2ff'
+      document.body.style.backgroundColor='#ebf5fc'
     } else {
       document.getElementById('root').style.backgroundImage='url(/b2.gif)'
       document.getElementById('bg').style.backgroundImage='url(/b.gif)'
