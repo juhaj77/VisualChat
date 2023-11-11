@@ -1,13 +1,38 @@
 .mymessage {
     padding:4px 8px 4px 8px;
     border-radius:9px;
-    background-color:rgba(5, 5, 5,0.5);
+    border-radius:9px;
     border: 4px solid transparent;
-    animation-name: example;
-    animation-duration: 10s;
-    color:#e9d396;
+   
 }
-@keyframes example {
+.mymessage.new {
+    animation-name: borderanim;
+    animation-duration: 10s;
+}
+.mymessage.dark {
+    color:#e9d396;
+    background-color:rgba(5, 5, 5,0.5);
+}
+.mymessage.light {
+    background-color:rgba(255, 255, 255,0.5);
+    font-weight:600;
+    color: blue;
+}
+@keyframes borderanim {
     from {border: 4px solid #ffbb00;}
     to {border: 4px solid transparent;}
   }
+.headerName{
+    color:white;
+    margin-bottom:0px;
+}
+.headerDate{
+    font-size:10px;
+    margin-bottom:0px;
+}
+.headerDate.dark{
+    color:#e5ddcc;
+}
+.headerDate.light{
+    color:#ccd4e5;
+}

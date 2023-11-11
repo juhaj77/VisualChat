@@ -12,13 +12,7 @@ const Message = (props) => {
   let msg = props.message.replace(name + ':', '')
   let newmsg = false
 
-  let color
-  if(props.theme ==='dark'){
-    color='#e9d396'
-  } else {
-    color='#96bae9'
-  }
-
+ 
   const stringToDate = (s) => {
     try {
       var year = s.slice(0,4)
@@ -51,33 +45,24 @@ const Message = (props) => {
 
   const setMessage = () => {
     if(newmsg) return (
-      <div className='mymessage' onAnimationEnd={props.removeAnimation}>
+      <div className={'mymessage new '+props.theme} onAnimationEnd={props.removeAnimation}>
         {msg}
       </div>
     )
     return (
-      <div style={{color,padding:'8px 12px 8px 12px',borderRadius:'9px',backgroundColor:'rgba(5, 5, 5,0.5)'}}>
+      <div  className={'mymessage '+props.theme}>
         {msg}
       </div>
     )
   }
 
   let style = {
-    marginRight:'0.7rem',
+    marginRight:'0.3rem',
     marginLeft:'0.3rem',
     marginBottom:'0.5rem',
     backgroundColor:'transparent', 
-    display:'inline-block', 
     float:'left'}
 
-    let dcolor
-    if(props.theme ==='dark'){
-      dcolor='#e5ddcc'
-      style.color='#e5ddcc'
-    } else {
-      dcolor='#ccd4e5'
-      style.color='#ccd4e5'
-    }
   let headerStyle = {marginRight:'0.7rem',marginLeft:'0.3rem',float:'left', lineHeight:'1em'}
 
   if(props.user == name){
@@ -90,20 +75,20 @@ const Message = (props) => {
   const setHeader = () => {
     if(date) return (
       <>
-        <span className='prevent-select' style={{color:'white',marginBottom:'0px'}}>
+        <span className='prevent-select headerName'>
           {name}
         </span>
-        <span className='prevent-select' style={{color: dcolor,fontSize:'10px',marginBottom:'0px'}}>
+        <span className={'prevent-select headerDate '+props.theme}>
           &nbsp;&nbsp;{date}
         </span><br/>
       </>)
-    return (<><span style={{color:'white',fontWeight:'500',marginBottom:'0px'}}>{name}</span><br/></>)
+    return (<></>)
   }
 
   return (
     <div key={props.key} style={{marginBottom:'0'}}>
       <div style={{clear:'left'}}></div>
-      <div style={headerStyle}>
+      <div className='prevent-select' style={headerStyle}>
         {setHeader()}
       </div>
       <div style={{clear:'right'}}></div>
