@@ -1,11 +1,11 @@
 # VisualChat
-Channel members can edit the shared view. Workspace has draggable working area. You can create movable sticky notes and upload images for background. ___The workspace opens when a channel is selected___. Functionality can be found in context menus. 
+Channel members can edit the shared view. Workspace has draggable working area. You can create moveable sticky notes, add HTML code to the selected location, or upload images as wallpaper to the selected location. ___The workspace opens when a channel is selected___. Functionality can be found in context menus. 
 ## try app:
 https://visualchat.onrender.com   
 Test users are:    
 ___`username:testuser password:testuser`___ and ___`username:testuser2 password:testuser2`___   
 Or You can create your own. Using Google login app creates username from gmail address. ___A new channel must be created for a new user in order to try out app features___. ___Firefox is slow___ with react-spring animations...   
-![Image of note view](https://github.com/juhaj77/VisualChat/blob/master/images/UI_n.png)
+![Image of note view](https://github.com/juhaj77/VisualChat/blob/master/images/UI.png)
 ## prerequisites
 
 * MongoDB [installation](https://docs.mongodb.com/manual/installation/)
