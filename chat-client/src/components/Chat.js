@@ -8,7 +8,7 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import { clearUser } from '../reducers/loggedUserReducer'
 import ChannelName from './ChannelName'
 import { Segment } from 'semantic-ui-react'
-import { HoverButton } from './Login'
+import Theme from './Theme'
 import Clock from './Clock'
 import { useTransition, animated } from 'react-spring'
 import './Chat.css'
@@ -80,22 +80,27 @@ const Chat = ({theme,setTheme, user, channel, connectedUsers, gapi, clearUser}) 
       <Segment  style={{margin:'0',padding:'0',border:'0px',backgroundColor:'transparent'}} placeholder >
         {channel && dnd()}
       </Segment>
-      <div style={{position:'absolute',top:'2em',left:'40%'}}>	
-        {channel && <ChannelName theme={theme}/>}
-      </div>
       {transitions.map(({ item, key, props }) =>
-        item && <animated.div key={key} style={{...props,zIndex:'10',position:'absolute',top:'2em',left:'3em'}}>
-          <div className={'clock '+theme} ><Clock/></div>
+        item && <animated.div key={key} style={{...props,zIndex:'10',position:'absolute',top:'0em',left:'oem'}}>
+          <div className={'panel '+theme}>
+            <Theme setTheme={setTheme} theme={theme} />
+          <div>	
+          {channel && <ChannelName theme={theme}/>}
+          </div>
+          <div className={'clock '+theme} >
+            <Clock/>
+          </div>
+          </div>
         </animated.div> )}
       {transitions2.map(({ item, props, key }) => (
         <animated.div
           key={key}
-          style={{ ...props,zIndex:'10',position:'absolute',top:'2em',right:'2em',minWidth:'22rem', width:'25vw',paddingRight:'0'}}>
+          style={{ ...props,zIndex:'10',position:'absolute',bottom:'0em',right:'0em',minWidth:'22rem', width:'25vw',paddingRight:'0'}}>
           {item.content}
         </animated.div>
       ))}
       {transitions.map(({ item, key, props }) =>
-        item && <animated.div key={key} style={{...props,zIndex:'10',position:'absolute',bottom:'2em',left:'2em'}}>
+        item && <animated.div key={key} style={{...props,zIndex:'10',position:'absolute',top:'0em',right:'0em'}}>
           <div className={'prevent-select loggedin '+theme}>{user && user.username} is logged in </div>
           <div style={{float:'left',display:'inline'}}>
             <button className={'prevent-select logoutbutton hoverbutton '+theme} onClick={handleLogout}>logout</button>

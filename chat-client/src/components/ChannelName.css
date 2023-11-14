@@ -14,7 +14,7 @@
     color:#e2d4b7;
 }
 .channelNameAnim.light {
-    color:blue;
+    color:white;
 }
 @keyframes borderAnim {
     from {text-shadow: -2px 0 #ff8800, 0 2px #ff8800, 2px 0 #ff8800, 0 -2px #ff8800;}
@@ -34,5 +34,5 @@
     color:#e2d4b7;
 }
 .channelName.light {
-    color:blue;
+    color:white;
 }

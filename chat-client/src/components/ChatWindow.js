@@ -9,7 +9,6 @@ import DropDownContainer from './DropDownContainer'
 import { connect } from 'react-redux'
 import './Chat.css'
 import './DnD.css'
-import './switch.css'
 
 
 const ChatWindow = (props) => {
@@ -17,18 +16,6 @@ const ChatWindow = (props) => {
 const handle = () => {	
   props.setChat(false)
 }
-const handleTheme = e => {
-  if(e.target.checked) {
-    props.setTheme('light')
-  } else {
-    props.setTheme('dark')
-  }
-}
-useEffect(() =>{
-  if(props.theme ==='light') {
-    document.getElementById('themeselector').checked=true
-  } 
-})
 
 return (
   <div>
@@ -58,23 +45,6 @@ return (
       <DropDownContainer theme={props.theme} user={props.user} />
       <FocusScrollable theme={props.theme}/>
       <MessageForm theme={props.theme}/>
-      <div >
-      <table style={{marginTop:'1em',borderCollapse:'collapse',float:'right',height:'18px',paddingTop:'1em'}}>
-        <tbody>
-          <tr className={'themeselect '+ props.theme} style={{lineHeight:'18px',height:'18px'}}>
-            <td className='prevent-select' style={{width:'5em',float:'left'}}>theme</td>
-            <td className='prevent-select'>dark</td>
-            <td style={{padding:'0 .5em 0 .5em'}}>
-              <label className="switch">
-              <input id='themeselector' type="checkbox" onChange={handleTheme}/>
-              <span className="slider round"></span>
-              </label>
-            </td>
-            <td className='prevent-select' style={{paddingRight:'0.4em'}}>light</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
     </div>
 )
 }
