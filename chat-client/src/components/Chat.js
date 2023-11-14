@@ -95,7 +95,7 @@ const Chat = ({theme,setTheme, user, channel, connectedUsers, gapi, clearUser}) 
       {transitions2.map(({ item, props, key }) => (
         <animated.div
           key={key}
-          style={{ ...props,zIndex:'10',position:'absolute',bottom:'0em',right:'0em',minWidth:'22rem', width:'25vw',paddingRight:'0'}}>
+          style={{ ...props,zIndex:'10',position:'absolute',bottom:'0em',right:'0em',minWidth:'22rem', width:'21vw',paddingRight:'0'}}>
           {item.content}
         </animated.div>
       ))}

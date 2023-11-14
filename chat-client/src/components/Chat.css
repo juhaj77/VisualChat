@@ -224,7 +224,7 @@ transition: background-color 250ms ease-in, border-color 250ms ease-in, color 25
     height: 33em;
 }
 .scrollable.dark {
-    background-image:linear-gradient(rgba(85, 71, 43,0.7),rgba(22,12,12,0.7));
+    background-image:linear-gradient(rgba(85, 71, 43,0.8),rgba(22,12,12,0.8));
     color:#d9d9d9;
   }
 .scrollable.light {
