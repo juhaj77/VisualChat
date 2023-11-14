@@ -18,6 +18,7 @@ const MyImage = (props) => {
   const top = Number(props.top)+60
   const left = Number(props.left)+60
   const name = props.name
+  const theme = props.theme
 
   // for fade out:
   useEffect(() => {
@@ -55,7 +56,7 @@ const MyImage = (props) => {
       margin: '0 1em 0 0',
     }}
     >
-      <Header title={name} />
+      <Header theme={theme} title={name} />
       <img src={picSrc.src} alt={name}/>
     </div> 
     </animated.div>)

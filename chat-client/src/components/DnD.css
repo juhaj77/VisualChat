@@ -169,3 +169,36 @@ inputstyle.dark {
   background:black;
   color:#665533;
 }
+.HeaderContainer {
+  position: relative;
+  top: 1.5em;
+  height: fit-content;
+  line-height: 1.5em;
+}
+.HeaderBG {
+  float: left;
+  text-align: left;
+  line-height: 1.5em;
+  border-radius: 0 0 .333em 0;
+}
+.HeaderBG.dark{
+  border-bottom: .1em solid black;
+  background-color: black;
+}
+.HeaderBG.light{
+  border-bottom: .1em solid white;
+  background-color: white;
+}
+.HeaderTXT {
+  font-size: 1.2em;
+  padding: 0 .2em 0 0em;
+  font-family: "Russo One", sans-serif;
+}
+.HeaderTXT.dark {
+  color: #d3d6a9;
+  font-weight: 600;
+}
+.HeaderTXT.light {
+  color:blue;
+  font-weight: 600;
+}

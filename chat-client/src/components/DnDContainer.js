@@ -299,7 +299,7 @@ const DnDContainer = (props) => {
               {upload(props)}
               {html(props)}
             </div>
-          {props.pictures.map((i) => <MyImage key={i.id} {...i}/>)}
+          {props.pictures.map((i) => <MyImage theme={props.theme} key={i.id} {...i}/>)}
           {props.htmls.map(h => <Html key={h.id} {...h}/>)}
         </div>
       </div>
