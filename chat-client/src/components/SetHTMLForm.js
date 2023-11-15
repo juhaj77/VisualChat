@@ -18,7 +18,9 @@ const SetHTMLForm = (props) => {
   const html = useField('text', '')
  
   const onClickHandler = (id) => {
-    props.addHtml({left:props.left+55,top:props.top+75,content:html.input.value},props.channel.id, props.user)
+    const top = props.top + document.getElementById('dnd').offsetTop + document.getElementById('wa').offsetHeight
+    const left = props.left + document.getElementById('dnd').offsetLeft
+    props.addHtml({left,top,content:html.input.value},props.channel.id, props.user) 
     html.reset()
     props.setVisible(false)
   }

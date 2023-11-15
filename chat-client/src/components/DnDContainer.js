@@ -55,8 +55,8 @@ const DnDContainer = (props) => {
   const moveNote = (id, left, top) => {
     const note= props.notes.find(n => n.id === id)
     props.setNote({...note, top: top, left:left}, props.channel.id, props.user)
-		
   }
+  
   const handleContextMenu = (event) => {
     event.preventDefault()
 
@@ -104,17 +104,14 @@ const DnDContainer = (props) => {
 
   const handleUploadPicture = (event) => {
     event.preventDefault()
-    let top = menuStyle.top + document.getElementById('wa').offsetHeight
     setUploadForm(true)
-    setFormStyle({zIndex:1000,position: 'absolute', left: menuStyle.left, top})
+    setFormStyle({zIndex:1000,position: 'absolute', left: menuStyle.left, top: menuStyle.top})
     hideMenus()
   }
   const handleAddHTML = async (event) => {
     event.preventDefault()
-    const top = menuStyle.top + document.getElementById('wa').offsetHeight
-    const left = menuStyle.left
     setHtmlForm(true)
-    setFormStyle({zIndex:1000,position: 'absolute', left, top})
+    setFormStyle({zIndex:1000,position: 'absolute', left: menuStyle.left, top: menuStyle.top})
     hideMenus()
   }
   const handleDelete = (e) => {

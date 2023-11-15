@@ -22,9 +22,8 @@
     padding: 10px 20px 10px 20px;
     cursor: pointer;
     white-space: nowrap;
-    
     margin-bottom: 0.1em;
-    transition: background 300ms;
+    transition: background 550ms;
 }
 .menu-option.dark {
     border:solid 1px #665533;
@@ -33,8 +32,11 @@
   border:solid 1px white;
   background-image:linear-gradient(rgb(82, 94, 252),rgb(166, 172, 255));
 }
-.menu-option:hover {
-    background: rgba(119, 104, 35, 0.2);
+.menu-option.light:hover {
+    background: rgba(238, 255, 0, 0.233);
+}
+.menu-option.dark:hover {
+  background: #fbff0028;
 }
 .dropdown {
     position: relative;
@@ -73,7 +75,7 @@
     height:2000px;
     z-index:0;
     background-image: none;
-    margin: 6em 4em;
+    margin: 0;
 }
 .dndWrapper.dark {
   color:#b29966;
@@ -97,7 +99,7 @@
     height:2000px;
     transition: border-color 1s;
     border-radius:0px 0px 0px 0px;
-    margin: 6em 4em;
+    margin:40px 40px;
 }
 #wa {
     position:absolute;

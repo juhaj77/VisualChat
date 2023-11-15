@@ -15,8 +15,8 @@ const MyImage = (props) => {
     leave: { opacity: 0},
   })
 
-  const top = Number(props.top)+60
-  const left = Number(props.left)+60
+  const top = Number(props.top) + document.getElementById('dnd').offsetTop
+  const left = Number(props.left) + document.getElementById('dnd').offsetLeft
   const name = props.name
   const theme = props.theme
 
@@ -53,7 +53,7 @@ const MyImage = (props) => {
       width: 'fit-content',
       zIndex:'0',
       textAlign: 'center',
-      margin: '0 1em 0 0',
+      margin: '0',
     }}
     >
       <Header theme={theme} title={name} />
