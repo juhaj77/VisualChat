@@ -23,17 +23,21 @@
     cursor: pointer;
     white-space: nowrap;
     margin-bottom: 0.1em;
-    transition: background 550ms;
+    
 }
 .menu-option.dark {
     border:solid 1px #665533;
+    transition: background 550ms;
 }
 .menu-option.light {
   border:solid 1px white;
   background-image:linear-gradient(rgb(82, 94, 252),rgb(166, 172, 255));
+  transition: background 550ms, color 550ms, border-color 550ms;
 }
 .menu-option.light:hover {
-    background: rgba(238, 255, 0, 0.233);
+  background:rgb(166, 172, 255);
+  color:blue;
+  border-color:blue;
 }
 .menu-option.dark:hover {
   background: #fbff0028;
