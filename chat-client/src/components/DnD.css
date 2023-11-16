@@ -17,7 +17,7 @@
     margin: 0;
 }
 .menu-option {
-    font-weight: 500;
+    font-weight: 700;
     font-size: 14px;
     padding: 10px 20px 10px 20px;
     cursor: pointer;
@@ -27,8 +27,9 @@
 }
 .menu-option.dark {
     border:solid 1px #665533;
-    font-weight:500;
-    transition: background 550ms, color 550ms, border-color 550ms;
+    color:#a38851;
+    text-shadow: -1.5px 0 rgba(255, 220, 123,0), 0 1.5px rgba(255, 220, 123,0), 1.5px 0 rgba(255, 220, 123,0), 0 -1.5px rgba(255, 220, 123,0);
+    transition: text-shadow 550ms, background 550ms, color 550ms, border-color 550ms;
 }
 .menu-option.light {
   border:solid 1px white;
@@ -41,12 +42,12 @@
   border-color:blue;
 }
 .menu-option.dark:hover {
-  background: #3f3521;
+  background: #443822;
   color:black;
-  border:2px rgb(112, 95, 47);
+ /* border:1px rgb(77, 66, 36);*/
+  border: solid 1px #3b331e;
   border-style: outset;
-  font-weight:700;
-  text-shadow: -1.5px 0 rgba(255, 220, 123,0.3), 0 1.5px rgba(255, 220, 123,0.3), 1.5px 0 rgba(255, 220, 123,0.3), 0 -1.5px rgba(255, 220, 123,0.3);
+  text-shadow: -1.5px 0 rgba(197, 170, 95, 0.35), 0 1.5px rgba(197, 170, 95, 0.35), 1.5px 0 rgba(197, 170, 95, 0.35), 0 -1.5px rgba(197, 170, 95, 0.35);
 }
 .dropdown {
     position: relative;
