@@ -34,7 +34,7 @@
 .menu-option.light {
   border:solid 1px white;
   background-image:linear-gradient(rgb(82, 94, 252),rgb(166, 172, 255));
-  transition: background 550ms, color 550ms, border-color 550ms;
+  transition: background 550ms, color 550ms, border 550ms;
 }
 .menu-option.light:hover {
   background:rgb(166, 172, 255);
@@ -45,8 +45,8 @@
   background: #443822;
   color:black;
  /* border:1px rgb(77, 66, 36);*/
-  border: solid 1px #3b331e;
-  border-style: outset;
+  border: solid 1px #000000;
+ /* border-style: outset;*/
   text-shadow: -1.5px 0 rgba(197, 170, 95, 0.35), 0 1.5px rgba(197, 170, 95, 0.35), 1.5px 0 rgba(197, 170, 95, 0.35), 0 -1.5px rgba(197, 170, 95, 0.35);
 }
 .dropdown {
