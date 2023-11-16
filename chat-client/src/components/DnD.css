@@ -27,7 +27,8 @@
 }
 .menu-option.dark {
     border:solid 1px #665533;
-    transition: background 550ms;
+    font-weight:500;
+    transition: background 550ms, color 550ms, border-color 550ms;
 }
 .menu-option.light {
   border:solid 1px white;
@@ -40,7 +41,12 @@
   border-color:blue;
 }
 .menu-option.dark:hover {
-  background: #fbff0028;
+  background: #3f3521;
+  color:black;
+  border:2px rgb(112, 95, 47);
+  border-style: outset;
+  font-weight:700;
+  text-shadow: -1.5px 0 rgba(255, 220, 123,0.3), 0 1.5px rgba(255, 220, 123,0.3), 1.5px 0 rgba(255, 220, 123,0.3), 0 -1.5px rgba(255, 220, 123,0.3);
 }
 .dropdown {
     position: relative;
