@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { FlexItem } from './UploadForm'
 import styled from 'styled-components'
 import { useField } from '../hooks/field'
@@ -16,6 +16,7 @@ const TextInput = styled.input`
 
 const SetHTMLForm = (props) => {
   const html = useField('text', '')
+  const inputElement = useRef()
  
   const onClickHandler = (id) => {
     const top = props.top + document.getElementById('dnd').offsetTop + document.getElementById('wa').offsetHeight
@@ -25,11 +26,15 @@ const SetHTMLForm = (props) => {
     props.setVisible(false)
   }
 
+  useEffect(() => {
+    inputElement.current.focus()
+  },[])
+  
   return (
     <div className={'Container2 '+props.theme} style={{display:'flex', flexDirection:'column',alignItems: 'center', justifyContent:'center',zIndex:'199',position:'absolute',top:props.top,left:props.left}}>
       <div id='testhtml'></div>
       <FlexItem>
-        <TextInput placeholder="html" {...html.input} className="form-control" required />
+        <TextInput ref={inputElement} {...html.input} className="form-control" required />
       </FlexItem>
       <FlexItem className='prevent-select'>
       <button className={'hoverbutton '+props.theme} type="submit" onClick={onClickHandler}>submit</button>
