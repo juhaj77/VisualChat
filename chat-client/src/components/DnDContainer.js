@@ -284,6 +284,7 @@ const DnDContainer = (props) => {
         onMouseMove={move}
         onMouseDown={start}
         onMouseUp={stop}
+        onMouseOut={stop}
         style={{...pos}}>
         <div className={'hoverthing '+props.theme}>
             <div ref={drop} id='dnd' className='dndC'
