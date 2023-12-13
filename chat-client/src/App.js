@@ -8,10 +8,24 @@ import StyledSpinner from './components/StyledSpinner'
 const App = () => {
   const [ loading, setLoading ] = useState(true)
   const [theme, setTheme] = useState('dark')
+  const [showViewWarning, setShowViewWarning] = useState(false)
 
   useEffect(() => {
     setLoading(false)
+    if(window.innerWidth <= 800) setShowViewWarning(true)
   }, [])
+
+  if(showViewWarning) return <div
+                              style={{
+                                textAlign:'center',
+                                padding:'8em'}}>
+                                <span style={{
+                                    color:'red',
+                                    fontSize:'2em',
+                                    fontWeight:'700'}}>
+                                      Your view is too small. This is for desktop use only.
+                                </span>
+                              </div>
 
   return loading ? 
     <StyledSpinner/> : 

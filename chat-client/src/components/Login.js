@@ -19,7 +19,7 @@ const Login = (props) => {
   const [signUp, setSignUp] = useState(false)
   const [message, setMessage] = useState(null)
   const [loaded, setLoaded] = useState(false)
-  const [showViewWarning, setShowViewWarning] = useState(false)
+  
  
   useEffect(() => {
     const setU = async () => {
@@ -115,11 +115,6 @@ const Login = (props) => {
     });
   }
   //////////////////////////////////////////////////////////////
-  
-  useEffect(() => {
-    if(window.innerWidth <= 800)
-      setShowViewWarning(true)
-  }, [])
  
   const transitions = useTransition((!window.localStorage.getItem('loggedChatUser') || !props.user) && loaded, null, {
     from: { opacity: 0 },
@@ -210,18 +205,6 @@ const Login = (props) => {
     from {background-color:black;}
     to {background-color:rgba(0,0,0,0);}
   }`
-
-  if(showViewWarning) return <div
-                        style={{
-                          textAlign:'center',
-                          padding:'8em'}}>
-                            <span style={{
-                              color:'red',
-                              fontSize:'2em',
-                              fontWeight:'700'}}>
-                                Your view is too small. This is for desktop use only.
-                              </span>
-                          </div>
 
   return loaded ? transitions.map(({ item, key, props }) =>
     item && <animated.div key={key} style={props}>
