@@ -15,17 +15,17 @@ example use case:
 
 ## installation
 
-1. run `npm install` in folder `chat-client`
-1. run `npm install` in folder `chat-server`
+1. run `npm install` in folder `client`
+1. run `npm install` in folder `server`
 1. Create web app and get client id from https://console.cloud.google.com app credentials tabb for Google login.
     
    ![Image for oauth credentials](https://github.com/juhaj77/VisualChat/blob/master/images/oauth2.png)    
    set correct URIs in cloud console credentials tab
    
-   Update line 49 `CLIENT_ID=...` in chat-client/src/components/Login.js
+   Update line 61 `CLIENT_ID=...` in client/src/components/Login.js
 
-1. Fix line 24 `let socket = io('wss://visualchat.onrender.com')` to `let socket = io('ws://localhost:3003')`  in chat-client/src/index.js.
-1. Comment line 11 `app.use(express.static('build'))` in chat-server/app.js. (this is for Render cloud. It builds directly from github).
+1. Fix line 24 `let socket = io('wss://visualchat.onrender.com')` to `let socket = io('ws://localhost:3003')`  in client/src/index.js.
+1. Comment line 11 `app.use(express.static('build'))` in server/app.js. (this is for Render cloud. It builds directly from github).
 1. create _.env_ file with content:
    ```
     MONGODB_URI=mongodb://127.0.0.1:27017
@@ -34,15 +34,14 @@ example use case:
     SECRET=mySecretString
     CLIENT_ID=client-id.apps.googleusercontent.com
    ```
-    into folder `chat-server`
+    into folder `server`
    
 ## usage
 
 ____tested with Firefox, Chrome and Edge. React-spring is super slow in Firefox and OAuth2 didn't work in Edge in VM____
 
-1. `npm start` in **chat-server** folder.
-1. `export NODE_OPTIONS=--openssl-legacy-provider` in **chat-client** shell.
-1. `npm start` in **chat-client** folder.
+1. `npm start` in **server** folder.
+1. `npm start` in **client** folder.
 
 
 
