@@ -15,7 +15,7 @@ const UserController = {
       const body = request.body
       if (body.username === undefined || body.password === undefined
 				|| body.username.length < 3 || body.password.length < 3) {
-        return response.status(400).json({ error: 'missing or invalid password or username' })
+        return response.json({ error: 'missing or invalid password or username' })
       }
       const saltRounds = 10
       const password = await bcrypt.hash(body.password, saltRounds)
@@ -30,7 +30,7 @@ const UserController = {
       response.json(savedUser.toJSON())
     } catch (exception) {
       if (exception.name === 'ValidationError') {
-        return response.status(400).json({ error: 'dublicate username' })
+        return response.json({ error: 'dublicate username' })
       }
       next(exception)
     }
@@ -73,7 +73,7 @@ const UserController = {
         })
         .catch(e => {
           console.log(e)
-          return response.status(401).json({
+          return response.json({
             error: e.message
           })
         });
@@ -84,7 +84,7 @@ const UserController = {
         : bcrypt.compare(body.password, user.password)
           
       if (!(user && passwordCorrect)) {
-        return response.status(401).json({
+        return response.json({
           error: 'invalid username or password'
         })
       }
