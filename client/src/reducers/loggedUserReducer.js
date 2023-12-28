@@ -2,7 +2,7 @@ import loginService from '../services/login'
 
 export const setUser = gredentials => async dispatch => {
   const data = await loginService.login(gredentials)
-  if(!data) throw Error('invalid username or password')
+  if(data.error) throw Error(data.error)
   window.localStorage.setItem(
     'loggedChatUser', JSON.stringify(data)
   )
