@@ -81,7 +81,7 @@ const UserController = {
       const user = await User.findOne({ username: body.username })
       const passwordCorrect = user === null
         ? false
-        : bcrypt.compare(body.password, user.password)
+        : await bcrypt.compare(body.password, user.password)
           
       if (!(user && passwordCorrect)) {
         return response.json({
