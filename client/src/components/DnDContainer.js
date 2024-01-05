@@ -140,8 +140,7 @@ const DnDContainer = (props) => {
                                       top={formStyle.top} 
                                       left={formStyle.left} 
                                       channelId={props.channel.id} 
-                                      style={{...formStyle}}
-                                      theme={props.theme}/>
+                                      />
                                   </div>
                                 </CSSTransition>
                               </div>
@@ -159,7 +158,6 @@ const DnDContainer = (props) => {
                                       top={formStyle.top} 
                                       left={formStyle.left} 
                                       channelId={props.channel.id} 
-                                      style={{...formStyle}}
                                       theme={props.theme}/>
                                   </div>
                                 </CSSTransition>
