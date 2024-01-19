@@ -6,6 +6,7 @@ import Html from './Html'
 import File from './File'
 import StyledSpinner from './StyledSpinner'
 import {addNote, setNote, deleteNote} from '../reducers/noteReducer'
+import { setHtml, addHtml } from '../reducers/htmlReducer'
 import { connect } from 'react-redux'
 import UploadForm from './UploadForm'
 import SetHTMLForm from './SetHTMLForm'
@@ -345,4 +346,9 @@ const mapStateToProps = (state) => {
     files: state.files
   }
 }
-export default connect(mapStateToProps,{addNote, setNote, deleteNote})(DnDContainer)
+export default connect(mapStateToProps,{
+  addHtml, 
+  setHtml, 
+  addNote, 
+  setNote, 
+  deleteNote})(DnDContainer)
