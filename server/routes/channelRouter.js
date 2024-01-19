@@ -10,6 +10,8 @@ router.get('/:id/htmls', authorize, channels.getHtmls)
 
 router.get('/:id/pictures', authorize, channels.getPictures)
 
+router.get('/:id/files', authorize, channels.getFiles)
+
 router.get('/user/:id', authorize, channels.getChannels)
 
 module.exports = router

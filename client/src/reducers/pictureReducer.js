@@ -8,15 +8,15 @@ export const initializePictures = (id, user) => async dispatch => {
   })
 }
 // id is channel id
-export const addPicture = (picture, id, user) => {
+export const addPicture = (file, id, user) => {
   return {
     type: 'ADD_PICTURE',
-    data: { picture, id, token: user.token }
+    data: { file, id, token: user.token }
   }
 }
 export const callback = (id, user) => {
   return {
-    type: 'CALLBACK',
+    type: 'IMG_CALLBACK',
     data: { id, token: user.token }
   }
 }
@@ -27,11 +27,11 @@ const pictureReducer = (state = [], action) => {
     case 'INIT_PICTURES':
       return action.data
     case 'ADD_PICTURE': {
-      return state.concat(action.data.picture.data)
+      return state.concat(action.data.file.data)
       }
     case 'INIT_EMPTY':
       return []
-    case 'CALLBACK': 
+    case 'IMG_CALLBACK': 
       return state
     default:
     return state

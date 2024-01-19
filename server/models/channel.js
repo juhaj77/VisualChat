@@ -7,7 +7,8 @@ const channelSchema = mongoose.Schema({
   messages: [String],
   users: [{type: mongoose.Schema.Types.ObjectId, ref:'user'}],
   notes: [{type: mongoose.Schema.Types.ObjectId, ref:'Note'}],
-  pictures: [{type: mongoose.Schema.Types.ObjectId, ref:'Picture'}],
+  pictures: [{type: mongoose.Schema.Types.ObjectId, ref:'File'}],
+  files: [{type: mongoose.Schema.Types.ObjectId, ref:'File'}],
   htmls: [{type: mongoose.Schema.Types.ObjectId, ref:'HTML'}]
 })
 channelSchema.set('toJSON', {

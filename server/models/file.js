@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
-const pictureSchema = mongoose.Schema({
+const fileSchema = mongoose.Schema({
   name: { type: String, required: true },
   details: String,
-  picture: { 
+  file: { 
     data: Buffer,
     contentType: String,
     encoding: String
@@ -15,11 +15,11 @@ const pictureSchema = mongoose.Schema({
   top: { type: Number, required: true },
   left:  { type: Number, required: true }
 })
-pictureSchema.set('toJSON', {
+fileSchema.set('toJSON', {
   transform: (_document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
     delete returnedObject.__v
   }
 })
-module.exports = mongoose.model('Picture', pictureSchema)
+module.exports = mongoose.model('File', fileSchema)

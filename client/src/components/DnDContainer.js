@@ -3,12 +3,13 @@ import { useDrop } from 'react-dnd'
 import Note from './Note'
 import MyImage from './Image'
 import Html from './Html'
+import File from './File'
 import StyledSpinner from './StyledSpinner'
 import {addNote, setNote, deleteNote} from '../reducers/noteReducer'
-import {addHtml, setHtml} from '../reducers/htmlReducer'
 import { connect } from 'react-redux'
 import UploadForm from './UploadForm'
 import SetHTMLForm from './SetHTMLForm'
+import ShareFile from './ShareFile'
 import mapD from './noteColorsDark'
 import mapL from './noteColorsLight'
 import { CSSTransition } from 'react-transition-group';
@@ -23,12 +24,14 @@ const DnDContainer = (props) => {
   const [menu2Props, setMenu2Props] = useState(false)
   const [uploadForm, setUploadForm] = useState(false)
   const [htmlForm, setHtmlForm] = useState(false)
+  const [shareFile, setShareFile] = useState(false)
   const [formStyle, setFormStyle] = useState({zIndex:1000,position: 'absolute', left: 0, top:0})
   const [pos, setPos] = useState({left:'0px',top:'0px'})
   const [map, setMap] = useState(mapD)
   const menuRef = useRef(null)
   const menu2Ref = useRef(null)
   const uploadFormRef = useRef(null)
+  const shareFileRef = useRef(null)
   const htmlFormRef = useRef(null)
   const [zIndex, setZIndex] = useState('5')
 
@@ -109,6 +112,12 @@ const DnDContainer = (props) => {
     setFormStyle({zIndex:1000,position: 'absolute', left: menuStyle.left, top: menuStyle.top})
     hideMenus()
   }
+  const handleShareFile = (event) => {
+    event.preventDefault()
+    setShareFile(true)
+    setFormStyle({zIndex:1000,position: 'absolute', left: menuStyle.left, top: menuStyle.top})
+    hideMenus()
+  }
   const handleAddHTML = async (event) => {
     event.preventDefault()
     setHtmlForm(true)
@@ -163,6 +172,24 @@ const DnDContainer = (props) => {
                                 </CSSTransition>
                               </div>
 
+  const share = (props) => <div>
+                            <CSSTransition
+                                in={shareFile}
+                                nodeRef={shareFileRef}
+                                timeout={500}
+                                classNames="contextmenu"
+                                unmountOnExit
+                              > 
+                                <div ref={shareFileRef} >
+                                  <ShareFile setVisible={setShareFile} 
+                                    top={formStyle.top} 
+                                    left={formStyle.left} 
+                                    channelId={props.channel.id} 
+                                    theme={props.theme}/>
+                                </div>
+                              </CSSTransition>
+                            </div>
+
   const contextMenu2 = () => <div>
                               <CSSTransition
                                   in={menu2}
@@ -206,7 +233,7 @@ const DnDContainer = (props) => {
                                   </div>  
                                   </CSSTransition>
                               </div>
-  
+
   const contextMenu = () => <div>
                               <CSSTransition
                                   in={menu}
@@ -222,6 +249,9 @@ const DnDContainer = (props) => {
                                     </li>
                                     <li className={'prevent-select menu-option '+props.theme} onClick={handleUploadPicture}>
                                       upload picture
+                                    </li>
+                                    <li className={'prevent-select menu-option '+props.theme} onClick={handleShareFile}>
+                                      share file
                                     </li>
                                     <li className={'prevent-select menu-option '+props.theme} onClick={handleAddHTML}>
                                       add HTML
@@ -291,6 +321,8 @@ const DnDContainer = (props) => {
             >
               <div className='prevent-select' id='wa'>&nbsp;draggable working area</div>
               {props.notes.map(b => <Note theme={props.theme} key={b.id} {...b}/> )}
+              {props.files.map((i) => <File theme={props.theme} key={i.id} {...i}/>)}
+              {share(props)}
               {contextMenu()}
               {contextMenu2()}
               {upload(props)}
@@ -309,7 +341,8 @@ const mapStateToProps = (state) => {
     channel: state.channel,
     notes: state.notes,
     pictures: state.pictures,
-    htmls: state.htmls
+    htmls: state.htmls,
+    files: state.files
   }
 }
-export default connect(mapStateToProps,{addNote, setNote, deleteNote, addHtml, setHtml})(DnDContainer)
+export default connect(mapStateToProps,{addNote, setNote, deleteNote})(DnDContainer)

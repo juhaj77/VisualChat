@@ -10,11 +10,13 @@ import loggedUserReducer from './reducers/loggedUserReducer'
 import channelsReducer from './reducers/channelsReducer'
 import selectedChannelReducer from './reducers/selectedChannelReducer'
 import pictureService from './services/pictures'
+import fileService from './services/files'
 import usersReducer from './reducers/usersReducer'
 import noteReducer from './reducers/noteReducer'
 import errorReducer from './reducers/errorReducer'
 import gapiReducer from './reducers/gapiReducer'
 import pictureReducer from './reducers/pictureReducer'
+import fileReducer from './reducers/fileReducer'
 import htmlReducer from './reducers/htmlReducer'
 import connectedUsersReducer from './reducers/connectedUsersReducer'
 import io from 'socket.io-client'
@@ -48,7 +50,7 @@ const createMySocketMiddleware = () => {
         })
       }
     })
-    socket.on('callback', async (data) => {
+    socket.on('img_callback', async (data) => {
       if(storeAPI.getState().channel.id === data.id) {
       if(storeAPI.getState().loggedUser.token !== data.token){
         const pictures = await pictureService.getPictures(storeAPI.getState().channel.id, storeAPI.getState().loggedUser)
@@ -58,11 +60,30 @@ const createMySocketMiddleware = () => {
         })
       }
     }})
+    socket.on('file_callback', async (data) => {
+      if(storeAPI.getState().channel.id === data.id) {
+      if(storeAPI.getState().loggedUser.token !== data.token){
+        const files = await fileService.getFiles(storeAPI.getState().channel.id, storeAPI.getState().loggedUser)
+        const visibleFiles = files.map(f => ({ ...f, show:true}))
+        storeAPI.dispatch({
+          type: 'INIT_FILES',
+          data: visibleFiles
+        })
+      }
+    }})
     socket.on('delete_note', (data) => {
       if(storeAPI.getState().channel.id === data.channelID) {
         storeAPI.dispatch({
           type : 'SOCKET_DELETE_NOTE',
           data : data.noteID
+        })
+      }
+    })
+    socket.on('delete_file', (data) => {
+      if(storeAPI.getState().channel.id === data.channelID) {
+        storeAPI.dispatch({
+          type : 'SOCKET_DELETE_FILE',
+          data : data.id
         })
       }
     })
@@ -116,8 +137,10 @@ const createMySocketMiddleware = () => {
 				action.type === 'CREATE_CHANNEL' ||
 				action.type === 'ADD_NOTE' ||
 				action.type === 'SET_NOTE' ||
-        action.type === 'CALLBACK' ||
+        action.type === 'IMG_CALLBACK' ||
+        action.type === 'FILE_CALLBACK' ||
 				action.type === 'DELETE_NOTE' ||
+        action.type === 'DELETE_FILE' ||
 				action.type === 'SET_USER' ||
 				action.type === 'USER_LOGOUT' ||
         action.type === 'SET_HTML' ||
@@ -142,6 +165,7 @@ const reducer = combineReducers({
   channels: channelsReducer,
   gapi: gapiReducer,
   pictures: pictureReducer,
+  files: fileReducer,
   channel: selectedChannelReducer,
   users: usersReducer,
   htmls: htmlReducer,

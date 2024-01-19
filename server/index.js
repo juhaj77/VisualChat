@@ -97,8 +97,16 @@ io.on('connection', async socket => {
         io.emit('set_connected_users', Array.from(users.values()))
         return
       }
-      case 'CALLBACK': {
-        io.emit('callback',action.data)
+      case 'IMG_CALLBACK': {
+        io.emit('img_callback',action.data)
+        return
+      }
+      case 'FILE_CALLBACK': {
+        io.emit('file_callback',action.data)
+        return
+      }
+      case 'DELETE_FILE': {
+        io.emit('delete_file',action.data)
         return
       }
       case 'USER_LOGOUT': {

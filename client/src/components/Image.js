@@ -37,11 +37,11 @@ const MyImage = (props) => {
 
   useEffect(() => {
     const pic = new Image()
-    pic.src = `data:${props.picture.contentType};`
-          + `base64,${arrayBufferToBase64(props.picture.data.data)}`
+    pic.src = `data:${props.file.contentType};`
+          + `base64,${arrayBufferToBase64(props.file.data.data)}`
     pic.onload = () => setLoaded(true)
     setPicSrc(pic)
-  }, [props.picture])
+  }, [props.file])
 
   return transitions.map(({ item, key, props }) =>
   item && <animated.div key={key} style={{

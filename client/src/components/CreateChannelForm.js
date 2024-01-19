@@ -6,6 +6,7 @@ import { createChannel } from '../reducers/channelsReducer'
 import { newFeed } from '../reducers/messageReducer'
 import { initEmpty } from '../reducers/noteReducer'
 import { initEmptyPictures } from '../reducers/pictureReducer'
+import { initEmptyFiles } from '../reducers/fileReducer'
 import { initEmptyHtmls } from '../reducers/htmlReducer'
 import { setError } from '../reducers/errorReducer'
 import Info from './Info'
@@ -40,6 +41,7 @@ const CreateChannelForm = (props) => {
         await props.initEmpty()
         await props.initEmptyPictures()
         await props.initEmptyHtmls()
+        await props.initEmptyFiles()
         resetWarnings()	
       }
       setNewChannel()
@@ -109,11 +111,14 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps,{ initializeUsers,
+export default connect(mapStateToProps,{ 
+  initializeUsers,
   createChannel,
   setError,
   setChannel,
   newFeed,
   initEmpty,
   initEmptyPictures,
-  initEmptyHtmls})(CreateChannelForm)
+  initEmptyFiles,
+  initEmptyHtmls
+})(CreateChannelForm)

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { initializeChannels } from '../reducers/channelsReducer'
 import { initializeNotes } from '../reducers/noteReducer'
 import { initializePictures } from '../reducers/pictureReducer'
+import { initializeFiles } from '../reducers/fileReducer'
 import { setChannel } from '../reducers/selectedChannelReducer'
 import { initializeMessages } from '../reducers/messageReducer'
 import { initializeHtmls } from '../reducers/htmlReducer'
@@ -29,6 +30,7 @@ const DropDownContainer = (props) => {
       await props.initializeNotes(chId, props.user)
       await props.initializePictures(chId, props.user)
       await props.initializeHtmls(chId, props.user)
+      await props.initializeFiles(chId, props.user)
     }
   }
 	
@@ -60,6 +62,7 @@ export default connect(
     setChannel, 
     initializeMessages,
     initializePictures,
+    initializeFiles,
     initializeNotes,
     initializeHtmls,
     })(DropDownContainer)

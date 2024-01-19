@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const multer  = require('multer')
-const Picture = require('../models/picture')
+const File = require('../models/file')
 const Channel = require('../models/channel')
 require('express-async-errors')
 
@@ -16,8 +16,8 @@ const upload = multer({
 
 router.post('/add/:id',upload.single('uploaded_file'), async (request,response,next) => {
   
-  const picture = new Picture({
-    picture: { 
+  const picture = new File({
+    file: { 
       data: request.file.buffer,
       contentType: request.file.mimetype,
       encoding: request.file.encoding
