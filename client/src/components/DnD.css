@@ -28,6 +28,7 @@
 .menu-option.dark {
     border:solid 1px #665533;
     color:#a38851;
+    background-image:linear-gradient(#282113,black);
     text-shadow: -1.5px 0 rgba(255, 220, 123,0), 0 1.5px rgba(255, 220, 123,0), 1.5px 0 rgba(255, 220, 123,0), 0 -1.5px rgba(255, 220, 123,0);
     transition: text-shadow 550ms, background 550ms, color 550ms, border-color 550ms;
 }
@@ -67,7 +68,8 @@
   cursor:auto;
 }
 .dropdown-content-style.dark {
-  background:black;
+  background-color: black;
+  background-image:linear-gradient(#282113,black);
   border:solid 1px #665533;
 }
 .dropdown-content-style.light {
@@ -168,8 +170,9 @@ div.hoverthing.light:hover #wa {color: rgba(142, 122, 255, 0.9);}
   white-space: nowrap;
 }
 .Container2.dark {
-  color: #665533; 
+  color: #77633d; 
   background: black;
+  background-image:linear-gradient(#282113,black);
   border:solid 1px #665533;
 }
 .Container2.light {
@@ -229,6 +232,7 @@ inputstyle.dark {
 .File.dark {
   background: black;
   border:solid 1px #665533;
+  background-image:linear-gradient(#282113,black);
 }
 .File.light {
   background-color:rgb(82, 94, 252);

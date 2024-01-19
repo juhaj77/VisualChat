@@ -19,7 +19,8 @@
 }
 .panel.dark {
   background:black;
-  border-bottom:solid 1px #665533;
+  border-bottom:solid 1px #493d24;
+  background-image:linear-gradient(black,#3e341e);
 }
 .panel.light{
   background-image:linear-gradient(rgb(82, 94, 252),rgb(166, 172, 255));
@@ -50,7 +51,9 @@
 }
 .loggedin.dark {
   color: #e2d4b7;
-  background-color:rgba(0,0,0,0.7);
+  background-image:linear-gradient(rgba(0, 0, 0, 0.591),#4d402693);
+  border:solid 1px #665533;
+  line-height: 1em;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 .loggedin.light {
@@ -81,7 +84,7 @@
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 .connected.dark {
-  background-color:rgba(0,0,0,0.7);
+  background-image:linear-gradient(#41362093,rgba(0, 0, 0, 0.591));
   border:solid 1px #665533; 
   color:#b29966;
   font-weight:400;
@@ -116,7 +119,7 @@
   margin-top:-0.2em;
 }
 .channelpanel.dark {
-  background-color: black;
+  background-image:linear-gradient(#332a19,black);
   color: white;
   border-bottom:1px solid #443922;
 }
@@ -173,6 +176,7 @@
   color:#b29966;
   border-color:black;
   background-color:black;
+  background-image:linear-gradient(#282113,black);
 }
 .dropdown2.light {
   color:white;
@@ -243,7 +247,7 @@ transition: background-color 250ms ease-in, border-color 250ms ease-in, color 25
     width:80%;
 }
 .msginput.dark {
-    background-color:black;
+    background-image:linear-gradient(black,#282113);
     border-bottom: 1px solid #443922;
     color:#b29966;
 }
