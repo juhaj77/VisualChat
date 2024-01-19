@@ -219,3 +219,19 @@ inputstyle.dark {
   color:blue;
   font-weight: 600;
 }
+.File {
+  padding: .1em .3em .2em .3em;
+  border: 1px solid;
+  border-radius:0 1em 0 0;
+  font-weight: 700;
+  box-shadow:2px 2px 5px rgba(0,0,0,0.5);
+}
+.File.dark {
+  background: black;
+  border:solid 1px #665533;
+}
+.File.light {
+  background-color:rgb(82, 94, 252);
+  color:white;
+  background-image:linear-gradient(rgb(82, 94, 252),rgb(166, 172, 255));
+}

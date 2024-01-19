@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useDrop } from 'react-dnd'
 import Note from './Note'
 import MyImage from './Image'

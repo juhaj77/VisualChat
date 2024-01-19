@@ -69,7 +69,7 @@ const UploadForm = ({theme,setVisible,top,left,channelId,user,channel }) => {
 
   const upload = async (payload) => {
     toast.info('uploading...', options)
-    await axios.post(`${baseUrl}/add/${channelId}`, payload, {
+    await axios.post(`${baseUrl}/add/${channelId}`, payload, { headers: { Authorization: user.token } }, {
         onUploadProgress: (ProgressEvent) => {
         // eslint-disable-next-line no-mixed-operators
           setLoaded(ProgressEvent.loaded / ProgressEvent.total * 100)
@@ -93,7 +93,7 @@ const UploadForm = ({theme,setVisible,top,left,channelId,user,channel }) => {
       return
     }
     data.append('uploaded_file', selectedFile)
-    if(itemName.input.value == ''){
+    if(itemName.input.value === ''){
       toast.error('name is required', {
         position: toast.POSITION.BOTTOM_CENTER
       })

@@ -2,6 +2,7 @@ const router = require('express').Router()
 const multer  = require('multer')
 const File = require('../models/file')
 const Channel = require('../models/channel')
+const authorize = require('../verifytoken.js')
 require('express-async-errors')
 
 const upload = multer({
@@ -14,7 +15,7 @@ const upload = multer({
   }
 })
 
-router.post('/add/:id',upload.single('uploaded_file'), async (request,response,next) => {
+router.post('/add/:id',[authorize, upload.single('uploaded_file')], async (request,response,next) => {
   
   const picture = new File({
     file: { 
@@ -24,16 +25,13 @@ router.post('/add/:id',upload.single('uploaded_file'), async (request,response,n
     },
     ...request.body
   })
-  try {
+
     const newItem = await picture.save()
     const channel = await Channel.findById(request.params.id)
     const pictures = channel.pictures.concat(newItem._id)
     await Channel.findByIdAndUpdate(request.params.id, {pictures:pictures})
     response.status(200).send(newItem.toJSON())
-  } catch (e) {
-    console.log(e)
-    next(new Error(e.message))
-  }
+
 })
 
 module.exports  = router

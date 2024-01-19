@@ -17,8 +17,8 @@ const File = (props) => {
     leave: { opacity: 0},
   })
 
-  const top = Number(props.top) + document.getElementById('dnd').offsetTop
-  const left = Number(props.left) + document.getElementById('dnd').offsetLeft
+  const top = Number(props.top) + document.getElementById('wa').offsetHeight
+  const left = Number(props.left)
   const name = props.name
   const theme = props.theme
   const id = props.id
@@ -70,11 +70,10 @@ const File = (props) => {
     zIndex:'5'
     }} >
     <a id={id}/>
-    <div style={{padding:'.5em',border:'1px solid'}}> 
+    <div className={'File '+theme}> 
       {name} <br/>
-    <button className={'hoverbutton '+theme} type="submit" onClick={handleDownload}>download</button>
-       &ensp;
-    <button className={'hoverbutton '+theme} type="submit" onClick={handleDelete}>delete</button>
+    <button className={'hoverbutton '+theme} style={{fontSize:'1em',lineHeight:'1em'}} type="submit" onClick={handleDownload}>download</button>
+    <button className={'hoverbutton '+theme} style={{fontSize:'1em',lineHeight:'1em',marginLeft:'.2em'}} type="submit" onClick={handleDelete}>delete</button>
     </div>
     </animated.div>)
 }

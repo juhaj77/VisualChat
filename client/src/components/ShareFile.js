@@ -39,14 +39,6 @@ const LabelStyle = styled.p`
   font-size: 1.2em;
   font-weight:bold; 
 `
-const TextInput = styled.input`
-  line-height: 1em;
-  height: 2em;  
-  font-size: 1em; 
-  width:97%;
-  margin: 0; 
-  padding: 0;
-`
 
 const ShareFile = ({theme,setVisible,top,left,channelId,user,channel }) => {
   const [loaded, setLoaded] = useState(0)
@@ -67,11 +59,14 @@ const ShareFile = ({theme,setVisible,top,left,channelId,user,channel }) => {
 
   const upload = async (payload) => {
     toast.info('uploading...', options)
-    await axios.post(`${baseUrl}/add/${channelId}`, payload, {
-        onUploadProgress: (ProgressEvent) => {
-        // eslint-disable-next-line no-mixed-operators
-          setLoaded(ProgressEvent.loaded / ProgressEvent.total * 100)
-        }, })
+    await axios.post(`${baseUrl}/add/${channelId}`, 
+          payload,  
+          { headers: { Authorization: user.token } }, 
+          {
+            onUploadProgress: (ProgressEvent) => {
+            // eslint-disable-next-line no-mixed-operators
+            setLoaded(ProgressEvent.loaded / ProgressEvent.total * 100)
+          }, })
         .then(res => {
           dispatch(addFile(res.data,channel.id,user))
           dispatch(callback(channel.id,user))
