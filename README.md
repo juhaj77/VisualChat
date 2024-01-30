@@ -1,7 +1,7 @@
 # VisualChat
 Channel members can edit the shared view and share files. Workspace has draggable working area. You can create moveable sticky notes, add HTML code to the selected location, or upload images to the background in the selected location. All data is stored in Mongo DB. ___The workspace opens when a channel is selected___. Functionality can be found in context menus. Smooth animated user experience. Two themes: dark and light.    
 ## try app:
-https://visualchat.onrender.com   
+[app on Render](https://visualchat.onrender.com)    
 Test users are:    
 ___`username:testuser password:testuser`___ and ___`username:testuser2 password:testuser2`___   
 Or You can create your own. Using Google login app creates username from gmail address. ___A new channel must be created for a new user in order to try out app features___. ___Firefox is slow___ with react-spring animations...    
