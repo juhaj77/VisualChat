@@ -149,7 +149,11 @@ const createMySocketMiddleware = () => {
 					
         socket.emit('action',action)
 
-        if(action.type === 'SEND_WEBSOCKET_MESSAGE' || action.type === 'SET_NOTE' || action.type === 'SET_USER' || action.type === 'USER_LOGOUT' || action.type === 'SET_CHANNEL')
+        if(action.type === 'SEND_WEBSOCKET_MESSAGE' || 
+          action.type === 'SET_NOTE' || 
+          action.type === 'SET_USER' || 
+          action.type === 'USER_LOGOUT' || 
+          action.type === 'SET_CHANNEL')
           return next(action)
         else return
       }
@@ -157,7 +161,6 @@ const createMySocketMiddleware = () => {
     }
   }
 }
-
 
 const reducer = combineReducers({
   messages: messageReducer,

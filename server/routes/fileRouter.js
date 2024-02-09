@@ -9,7 +9,9 @@ const upload = multer({
   limits: { fileSize: 6000000 }
 })
 
-router.post('/add/:id', [authorize, upload.single('uploaded_file')], async (request,response,next) => {
+router.post('/add/:id', 
+  [authorize, upload.single('uploaded_file')], 
+  async (request,response,next) => {
   
   const file = new File({
     file: { 
