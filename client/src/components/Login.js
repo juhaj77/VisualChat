@@ -30,9 +30,6 @@ const Login = (props) => {
   const [signUp, setSignUp] = useState(false)
   const [message, setMessage] = useState(null)
   const [loaded, setLoaded] = useState(false)
-  
-  const [count, setCount] = useState(0)
-  const isLoaded = useRef(false)
 
   useEffect(() => {
     const setU = async () => {
@@ -47,25 +44,15 @@ const Login = (props) => {
     setU()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  // for logout img is not always loaded and panel loading is not smooth. 
-  // this is testing/developing code
+ 
   const img = new Image()
-  console.log('img.complete',img.complete)
   useEffect(() => {
     img.src = src
     img.onload = () => {
       setLoaded(true)
-      isLoaded.current = true
-    }
-    return () => {
-     // setLoaded(false) for unknown reason this makes weird behaviour
-      isLoaded.current = false
-      console.log('useEffect '+ count+ ' '+loaded+' '+isLoaded.current+' '+img.complete,'\n',img)
-      setCount(count + 1)
-      
     }
 // eslint-disable-next-line react-hooks/exhaustive-deps
-},[props.user]);
+},[]);
 
   const theme = props.theme
   //////////////////////////GOOGLE/////////////////////////////////
