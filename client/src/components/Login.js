@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux'
 import { useField } from '../hooks/field'
 import { signUp } from '../reducers/usersReducer'
@@ -31,7 +31,9 @@ const Login = (props) => {
   const [message, setMessage] = useState(null)
   const [loaded, setLoaded] = useState(false)
   
- 
+  const [count, setCount] = useState(0)
+  const isLoaded = useRef(false)
+
   useEffect(() => {
     const setU = async () => {
       const loggedUserJSON = window.localStorage.getItem('loggedChatUser')
@@ -45,15 +47,25 @@ const Login = (props) => {
     setU()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
+  // for logout img is not always loaded and panel loading is not smooth. 
+  // this is testing/developing code
+  const img = new Image()
+  console.log('img.complete',img.complete)
   useEffect(() => {
-    const img = new Image()
     img.src = src
     img.onload = () => {
       setLoaded(true)
+      isLoaded.current = true
+    }
+    return () => {
+     // setLoaded(false) for unknown reason this makes weird behaviour
+      isLoaded.current = false
+      console.log('useEffect '+ count+ ' '+loaded+' '+isLoaded.current+' '+img.complete,'\n',img)
+      setCount(count + 1)
+      
     }
 // eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);
+},[props.user]);
 
   const theme = props.theme
   //////////////////////////GOOGLE/////////////////////////////////
@@ -127,7 +139,7 @@ const Login = (props) => {
   }
   //////////////////////////////////////////////////////////////
  
-  const transitions = useTransition((!window.localStorage.getItem('loggedChatUser') || !props.user) && loaded, null, {
+  const transitions = useTransition((!window.localStorage.getItem('loggedChatUser') || !props.user) && loaded && img.complete, null, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 }
