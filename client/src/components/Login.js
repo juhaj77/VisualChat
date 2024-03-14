@@ -208,7 +208,7 @@ const Login = (props) => {
   return loaded && img.complete ? transitions.map(({ item, key, props }) =>
     item && <animated.div key={key} style={props}>
       <div className='login'>
-      <img style={{width:'100%', paddingTop: '7vh' }} src={src} />
+      <img style={{width:'100%', paddingTop: '7vh' }} src={img.src} />
         <div className={'loginsegment '+theme} >
           {!signUp && options()}
           {signUp && form('Sign Up', handleSignUp)}
