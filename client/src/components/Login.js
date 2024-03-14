@@ -45,14 +45,15 @@ const Login = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
  
-  const img = new Image()
+  const img = useRef(new Image())
   useEffect(() => {
-    img.src = src
-    img.onload = () => {
+    img.current.src = src
+   // console.log('useEffect',img.current.src)
+    img.current.onload = () => {
       setLoaded(true)
     }
 // eslint-disable-next-line react-hooks/exhaustive-deps
-},[props.user]);
+},[]);
 
   const theme = props.theme
   //////////////////////////GOOGLE/////////////////////////////////
@@ -126,7 +127,7 @@ const Login = (props) => {
   }
   //////////////////////////////////////////////////////////////
  
-  const transitions = useTransition((!window.localStorage.getItem('loggedChatUser') || !props.user) && loaded && img.complete, null, {
+  const transitions = useTransition((!window.localStorage.getItem('loggedChatUser') || !props.user) && loaded && img.current.complete, null, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 }
@@ -204,11 +205,11 @@ const Login = (props) => {
       </Grid>
     </div>
   )
-
-  return loaded && img.complete ? transitions.map(({ item, key, props }) =>
+   // console.log(img.current.src,img.current.currentSrc,img.current.complete,img)
+  return loaded && img.current.complete ? transitions.map(({ item, key, props }) =>
     item && <animated.div key={key} style={props}>
       <div className='login'>
-      <img style={{width:'100%', paddingTop: '7vh' }} src={img.src} />
+      <img ref={img} style={{width:'100%', paddingTop: '7vh' }} src={img.current.src} />
         <div className={'loginsegment '+theme} >
           {!signUp && options()}
           {signUp && form('Sign Up', handleSignUp)}
