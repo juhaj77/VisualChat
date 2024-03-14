@@ -52,7 +52,7 @@ const Login = (props) => {
       setLoaded(true)
     }
 // eslint-disable-next-line react-hooks/exhaustive-deps
-},[]);
+},[props.user]);
 
   const theme = props.theme
   //////////////////////////GOOGLE/////////////////////////////////
@@ -205,7 +205,7 @@ const Login = (props) => {
     </div>
   )
 
-  return loaded ? transitions.map(({ item, key, props }) =>
+  return loaded && img.complete ? transitions.map(({ item, key, props }) =>
     item && <animated.div key={key} style={props}>
       <div className='login'>
       <img style={{width:'100%', paddingTop: '7vh' }} src={src} />
