@@ -30,6 +30,7 @@ const Login = (props) => {
   const [signUp, setSignUp] = useState(false)
   const [message, setMessage] = useState(null)
   const [loaded, setLoaded] = useState(false)
+  const img = useRef(new Image())
 
   useEffect(() => {
     const setU = async () => {
@@ -45,7 +46,6 @@ const Login = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
  
-  const img = useRef(new Image())
   useEffect(() => {
     img.current.src = src
    // console.log('useEffect',img.current.src)
