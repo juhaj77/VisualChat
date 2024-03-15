@@ -206,7 +206,7 @@ const Login = (props) => {
     </div>
   )
    // console.log(img.current.src,img.current.currentSrc,img.current.complete,img)
-  return loaded && img.current.complete ? transitions.map(({ item, key, props }) =>
+  return loaded && img.current && img.current.complete ? transitions.map(({ item, key, props }) =>
     item && <animated.div key={key} style={props}>
       <div className='login'>
       <img ref={img} style={{width:'100%', paddingTop: '7vh' }} src={img.current.src} />
