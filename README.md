@@ -1,5 +1,5 @@
 # VisualChat
-Channel members can edit the shared view and share files. Workspace has draggable working area. You can create moveable sticky notes, add HTML code to the selected location, or upload images to the background in the selected location. All data is stored in Mongo DB. ___The workspace opens when a channel is selected___. Functionality can be found in context menus. Smooth animated user experience. Two themes: dark and light.    
+Channel members can edit the shared view and share files. Workspace has draggable working area. You can create moveable sticky notes, add HTML code to the selected location, or upload images to the background in the selected location. All data is stored in Mongo DB. ___The workspace opens when a channel is selected___. Functionality can be found in context menus. Smooth animated user experience.    
 ## try app:
 [app on Render](https://visualchat.onrender.com)    
 Test users are:    
