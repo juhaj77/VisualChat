@@ -84,7 +84,6 @@ const Chat = ({theme,setTheme, user, channel, connectedUsers, gapi, clearUser}) 
       {transitions.map(({ item, key, props }) =>
         item && <animated.div key={key} style={{...props,zIndex:'10',position:'absolute',top:'0em',left:'oem'}}>
           <div className={'panel '+theme}>
-            <Theme setTheme={setTheme} theme={theme} />
           <div>	
           {channel && <ChannelName theme={theme}/>}
           </div>
@@ -122,7 +121,7 @@ const Chat = ({theme,setTheme, user, channel, connectedUsers, gapi, clearUser}) 
     </div>
   )
 }
-
+//<Theme setTheme={setTheme} theme={theme} />
 const mapStateToProps = (state) => {
   return {
     user: state.loggedUser,
