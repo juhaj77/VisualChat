@@ -19,6 +19,7 @@ import pictureReducer from './reducers/pictureReducer'
 import fileReducer from './reducers/fileReducer'
 import htmlReducer from './reducers/htmlReducer'
 import connectedUsersReducer from './reducers/connectedUsersReducer'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 import io from 'socket.io-client'
 
 const createMySocketMiddleware = () => {
@@ -190,7 +191,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const render = () => {
   root.render(
     <Provider store={store}>
-      <App />
+      <GoogleOAuthProvider clientId="371216924606-rgdtfalqj9tklp61rkv27d9ii14cenbe.apps.googleusercontent.com">
+        <App />
+      </GoogleOAuthProvider>
     </Provider>
   )
 }

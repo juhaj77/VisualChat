@@ -73,14 +73,12 @@ const Chat = ({theme,setTheme, user, channel, connectedUsers, gapi, clearUser}) 
     document.getElementById('bg').style.backgroundPositionY = '0px'
     clearUser(user)
     setChat(true)
-    if(gapi) gapi.auth2.getAuthInstance().signOut()
   }
 
-  return (
-    <div>
-      <Segment  style={{margin:'0',padding:'0',border:'0px',backgroundColor:'transparent'}} placeholder >
+  return <div>
+      { user && <Segment  style={{margin:'0',padding:'0',border:'0px',backgroundColor:'transparent',zIndex:'0'}} placeholder >
         {channel && dnd()}
-      </Segment>
+      </Segment> }
       {transitions.map(({ item, key, props }) =>
         item && <animated.div key={key} style={{...props,zIndex:'10',position:'absolute',top:'0em',left:'oem'}}>
           <div className={'panel '+theme}>
@@ -119,7 +117,7 @@ const Chat = ({theme,setTheme, user, channel, connectedUsers, gapi, clearUser}) 
           </ul>
         </animated.div>)}
     </div>
-  )
+
 }
 //<Theme setTheme={setTheme} theme={theme} />
 const mapStateToProps = (state) => {

@@ -1,48 +1,37 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { useTransition, animated } from 'react-spring'
+import React, {useState, useEffect} from 'react'
 
-const Info = ({message,clear}) => {
+const Info = ({message}) => {
+    const [text, setText] = useState(message);
+    const [show, setShow] = useState(false);
 
-  const [text, setText] = useState(message)
-  const [show, setShow] = useState(false)
-  const id1 = useRef(-1)
-  const id2 = useRef(-1)
-   
-  useEffect(() => {
-    if(message) {setShow(true)
-      setText(message)
-      id1.current = setTimeout(() => {
-        setShow(false)
-        id2.current = setTimeout(() => {
-          clear()
-        },800)
-      },5000)
-    } else setShow(false)
-    return () => {
-      clearTimeout(id1.current)
-    }
-  }, [message, clear])
- 
-  const transitions = useTransition(show, null, {
-    from: { opacity: 0} ,
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-    config: {duration:250}
-  })
+    useEffect(() => {
+        if (message) {
+            setText(message);
+            setShow(true);
 
-  return transitions.map(({ item, key, props }) => (
-    item && <animated.div key={key} style={{
-      color:text.color,
-      backgroundColor:'black',
-      border:`1px solid ${text.color}`,
-      borderRadius:'6px', 
-      padding:'1em',
-      fontSize:'1.2em',
-      margin:'0em',
-      ...props}}>
-      {text.content}
-    </animated.div>
-  ))
-}
+            return () => setShow(false);
+        }
+    }, [message]);
 
-export default Info
+    return (
+        <div
+            style={{
+                color: text?.color,
+                backgroundColor: show ? 'rgb(0,0,1)' : 'black',
+                border: show ? `1px solid ${text?.color}` : 'none',
+                borderRadius: '6px',
+                padding: show ? '1em' : 0,
+                fontSize: '1.2em',
+                margin: '0em',
+                opacity: show ? 1 : 0,
+                transition: 'opacity 250ms ease-in-out, padding 250ms ease-in-out, border 250ms ease-in-out, background-color 5s ease-in-out',
+            }}
+            onTransitionEnd={(e) => {
+                if(e.propertyName === 'background-color') setShow(false)}}
+        >
+            {show && text?.content}
+        </div>
+    );
+};
+
+export default Info;

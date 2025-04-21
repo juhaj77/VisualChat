@@ -23,6 +23,16 @@
   background-image:linear-gradient(rgb(166, 172, 255),rgb(82, 94, 252));
   transition: background-image 250ms ease-in,background-color 250ms ease-in, border-color 250ms ease-in, color 250ms ease-in;
 }
+
+div[role="button"] {
+    height: auto !important;
+    min-height: 30px !important;
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+    white-space: nowrap !important;
+    line-height: 1.2 !important;
+}
+
 .myButton.light:hover {
   background-image:linear-gradient(rgb(82, 94, 252),rgb(166, 172, 255));
   background-color:rgb(82, 0, 150);
@@ -42,7 +52,14 @@
     padding:0;
     max-width: 1280px;
     margin: auto;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+
 }
+.login.show {
+    opacity: 1;
+}
+
 .loginsegment {
     padding: 0px; 
     margin: 0rem;

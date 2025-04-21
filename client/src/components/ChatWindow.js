@@ -20,11 +20,11 @@ const handle = () => {
 return (
   <div>
     <div className={'channelpanel '+props.theme}>
-      <table style={{width:'100%', borderTop:'1px solid #443922'}}>
+      <table style={{width:'100%', borderTop:'1px solid #443922', height:'auto'}}>
         <tbody>
            <tr>
              <td className='tdchannel'>
-              <div className={'prevent-select channel '+props.theme}>
+              <div className={'prevent-select channel '+props.theme} style={{height:'1em',lineHeight:'1em'}}>
                 CHANNEL 
               </div>
              </td>
@@ -35,7 +35,8 @@ return (
               <div style={{marginLeft:'0.5em', display:'inline'}}>
                 <button className={'prevent-select hoverbutton '+props.theme} style={{
                   fontFamily: 'Lato,Helvetica Neue,Arial,Helvetica,sans-serif', 
-                  fontWeight:'700'}}  onClick={handle}>create</button>
+                  fontWeight:'700',
+                }}  onClick={handle}>create</button>
               </div>
              </td>
             </tr>

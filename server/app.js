@@ -29,6 +29,10 @@ app.use('/api/users',userRouter)
 app.use('/api/channels',channelRouter)
 app.use('/api/pictures',pictureRouter)
 app.use('/api/files',fileRouter)
+app.get('/test-header', (req, res) => {
+    res.setHeader('Cross-Origin-Opener-Policy', 'unsafe-none')
+    res.send('Header test')
+})
 
 app.use(errorHandling)
 
