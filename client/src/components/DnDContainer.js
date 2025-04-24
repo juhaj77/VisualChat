@@ -274,13 +274,11 @@ const DnDContainer = (props) => {
     if(moveContent && e.target.className !== 'note') {
       document.getElementById('dndWrapper').style.left = `${e.pageX-offsetX}px`
       document.getElementById('dndWrapper').style.top = `${e.pageY-offsetY}px`
-      document.getElementById('root').style.backgroundPositionX = 0.5*(e.pageX-offsetX) + 'px'
-      document.getElementById('root').style.backgroundPositionY = 0.5*(e.pageY-offsetY) + 'px'
-      document.getElementById('bg').style.backgroundPositionX = 0.25*(e.pageX-offsetX) + 'px'
-      document.getElementById('bg').style.backgroundPositionY = 0.25*(e.pageY-offsetY) + 'px'
+      document.getElementById('bg').style.backgroundPositionX = `${e.pageX-offsetX}px`
+      document.getElementById('bg').style.backgroundPositionY = `${e.pageY-offsetY}px`
     }
   }
-  
+
   const start = e => {
     setZIndex('2')
     if(e.target.className === 'dndC'){

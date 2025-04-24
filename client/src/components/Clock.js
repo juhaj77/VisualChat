@@ -28,7 +28,7 @@ const Clock = (props) => {
   }
 
   return (
-    <div className='prevent-select'>
+    <div className='prevent-select clock'>
       {time}
     </div>
   )

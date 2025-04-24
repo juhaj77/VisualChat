@@ -28,7 +28,8 @@
 }
 .clock {
   font-family: "Cinzel", serif;
-  font-size: 1.4em; 
+  font-size: 1.2em;
+  width:4em;
   font-weight: 700;
   text-align: left;
 }
