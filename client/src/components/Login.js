@@ -52,7 +52,6 @@ const Login = ({user, setUser, resetUser, signUp, theme}) => {
             // Sometimes onTransitionEnd timing fails
             const fadeOutTimer = setTimeout(() => {
                 setIsHidden(true); // Ensure it's hidden after fade-out ends
-                console.log('fadeOutTimer')
             }, 1000); // Match CSS transition timing (1s)
             return () => clearTimeout(fadeOutTimer); // Cleanup to avoid stale timers
         }

@@ -19,10 +19,10 @@ import './DnD.css'
 
 const DnDContainer = (props) => {
         
-  const [menu, setMenu] = useState(false) 
+  const [menu, setMenu] = useState({transform:'scaleY(0)', opacity:'0'})
   const [menuStyle, setMenuStyle] = useState({zIndex:1000,position: 'absolute', left:0, top:0})
-  const [menu2, setMenu2] = useState(false)
-  const [menu2Props, setMenu2Props] = useState(false)
+  const [menu2, setMenu2] = useState({transform:'scaleY(0)', opacity:'0'})
+  const [menu2Props, setMenu2Props] = useState({id:-1, style:{}})
   const [uploadForm, setUploadForm] = useState(false)
   const [htmlForm, setHtmlForm] = useState(false)
   const [shareFile, setShareFile] = useState(false)
@@ -30,7 +30,6 @@ const DnDContainer = (props) => {
   const [pos, setPos] = useState({left:'0px',top:'0px'})
   const [map, setMap] = useState(mapD)
   const menuRef = useRef(null)
-  const menu2Ref = useRef(null)
   const uploadFormRef = useRef(null)
   const shareFileRef = useRef(null)
   const htmlFormRef = useRef(null)
@@ -74,8 +73,8 @@ const DnDContainer = (props) => {
     }
     if( event.target.id === 'dnd' ){
       setMenuStyle({zIndex:1000,position: 'absolute', left, top})
-      setMenu(true)
-      setMenu2(false)
+      setMenu({transform:'scaleY(100%)', opacity:'1'})
+      setMenu2({transform:'scaleY(0)', opacity:'0'})
     } else if(event.nativeEvent.target.className === 'noteHeader' || 
               event.nativeEvent.target.className === 'txt-place') {
       handleContextMenu2(event)
@@ -92,8 +91,8 @@ const DnDContainer = (props) => {
                       top:top,
                       zIndex:1000}
                     })
-    setMenu2(true)
-    setMenu(false)
+    setMenu2({transform:'scaleY(1)', opacity:'1'})
+    setMenu({transform:'scaleY(0)', opacity:'0'})
   }
   const handleAddNote = (e) => {
     e.preventDefault()
@@ -104,7 +103,7 @@ const DnDContainer = (props) => {
                   date: new Date(date.getTime()-date.getTimezoneOffset()*60*1000),
                   author: props.user.username},
                   props.channel.id, props.user)
-    setMenu(false)
+    setMenu({transform:'scaleY(0)', opacity:'0'})
   }
 
   const handleUploadPicture = (event) => {
@@ -136,135 +135,121 @@ const DnDContainer = (props) => {
     props.setNote({...note, backgroundColor: e.nativeEvent.target.id}, props.channel.id, props.user)
     hideMenus()
   }
-  const html = (props) => <div>
-                              <CSSTransition
-                                  in={htmlForm}
-                                  nodeRef={htmlFormRef}
-                                  timeout={500}
-                                  classNames="contextmenu"
-                                  unmountOnExit
-                                > 
-                                  <div ref={htmlFormRef} >
-                                    <SetHTMLForm setVisible={setHtmlForm}
-                                      {...props}
-                                      top={formStyle.top} 
-                                      left={formStyle.left} 
-                                      channelId={props.channel.id} 
-                                      />
-                                  </div>
-                                </CSSTransition>
-                              </div>
+  const html = (props) =>
+    <CSSTransition
+        in={htmlForm}
+        nodeRef={htmlFormRef}
+        timeout={500}
+        classNames="contextmenu"
+        unmountOnExit
+    >
+      <div ref={htmlFormRef} >
+        <SetHTMLForm setVisible={setHtmlForm}
+                     {...props}
+                     top={formStyle.top}
+                     left={formStyle.left}
+                     channelId={props.channel.id}
+        />
+      </div>
+    </CSSTransition>
 
-  const upload = (props) => <div>
-                              <CSSTransition
-                                  in={uploadForm}
-                                  nodeRef={uploadFormRef}
-                                  timeout={500}
-                                  classNames="contextmenu"
-                                  unmountOnExit
-                                > 
-                                  <div ref={uploadFormRef} >
-                                    <UploadForm setVisible={setUploadForm} 
-                                      top={formStyle.top} 
-                                      left={formStyle.left} 
-                                      channelId={props.channel.id} 
-                                      theme={props.theme}/>
-                                  </div>
-                                </CSSTransition>
-                              </div>
 
-  const share = (props) => <div>
-                            <CSSTransition
-                                in={shareFile}
-                                nodeRef={shareFileRef}
-                                timeout={500}
-                                classNames="contextmenu"
-                                unmountOnExit
-                              > 
-                                <div ref={shareFileRef} >
-                                  <ShareFile setVisible={setShareFile} 
-                                    top={formStyle.top} 
-                                    left={formStyle.left} 
-                                    channelId={props.channel.id} 
-                                    theme={props.theme}/>
-                                </div>
-                              </CSSTransition>
-                            </div>
+  const upload = (props) =>
+    <CSSTransition
+        in={uploadForm}
+        nodeRef={uploadFormRef}
+        timeout={500}
+        classNames="contextmenu"
+        unmountOnExit
+    >
+      <div ref={uploadFormRef} >
+        <UploadForm setVisible={setUploadForm}
+                    top={formStyle.top}
+                    left={formStyle.left}
+                    channelId={props.channel.id}
+                    theme={props.theme}/>
+      </div>
+    </CSSTransition>
 
-  const contextMenu2 = () => <div>
-                              <CSSTransition
-                                  in={menu2}
-                                  nodeRef={menu2Ref}
-                                  timeout={500}
-                                  classNames="contextmenu"
-                                  unmountOnExit
-                                >
-                                <div className={'menu '+props.theme} ref={menu2Ref} style={{...menu2Props.style, width:'9rem'}}>
-                                    <ul className="menu-options">
-                                      <li className={'prevent-select menu-option '+props.theme} onClick={handleDelete}>
-                                        delete note
-                                      </li>
-                                      <li className={'prevent-select menu-option '+props.theme} >
-                                        <div className='dropdown prevent-select' >
-                                          set color
-                                          <div className="dropdown-content">
-                                            <table className={'dropdown-content-style '+props.theme}>
-                                              <tbody>
-                                                <tr>
-                                                  <td><button className='button' id='#ffffcc' onClick={setColor} style={{background:map.get('#ffffcc').background}}></button></td>
-                                                  <td><button className='button' id='#ffcccc' onClick={setColor} style={{background:map.get('#ffcccc').background}}></button></td>
-                                                  <td><button className='button' id='#ccffff' onClick={setColor} style={{background:map.get('#ccffff').background}}></button></td>
-                                                </tr>
-                                                <tr>
-                                                  <td><button className='button' id='#99ffcc' onClick={setColor} style={{background:map.get('#99ffcc').background}}></button></td>
-                                                  <td><button className='button' id='#ffccff' onClick={setColor} style={{background:map.get('#ffccff').background}}></button></td>
-                                                  <td><button className='button' id='#80ffff' onClick={setColor} style={{background:map.get('#80ffff').background}}></button></td>
-                                                </tr>
-                                                <tr>
-                                                  <td><button className='button' id='#ff99c2' onClick={setColor} style={{background:map.get('#ff99c2').background}}></button></td>
-                                                  <td><button className='button' id='#99ff99' onClick={setColor} style={{background:map.get('#99ff99').background}}></button></td>
-                                                  <td><button className='button' id='#ff99ff' onClick={setColor} style={{background:map.get('#ff99ff').background}}></button></td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                          </div>
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>  
-                                  </CSSTransition>
-                              </div>
 
-  const contextMenu = () => <div>
-                              <CSSTransition
-                                  in={menu}
-                                  nodeRef={menuRef}
-                                  timeout={500}
-                                  classNames="contextmenu"
-                                  unmountOnExit
-                                >
-                                <div className={'menu '+props.theme} ref={menuRef} style={{...menuStyle, width:'9rem'}}>
-                                  <ul className="menu-options">
-                                    <li className={'prevent-select menu-option '+props.theme} onClick={handleAddNote}>
-                                      add note
-                                    </li>
-                                    <li className={'prevent-select menu-option '+props.theme} onClick={handleUploadPicture}>
-                                      upload picture
-                                    </li>
-                                    <li className={'prevent-select menu-option '+props.theme} onClick={handleShareFile}>
-                                      share file
-                                    </li>
-                                    <li className={'prevent-select menu-option '+props.theme} onClick={handleAddHTML}>
-                                      add HTML
-                                    </li>
-                                  </ul>
-                                </div>
-                              </CSSTransition>
-                            </div>
+  const share = (props) =>
+    <CSSTransition
+        in={shareFile}
+        nodeRef={shareFileRef}
+        timeout={500}
+        classNames="contextmenu"
+        unmountOnExit
+    >
+      <div ref={shareFileRef} >
+        <ShareFile setVisible={setShareFile}
+                   top={formStyle.top}
+                   left={formStyle.left}
+                   channelId={props.channel.id}
+                   theme={props.theme}/>
+      </div>
+    </CSSTransition>
+
+
+  const contextMenu2 = () =>
+      <div className={'menu '+props.theme}
+           style={{...menu2Props.style, ...menu2}}>
+        <ul className="menu-options">
+          <li className={'prevent-select menu-option '+props.theme} onClick={handleDelete}>
+            delete note
+          </li>
+          <li className={'prevent-select menu-option '+props.theme} >
+            <div className='dropdown prevent-select' >
+              set color
+              <div className="dropdown-content">
+                <table className={'dropdown-content-style '+props.theme}>
+                  <tbody>
+                  <tr>
+                    <td><button className='button' id='#ffffcc' onClick={setColor} style={{background:map.get('#ffffcc').background}}></button></td>
+                    <td><button className='button' id='#ffcccc' onClick={setColor} style={{background:map.get('#ffcccc').background}}></button></td>
+                    <td><button className='button' id='#ccffff' onClick={setColor} style={{background:map.get('#ccffff').background}}></button></td>
+                  </tr>
+                  <tr>
+                    <td><button className='button' id='#99ffcc' onClick={setColor} style={{background:map.get('#99ffcc').background}}></button></td>
+                    <td><button className='button' id='#ffccff' onClick={setColor} style={{background:map.get('#ffccff').background}}></button></td>
+                    <td><button className='button' id='#80ffff' onClick={setColor} style={{background:map.get('#80ffff').background}}></button></td>
+                  </tr>
+                  <tr>
+                    <td><button className='button' id='#ff99c2' onClick={setColor} style={{background:map.get('#ff99c2').background}}></button></td>
+                    <td><button className='button' id='#99ff99' onClick={setColor} style={{background:map.get('#99ff99').background}}></button></td>
+                    <td><button className='button' id='#ff99ff' onClick={setColor} style={{background:map.get('#ff99ff').background}}></button></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+
+  const contextMenu = () =>
+      <div className={'menu '+props.theme} ref={menuRef}
+           style={{...menuStyle, ...menu}}>
+        <ul className="menu-options">
+          <li className={'prevent-select menu-option '+props.theme} onClick={handleAddNote}>
+            add note
+          </li>
+          <li className={'prevent-select menu-option '+props.theme} onClick={handleUploadPicture}>
+            upload picture
+          </li>
+          <li className={'prevent-select menu-option '+props.theme} onClick={handleShareFile}>
+            share file
+          </li>
+          <li className={'prevent-select menu-option '+props.theme} onClick={handleAddHTML}>
+            add HTML
+          </li>
+        </ul>
+      </div>
+
   
   const hideMenus = () => {
-    setMenu(false)
-    setMenu2(false) 
+    setMenu({transform:'scaleY(0)', opacity:'0'})
+    setMenu2({transform:'scaleY(0)', opacity:'0'})
   }
 
   let offsetX, offsetY
@@ -306,7 +291,6 @@ const DnDContainer = (props) => {
   if(props.notes)
     return (
       <div className={'prevent-select dndWrapper '+props.theme} id='dndWrapper' onContextMenu={handleContextMenu}
-        onPointerOver={onpointerover}
         onPointerDown={onpointerdown}
         onClick={hideMenus} 
         onMouseMove={move}

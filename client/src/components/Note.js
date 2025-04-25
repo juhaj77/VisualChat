@@ -15,7 +15,7 @@ const Note = (props) => {
   const [show, setShow] = useState(props.show)
   const [map, setMap] = useState(mapD)
 
-  // onBlur ei toimi ilman tätä
+  // onBlur does not work without this
   useEffect(() => {
     setText(props.content)
     // eslint-disable-next-line react-hooks/exhaustive-deps
