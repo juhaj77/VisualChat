@@ -22,7 +22,7 @@ example use case:
    ![Image for oauth credentials](https://github.com/juhaj77/VisualChat/blob/master/images/oauth2.png)    
    set correct URIs in cloud console credentials tab
    
-   Update line 194 `CLIENT_ID=...` in client/src/index.js
+   Update line 194 `<GoogleOAuthProvider clientId=...>` in client/src/index.js
 
 1. Fix line 24 `let socket = io('wss://visualchat.onrender.com')` to `let socket = io('ws://localhost:3003')`  in client/src/index.js.
 1. Comment line 11 `app.use(express.static('build'))` in server/app.js. (this is for Render cloud. It builds directly from github).
