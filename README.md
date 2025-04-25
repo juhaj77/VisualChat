@@ -1,10 +1,10 @@
 # VisualChat
-Channel members can edit the shared view and share files. Workspace has draggable working area. You can create moveable sticky notes, add HTML code to the selected location, or upload images to the background in the selected location. All data is stored in Mongo DB. ___The workspace opens when a channel is selected___. Functionality can be found in context menus. Smooth animated user experience.    
+Channel members can edit the shared view and share files. The workspace features a draggable working area, where you can create movable sticky notes, insert HTML code at specific locations, or upload background images. All data is stored in MongoDB. ___The workspace opens when a channel is selected___. Functionality is accessed through context menus, providing a smooth and animated user experience.    
 ## try app:
 [app on Render](https://visualchat.onrender.com)    
 Test users are:    
 ___`username:testuser password:testuser`___ and ___`username:testuser2 password:testuser2`___   
-Or You can create your own. Using Google login app creates username from gmail address. ___A new channel must be created for a new user in order to try out app features___. ___Firefox is slow___ with react-spring animations...    
+Or you can create your own. Logging in with Google generates a username based on your Gmail address. A new channel must be created for each new user in order to try out the app's features. Firefox performs slowly with react-spring animations...        
 
 example use case:    
 ![Image of note view](https://github.com/juhaj77/VisualChat/blob/master/images/UI.png)
