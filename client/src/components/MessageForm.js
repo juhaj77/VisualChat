@@ -19,7 +19,7 @@ const MessageForm = (props) => {
 
   const sendMsg = async () => {
     const txt = msg.input.value
-    if(props.channel != ''){
+    if(props.channel !== ''){
       setWarning(null)
       await props.removeAnimation()
       await props.addMsg(txt,props.user, props.channel.id)
@@ -31,9 +31,7 @@ const MessageForm = (props) => {
   
   const keyPressed = event => { if(event.key === 'Enter') sendMsg() }
 
-  if(props.user)
-    return (
-      <div style={{background:'black',border:'none'}}>
+    return <div style={{background:'black',border:'none'}}>
         <input placeholder='write your msg here' className={'msginput '+props.theme} 
         onKeyPress={keyPressed} title={msg.input.value} {...msg.input} />
         <button className={'prevent-select hoverbutton '+props.theme} style={{
@@ -45,8 +43,6 @@ const MessageForm = (props) => {
         onClick={sendMsg}>send</button>
         <Info message={warning} clear={() => setWarning(null)} />
       </div>
-    )
-  return <div></div>
 }
 
 const mapStateToProps = (state) => {

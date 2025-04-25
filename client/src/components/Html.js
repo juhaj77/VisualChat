@@ -4,14 +4,11 @@ import { connect } from 'react-redux'
 
 const Html = (props) => {
 
-  const [pr, set] = useState(props)
+  const pr= props
   const [show, setShow] = useState(true)
 
   useEffect(() => {
-    document.getElementById(props.id).innerHTML=props.content 
-  }, [])
-
-  useEffect(() => {
+    document.getElementById(props.id).innerHTML=props.content
     return () => {setShow(false)}
   }, [props.channel])
 
@@ -24,7 +21,7 @@ const Html = (props) => {
 
   return transitions.map(({ item, key, props }) => 
     <animated.div key={key}  style={{position:'absolute',left:pr.left,top:pr.top,...props}}  >
-        <div id={pr.id}></div>
+        <div className='select' id={pr.id}></div>
     </animated.div>)
 }
 

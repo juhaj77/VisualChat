@@ -158,6 +158,11 @@ div.hoverthing.light:hover #wa {color: rgba(142, 122, 255, 0.9);}
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
 }
+.select {
+    -webkit-user-select: text; /* Safari */
+    -ms-user-select: text; /* IE 10 and IE 11 */
+    user-select: text; /* Standard syntax */
+}
 .Container2 {
   overflow:visible; 
   display: flex; 

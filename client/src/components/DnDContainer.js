@@ -319,6 +319,7 @@ const DnDContainer = (props) => {
               style={{zIndex:zIndex}}
             >
               <div className='prevent-select' id='wa'>&nbsp;draggable working area</div>
+              {props.htmls.map(h => <Html key={h.id} {...h}/>)}
               {props.notes.map(b => <Note theme={props.theme} key={b.id} {...b}/> )}
               {props.files.map((i) => <File theme={props.theme} key={i.id} {...i}/>)}
               {share(props)}
@@ -328,7 +329,7 @@ const DnDContainer = (props) => {
               {html(props)}
             </div>
           {props.pictures.map((i) => <MyImage theme={props.theme} key={i.id} {...i}/>)}
-          {props.htmls.map(h => <Html key={h.id} {...h}/>)}
+
         </div>
       </div>
     )
